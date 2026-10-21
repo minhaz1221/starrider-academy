@@ -44,6 +44,7 @@ export default function Hero() {
         .to(titleRef.current, { scale: 1.55, transformOrigin: "left bottom", bottom: "6vh", ease: "none" }, 0)
         .to(below.current, { autoAlpha: 0, y: -40, ease: "power1.in", duration: 0.35 }, 0);
     });
+    ScrollTrigger.refresh(); // the pin spacer changes every position below it
     return () => ctx.revert();
   }, []);
 
@@ -75,11 +76,17 @@ export default function Hero() {
 
         <div className="hero-below" ref={below}>
           <h1 className="hero-title" aria-live="polite" aria-label={slide.title}>
-            {slide.title.split(" ").map((w, k) => (
-              <span className="sw" key={`${slide.title}-${k}`} aria-hidden="true">
-                <span style={{ animationDelay: `${0.1 + k * 0.08}s` }}>{w}</span>
-              </span>
-            )).reduce<React.ReactNode[]>((acc, el, k) => (k ? [...acc, " ", el] : [el]), [])}
+            {/* letter-by-letter masked rise; replays on every slide change via the key */}
+            {slide.title.split(" ").map((w, wi, arr) => {
+              const offset = arr.slice(0, wi).join(" ").length;
+              return (
+                <span className="sw hero-word" key={`${slide.title}-${wi}`} aria-hidden="true">
+                  {w.split("").map((ch, ci) => (
+                    <span key={ci} className="ch" style={{ animationDelay: `${0.08 + (offset + ci) * 0.035}s` }}>{ch}</span>
+                  ))}
+                </span>
+              );
+            }).reduce<React.ReactNode[]>((acc, el, k) => (k ? [...acc, " ", el] : [el]), [])}
           </h1>
           <Link href={slide.href} className="btn-cyan" key={slide.title}>{slide.cta}</Link>
           <div className="dots-nav" role="tablist" aria-label="Choose slide">

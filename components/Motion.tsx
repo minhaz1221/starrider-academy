@@ -116,8 +116,16 @@ export default function Motion() {
       });
     });
 
-    ScrollTrigger.refresh();
+    // Re-measure once the hero pin spacer, fonts and images have settled — otherwise
+    // trigger positions are computed on the shorter pre-pin layout and fire too early.
+    const refresh = () => ScrollTrigger.refresh();
+    const t1 = setTimeout(refresh, 50);
+    const t2 = setTimeout(refresh, 600);
+    document.fonts?.ready.then(refresh);
+    window.addEventListener("load", refresh);
     return () => {
+      clearTimeout(t1); clearTimeout(t2);
+      window.removeEventListener("load", refresh);
       ctx.revert();
       gsap.ticker.remove(raf);
       lenis.destroy();
