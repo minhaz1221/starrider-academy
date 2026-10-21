@@ -89,9 +89,9 @@ export default function Home() {
         {/* ===== Pathways (Figma section 3) ===== */}
         <section id="pathways" className="bg-void">
           <div className="wide pathways">
-            <div className="section-head" data-reveal>
-              <h2>Star Rider Academy</h2>
-              <p>Technology, cyber security, telecommunications and film education on the Gold Coast — part of the Star Rider group, with 30 years of graduates placed into Australian industry.</p>
+            <div className="section-head">
+              <h2 data-split>Star Rider Academy</h2>
+              <p data-reveal>Technology, cyber security, telecommunications and film education on the Gold Coast — part of the Star Rider group, with 30 years of graduates placed into Australian industry.</p>
             </div>
             <div className="path-grid" data-stagger>
               {pathways.map((p) => (
@@ -108,7 +108,7 @@ export default function Home() {
         <section id="courses" className="section theme-light">
           <div className="wide" style={{ position: "relative" }}>
             <div className="ruled" data-reveal>
-              <h2 className="ruled-title">Featured courses</h2>
+              <h2 className="ruled-title" data-split>Featured courses</h2>
             </div>
             <div className="row-between" data-reveal style={{ marginTop: 28 }}>
               <p className="section-lead">Nationally recognised qualifications paired with the industry certifications employers ask for.</p>
@@ -132,7 +132,7 @@ export default function Home() {
         <section id="events" className="section bg-deep">
           <div className="wide">
             <div className="ruled" data-reveal>
-              <h2 className="ruled-title">The road to launch</h2>
+              <h2 className="ruled-title" data-split>The road to launch</h2>
             </div>
             <p className="section-lead" data-reveal style={{ marginTop: 28 }}>Open days, industry nights and the VIP launch party — join us on campus.</p>
             <div className="grid-3" data-stagger>
@@ -156,7 +156,7 @@ export default function Home() {
           <div className="container" style={{ maxWidth: 1160 }}>
             <div data-reveal>
               <span className="eyebrow" style={{ color: "#ffe1ee" }}>Student stories</span>
-              <blockquote style={{ marginTop: 20 }}>
+              <blockquote style={{ marginTop: 20 }} data-split>
                 “The training and support helped me secure a job in the wireless telecommunications industry — and achieve permanent residency within a year of graduating.”
               </blockquote>
               <div className="row-between" style={{ marginTop: 26, alignItems: "center" }}>
@@ -181,7 +181,7 @@ export default function Home() {
         <section id="news" className="section bg-void">
           <div className="wide">
             <div className="ruled" data-reveal>
-              <h2 className="ruled-title">Latest news</h2>
+              <h2 className="ruled-title" data-split>Latest news</h2>
             </div>
             <div style={{ marginTop: 8 }} data-stagger>
               {news.map((n) => (
@@ -197,7 +197,7 @@ export default function Home() {
           <div className="dots" aria-hidden="true" style={{ opacity: 0.8 }} />
           <div className="container" data-reveal>
             <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
-              <h2 className="hero-title" style={{ marginTop: 0 }}>Ready to start?</h2>
+              <h2 className="hero-title" style={{ marginTop: 0 }} data-split>Ready to start?</h2>
               <p className="section-sub" style={{ textAlign: "center" }}>Enrol in the program of your choice and we&apos;ll guide you from application to graduation.</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center" }}>
                 <Link href="/courses/cyber-security-ai" className="btn-cyan">How to enrol</Link>

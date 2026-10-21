@@ -38,7 +38,7 @@ export default function CoursePage() {
             <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
               <Link href="/#courses" style={{ color: "#dce3ff", fontSize: 15 }}>Courses / Cyber Security &amp; AI</Link>
               <span className="tag-pink">Diploma · ICT50220</span>
-              <h1>Diploma of Cyber Security &amp; Artificial Intelligence</h1>
+              <h1 data-split>Diploma of Cyber Security &amp; Artificial Intelligence</h1>
               <p style={{ fontSize: 19, lineHeight: 1.6, color: "#dce3ff", maxWidth: 580 }}>
                 Become certified in cyber security with vocational and industry certifications — threat detection, risk management, identity and access control, data privacy, hacking and AI.
               </p>
@@ -63,17 +63,17 @@ export default function CoursePage() {
           <div className="wide course-body">
             <div className="course-main">
               <Reveal>
-                <h2>About the course</h2>
+                <h2 data-split>About the course</h2>
                 <p>This qualification prepares you for roles as a security analyst, cyber security architect or AI-assisted security specialist. Training combines hands-on lab work, industry certification preparation and real-world scenarios — delivered in small classes with day, evening and virtual options.</p>
               </Reveal>
               <Reveal>
-                <h2>What you&apos;ll learn</h2>
+                <h2 data-split>What you&apos;ll learn</h2>
                 <div className="chips">
                   {topics.map((t) => (<div key={t} className="chip"><Sparkle /> {t}</div>))}
                 </div>
               </Reveal>
               <Reveal>
-                <h2>Career outcomes</h2>
+                <h2 data-split>Career outcomes</h2>
                 <div className="tags">{careers.map((c) => (<span key={c} className="tag">{c}</span>))}</div>
               </Reveal>
             </div>

@@ -20,6 +20,7 @@ export default function Motion() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       document.querySelectorAll<HTMLElement>("[data-reveal],[data-scale-in]").forEach((el) => (el.style.opacity = "1"));
+      document.querySelectorAll<HTMLElement>("[data-split]").forEach((el) => el.classList.add("is-split"));
       return;
     }
 
@@ -30,6 +31,35 @@ export default function Motion() {
     gsap.ticker.lagSmoothing(0);
 
     const ctx = gsap.context(() => {
+      // masked word rise for headings: each word sits in an overflow-hidden span and slides up
+      gsap.utils.toArray<HTMLElement>("[data-split]").forEach((el) => {
+        if (!el.classList.contains("is-split")) {
+          const movers: HTMLElement[] = [];
+          Array.from(el.childNodes).forEach((node) => {
+            if (node.nodeType === 3) {
+              const frag = document.createDocumentFragment();
+              (node.textContent || "").split(/(\s+)/).forEach((part) => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                const mask = document.createElement("span"); mask.className = "sw";
+                const inner = document.createElement("span"); inner.textContent = part;
+                mask.appendChild(inner); frag.appendChild(mask); movers.push(inner);
+              });
+              el.replaceChild(frag, node);
+            } else if (node.nodeType === 1) {
+              const mask = document.createElement("span"); mask.className = "sw";
+              el.replaceChild(mask, node); mask.appendChild(node); movers.push(node as HTMLElement);
+            }
+          });
+          el.classList.add("is-split");
+        }
+        const inner = el.querySelectorAll<HTMLElement>(".sw > *");
+        gsap.fromTo(
+          inner,
+          { yPercent: 110, rotate: 2 },
+          { yPercent: 0, rotate: 0, duration: 0.9, ease: "expo.out", stagger: 0.055, scrollTrigger: { trigger: el, start: "top 88%", once: true }, clearProps: "transform" },
+        );
+      });
       // reveal
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
         gsap.fromTo(

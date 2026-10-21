@@ -74,10 +74,14 @@ export default function Hero() {
         </div>
 
         <div className="hero-below" ref={below}>
-          <h1 className="hero-title" aria-live="polite">
-            <span key={slide.title}>{slide.title}</span>
+          <h1 className="hero-title" aria-live="polite" aria-label={slide.title}>
+            {slide.title.split(" ").map((w, k) => (
+              <span className="sw" key={`${slide.title}-${k}`} aria-hidden="true">
+                <span style={{ animationDelay: `${0.1 + k * 0.08}s` }}>{w}</span>
+              </span>
+            )).reduce<React.ReactNode[]>((acc, el, k) => (k ? [...acc, " ", el] : [el]), [])}
           </h1>
-          <Link href={slide.href} className="btn-cyan">{slide.cta}</Link>
+          <Link href={slide.href} className="btn-cyan" key={slide.title}>{slide.cta}</Link>
           <div className="dots-nav" role="tablist" aria-label="Choose slide">
             {heroSlides.map((s, k) => (
               <button key={s.title} type="button" role="tab" aria-selected={k === i} aria-label={s.title} className={k === i ? "active" : ""} onClick={() => setI(k)} />
