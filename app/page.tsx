@@ -34,17 +34,25 @@ export default function Home() {
         {/* ===== Statement + contact (Figma section 2) ===== */}
         <section id="about" className="bg-deep">
           <div className="wide statement">
-            <p data-words>
-              <Words className="c-cyan" text="A new era in vocational education & training" />
-              <span className="pill-img pill-media" aria-hidden="true"><img src={pills[0].img} alt="" className="kb kb-1" /></span>
-              <Words className="c-pink" text="combined with industry certification training," />
-              <span className="pill-img pill-media p-pink" aria-hidden="true"><img src={pills[1].img} alt="" className="kb kb-2" /></span>
-              <Words className="c-cyan" text="industry placement," />
-              <span className="pill-img pill-media" aria-hidden="true"><img src={pills[2].img} alt="" className="kb kb-3" /></span>
-              <Words className="c-blue" text="and" />
-              <span className="pill-img pill-media" aria-hidden="true"><img src={pills[3].img} alt="" className="kb kb-4" /></span>
-              <Words className="c-blue" text="government-funded courses." />
-            </p>
+            {/* Three explicit lines, exactly as laid out in the Figma (Frame 67 / 68 / 66) */}
+            <div className="statement-text" data-words>
+              <p className="s-line">
+                <Words className="c-cyan" text="A new era in vocational education & training" />
+                <span className="pill-img pill-media p-cyan" aria-hidden="true"><img src={pills[0].img} alt="" className="kb kb-1" /></span>
+                <Words className="c-pink" text="combined" />
+              </p>
+              <p className="s-line">
+                <span className="pill-img pill-media p-pink" aria-hidden="true"><img src={pills[1].img} alt="" className="kb kb-2" /></span>
+                <span className="s-run"><Words className="c-pink" text="with industry certification training," /> <Words className="c-cyan" text="industry" /></span>
+                <span className="pill-img pill-media p-cyan" aria-hidden="true"><img src={pills[2].img} alt="" className="kb kb-3" /></span>
+              </p>
+              <p className="s-line">
+                <Words className="c-cyan" text="placement," />
+                <Words className="c-blue" text="and" />
+                <span className="pill-img pill-media p-blue" aria-hidden="true"><img src={pills[3].img} alt="" className="kb kb-4" /></span>
+                <Words className="c-blue" text="government-funded courses." />
+              </p>
+            </div>
 
             <div className="contact-grid" data-stagger>
               <a href={`mailto:${site.email}`} className="contact-card">

@@ -127,11 +127,15 @@ h1, h2, h3, p { margin: 0; }
 .dots-nav button.active { width: 34px; background: var(--white); }
 
 /* ---------- statement + contact ---------- */
-.statement { padding: 110px var(--gutter) 100px; display: flex; flex-direction: column; align-items: center; gap: 90px; }
-.statement p { max-width: 1240px; text-align: center; font-size: clamp(26px, 2.9vw, 38px); font-weight: 500; line-height: 1.9; letter-spacing: -0.005em; }
-.c-cyan { color: #10d5f0; } .c-pink { color: #f11e79; } .c-blue { color: #2f8bff; }
-.pill-img { display: inline-block; vertical-align: middle; width: 196px; height: 60px; border-radius: 999px; object-fit: cover; background: #0a0f36; overflow: hidden; position: relative; margin: 0 12px; border: 1.5px solid rgba(255, 255, 255, 0.35); box-shadow: 0 0 0 1px rgba(31, 209, 240, 0.35); transition: transform .4s var(--ease); }
-.pill-img.p-pink { box-shadow: 0 0 0 1px rgba(236, 30, 121, 0.6); }
+/* Figma Frame 53: padding 100/32, text Inter 500 40/48 +0.16px centered, 3 lines gap 16, items gap 32, pills 195.5x63.5 r100 1.5px border */
+.statement { padding: 100px var(--gutter); display: flex; flex-direction: column; align-items: center; gap: 90px; }
+.statement-text { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 1400px; }
+.statement-text .s-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 32px; margin: 0; text-align: center; font-size: clamp(24px, 2.5vw, 40px); font-weight: 500; line-height: 1.2; letter-spacing: 0.16px; white-space: nowrap; }
+.statement-text .s-run { display: inline; }
+.c-cyan { color: #10d5f0; } .c-pink { color: #f11e79; } .c-blue { color: #0388cb; }
+.pill-img { display: inline-block; flex: 0 0 auto; vertical-align: middle; width: clamp(130px, 12.2vw, 196px); height: clamp(42px, 3.97vw, 64px); border-radius: 100px; background: #0a0f36; overflow: hidden; position: relative; border: 1.5px solid #10d5f0; transition: transform .4s var(--ease); }
+.pill-img.p-pink { border-color: #f11e79; }
+.pill-img.p-blue { border-color: #0388cb; }
 .pill-img:hover { transform: scale(1.06); }
 .contact-grid { width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 40px; }
 .contact-card { position: relative; border-radius: 44px; padding: 30px 36px; display: flex; flex-direction: column; gap: 22px; background: linear-gradient(180deg, #0d1240 0%, #0a0f36 100%); transition: transform .35s var(--ease); }
@@ -243,9 +247,9 @@ h1, h2, h3, p { margin: 0; }
   .pill-white { padding: 12px 20px; font-size: 15px; }
   .header-inner { gap: 12px; padding: 12px var(--gutter); }
   .hero-inner { padding-bottom: 56px; }
-  .pill-img { width: 120px; height: 40px; margin: 0 6px; }
+  .pill-img { width: 120px; height: 40px; }
   .statement { padding: 64px var(--gutter); gap: 48px; }
-  .statement p { line-height: 1.7; }
+  .statement-text .s-line { white-space: normal; gap: 8px 14px; line-height: 1.5; }
   .pathways, .section { padding: 64px var(--gutter); }
   .footer-grid { grid-template-columns: 1fr; padding-top: 48px; }
   .course-hero img { height: 300px; }
