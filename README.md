@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Star Rider Academy — homepage demo
 
-## Getting Started
+Custom-coded demo of the Star Rider Academy website (Gold Coast), built to the client's Figma direction
+("acit" prototype) with the structure and interaction patterns of ces.tech.
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · plain CSS (no Tailwind, no Elementor, no page builder).
+Static output — deploys anywhere (Vercel, Netlify, Cloudflare Pages, any Node host).
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the folder in Emdash (or any editor) and the agent can work on it directly.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx vercel        # preview link
+npx vercel --prod # production
+```
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  layout.tsx                      fonts, metadata
+  globals.css                     design tokens + all component styles
+  page.tsx                        homepage
+  courses/cyber-security-ai/      example course page
+components/
+  Header.tsx                      sticky header, CES-style mega menu, mobile drawer
+  Hero.tsx                        auto-rotating hero slider (pause on hover)
+  Reveal.tsx                      scroll-in reveal (IntersectionObserver)
+  Footer.tsx
+lib/data.ts                       all copy, nav, courses, events, news — edit here
+public/brand/                     Star Rider Academy logo (colour, white, mark)
+public/images/                    placeholder imagery — replace with licensed photos
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Palette and geometry measured from the client's Figma: blue gradient `#0c35b0 → #0a84d8`, dot field,
+  pink `#ec1e79`, cyan `#12c6e8`, deep navy `#070b2e`, Inter typeface.
+- Star Rider brand: chrome wordmark + magenta swoosh (logo rebuilt from the supplied mark).
+- Sections 1–3 follow the Figma one-to-one (hero slider, statement with inline pill images + glowing
+  contact cards, three pathway cards). Everything below follows ces.tech (card grids, event cards,
+  quote band, stats, news list, CTA).
 
-## Deploy on Vercel
+## Placeholders to replace
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+RTO / CRICOS numbers · intake dates · event dates · email address · photos in `public/images/`.
