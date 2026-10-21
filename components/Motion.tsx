@@ -32,13 +32,18 @@ export default function Motion() {
 
     // One-shot entrances are driven by IntersectionObserver (true on-screen visibility),
     // not ScrollTrigger positions, which drift under the pinned hero + smooth scroll.
+    // The hero pin/unpin produces a one-frame layout jump that makes elements far below
+    // look "visible" for an instant, so confirm the position again two frames later.
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
-        io.unobserve(en.target);
-        (en.target as HTMLElement & { _enter?: () => void })._enter?.();
+        const el = en.target as HTMLElement & { _enter?: () => void };
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight * 0.9 && r.bottom > 0) { io.unobserve(el); el._enter?.(); }
+        }));
       });
-    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.01 });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.01 });
     const onEnter = (el: HTMLElement, fn: () => void) => { (el as HTMLElement & { _enter?: () => void })._enter = fn; io.observe(el); };
 
     const ctx = gsap.context(() => {
