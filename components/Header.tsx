@@ -23,6 +23,11 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    document.documentElement.style.overflow = drawer ? "hidden" : "";
+    return () => { document.documentElement.style.overflow = ""; };
+  }, [drawer]);
+
+  useEffect(() => {
     const close = (e: MouseEvent) => {
       if (wrap.current && !wrap.current.contains(e.target as Node)) setMega(false);
     };
