@@ -18,9 +18,9 @@ export const nav = [
 ];
 
 export const heroSlides = [
-  { title: "Cyber Security & AI", cta: "Learn More About Cyber Security Courses", href: "/courses/cyber-security-ai", img: "/images/hero-1.jpg" },
-  { title: "Digital Media", cta: "Learn More About Digital Media Courses", href: "/#courses", img: "/images/hero-2.jpg" },
-  { title: "Telecommunications", cta: "Learn More About Telecom Courses", href: "/#courses", img: "/images/hero-3.jpg" },
+  { title: "Cyber Security & AI", cta: "Learn More About Cyber Security Courses", href: "/courses/cyber-security-ai", img: "/images/hero-1.jpg", video: "/video/hero-1.mp4" },
+  { title: "Digital Media", cta: "Learn More About Digital Media Courses", href: "/#courses", img: "/images/hero-2.jpg", video: "/video/hero-2.mp4" },
+  { title: "Telecommunications", cta: "Learn More About Telecom Courses", href: "/#courses", img: "/images/hero-3.jpg", video: "/video/hero-3.mp4" },
 ];
 
 export const pathways = [
