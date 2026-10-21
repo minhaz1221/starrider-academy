@@ -30,6 +30,17 @@ export default function Motion() {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
+    // One-shot entrances are driven by IntersectionObserver (true on-screen visibility),
+    // not ScrollTrigger positions, which drift under the pinned hero + smooth scroll.
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        (en.target as HTMLElement & { _enter?: () => void })._enter?.();
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.01 });
+    const onEnter = (el: HTMLElement, fn: () => void) => { (el as HTMLElement & { _enter?: () => void })._enter = fn; io.observe(el); };
+
     const ctx = gsap.context(() => {
       // masked word rise for headings: each word sits in an overflow-hidden span and slides up
       gsap.utils.toArray<HTMLElement>("[data-split]").forEach((el) => {
@@ -54,43 +65,30 @@ export default function Motion() {
           el.classList.add("is-split");
         }
         const inner = el.querySelectorAll<HTMLElement>(".sw > *");
-        gsap.fromTo(
-          inner,
-          { yPercent: 110, rotate: 2 },
-          { yPercent: 0, rotate: 0, duration: 0.9, ease: "expo.out", stagger: 0.055, scrollTrigger: { trigger: el, start: "top 88%", once: true }, clearProps: "transform" },
-        );
+        gsap.set(inner, { yPercent: 110, rotate: 2 });
+        onEnter(el, () => gsap.to(inner, { yPercent: 0, rotate: 0, duration: 0.9, ease: "expo.out", stagger: 0.055, clearProps: "transform" }));
       });
       // reveal
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { autoAlpha: 0, y: 40 },
-          { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%", once: true } },
-        );
+        gsap.set(el, { autoAlpha: 0, y: 40 });
+        onEnter(el, () => gsap.to(el, { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out" }));
       });
       // stagger groups
       gsap.utils.toArray<HTMLElement>("[data-stagger]").forEach((group) => {
         const items = group.querySelectorAll<HTMLElement>(":scope > *");
-        gsap.fromTo(
-          items,
-          { autoAlpha: 0, y: 60, scale: 0.96 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 1, ease: "power3.out", stagger: 0.12, scrollTrigger: { trigger: group, start: "top 85%", once: true } },
-        );
+        gsap.set(items, { autoAlpha: 0, y: 60, scale: 0.96 });
+        onEnter(group, () => gsap.to(items, { autoAlpha: 1, y: 0, scale: 1, duration: 1, ease: "power3.out", stagger: 0.12 }));
       });
-      // word-by-word scrub
+      // statement: words brighten one after another, pills pop in, when the block enters view
       gsap.utils.toArray<HTMLElement>("[data-words]").forEach((el) => {
         const words = el.querySelectorAll<HTMLElement>(".w");
-        gsap.fromTo(
-          words,
-          { opacity: 0.18, y: 8 },
-          { opacity: 1, y: 0, ease: "none", stagger: 0.08, scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 45%", scrub: 0.6 } },
-        );
         const media = el.querySelectorAll<HTMLElement>(".pill-media");
-        gsap.fromTo(
-          media,
-          { scale: 0.6, opacity: 0 },
-          { scale: 1, opacity: 1, ease: "back.out(1.6)", stagger: 0.2, scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 50%", scrub: 0.6 } },
-        );
+        gsap.set(words, { opacity: 0.18, y: 8 });
+        gsap.set(media, { scale: 0.6, opacity: 0 });
+        onEnter(el, () => {
+          gsap.to(words, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", stagger: 0.05 });
+          gsap.to(media, { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.6)", stagger: 0.18, delay: 0.2 });
+        });
       });
       // parallax
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
@@ -101,13 +99,7 @@ export default function Motion() {
       gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
         const target = parseFloat(el.dataset.count || "0");
         const obj = { v: 0 };
-        gsap.to(obj, {
-          v: target,
-          duration: 1.6,
-          ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 85%", once: true },
-          onUpdate: () => (el.textContent = Math.round(obj.v).toString()),
-        });
+        onEnter(el, () => gsap.to(obj, { v: target, duration: 1.6, ease: "power2.out", onUpdate: () => (el.textContent = Math.round(obj.v).toString()) }));
       });
       // header shrink
       ScrollTrigger.create({
@@ -124,6 +116,7 @@ export default function Motion() {
     document.fonts?.ready.then(refresh);
     window.addEventListener("load", refresh);
     return () => {
+      io.disconnect();
       clearTimeout(t1); clearTimeout(t2);
       window.removeEventListener("load", refresh);
       ctx.revert();
