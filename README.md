@@ -3,7 +3,8 @@
 Custom-coded demo of the Star Rider Academy website (Gold Coast), built to the client's Figma direction
 ("acit" prototype) with the structure and interaction patterns of ces.tech.
 
-**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · plain CSS (no Tailwind, no Elementor, no page builder).
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · plain CSS · GSAP ScrollTrigger + Lenis for motion (no Tailwind, no Elementor, no page builder).
+**Type:** Hanken Grotesk (display/body) + DM Mono (labels, buttons) — the closest free pair to CES's Monument Grotesk / Semi-Mono.
 Static output — deploys anywhere (Vercel, Netlify, Cloudflare Pages, any Node host).
 
 ## Run locally
@@ -38,7 +39,8 @@ components/
   Footer.tsx
 lib/data.ts                       all copy, nav, courses, events, news — edit here
 public/brand/                     Star Rider Academy logo (colour, white, mark)
-public/images/                    placeholder imagery — replace with licensed photos
+(media)                           all photos/videos are hot-linked from Pexels (free licence) for the demo —
+                                  self-host or replace with college media before launch; URLs live in lib/data.ts
 ```
 
 ## Design notes
@@ -52,4 +54,4 @@ public/images/                    placeholder imagery — replace with licensed 
 
 ## Placeholders to replace
 
-RTO / CRICOS numbers · intake dates · event dates · email address · photos in `public/images/`.
+RTO / CRICOS numbers · intake dates · event dates · email address · Pexels media (see `lib/data.ts`).

@@ -4,12 +4,18 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import Motion from "@/components/Motion";
 import Words from "@/components/Words";
-import { site, pathways, courses, events, news } from "@/lib/data";
+import { site, pathways, courses, events, news, pills } from "@/lib/data";
 
 const Sparkle = ({ size = 28 }: { size?: number }) => (
   <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24">
     <path d="M12 1.5c.8 5.6 4.9 9.7 10.5 10.5-5.6.8-9.7 4.9-10.5 10.5C11.2 16.9 7.1 12.8 1.5 12 7.1 11.2 11.2 7.1 12 1.5z" fill="#EC1E79" />
   </svg>
+);
+const CesBtn = ({ href, children, tone = "light" }: { href: string; children: React.ReactNode; tone?: "light" | "dark" | "ghost" }) => (
+  <Link href={href} className={`ces-btn ces-btn--${tone}`}>
+    <span>{children}</span>
+    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  </Link>
 );
 const Arrow = () => (
   <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -30,13 +36,13 @@ export default function Home() {
           <div className="wide statement">
             <p data-words>
               <Words className="c-cyan" text="A new era in vocational education & training" />
-              <video className="pill-img pill-media" src="/video/pill-1.mp4" poster="/images/pill-1.jpg" muted loop playsInline autoPlay aria-hidden="true" />
+              <video className="pill-img pill-media" src={pills[0].video} poster={pills[0].poster} muted loop playsInline autoPlay aria-hidden="true" />
               <Words className="c-pink" text="combined with industry certification training," />
-              <video className="pill-img pill-media p-pink" src="/video/pill-2.mp4" poster="/images/pill-2.jpg" muted loop playsInline autoPlay aria-hidden="true" />
+              <video className="pill-img pill-media p-pink" src={pills[1].video} poster={pills[1].poster} muted loop playsInline autoPlay aria-hidden="true" />
               <Words className="c-cyan" text="industry placement," />
-              <video className="pill-img pill-media" src="/video/pill-3.mp4" poster="/images/pill-3.jpg" muted loop playsInline autoPlay aria-hidden="true" />
+              <video className="pill-img pill-media" src={pills[2].video} poster={pills[2].poster} muted loop playsInline autoPlay aria-hidden="true" />
               <Words className="c-blue" text="and" />
-              <video className="pill-img pill-media" src="/video/pill-4.mp4" poster="/images/pill-4.jpg" muted loop playsInline autoPlay aria-hidden="true" />
+              <video className="pill-img pill-media" src={pills[3].video} poster={pills[3].poster} muted loop playsInline autoPlay aria-hidden="true" />
               <Words className="c-blue" text="government-funded courses." />
             </p>
 
@@ -91,26 +97,23 @@ export default function Home() {
         </section>
 
         {/* ===== Featured courses (CES card grid) ===== */}
-        <section id="courses" className="section bg-sky" style={{ overflow: "hidden" }}>
-          <div className="dots" aria-hidden="true" style={{ opacity: 0.55 }} />
+        <section id="courses" className="section theme-light">
           <div className="wide" style={{ position: "relative" }}>
-            <div className="row-between" data-reveal>
-              <div>
-                <h2 className="section-title">Featured courses</h2>
-                <p className="section-sub">Nationally recognised qualifications paired with the industry certifications employers ask for.</p>
-              </div>
-              <Link href="#courses" className="pill-white">View all courses</Link>
+            <div className="ruled" data-reveal>
+              <h2 className="ruled-title">Featured courses</h2>
+            </div>
+            <div className="row-between" data-reveal style={{ marginTop: 28 }}>
+              <p className="section-lead">Nationally recognised qualifications paired with the industry certifications employers ask for.</p>
+              <CesBtn href="#courses" tone="dark">View all courses</CesBtn>
             </div>
             <div className="grid-3" data-stagger>
               {courses.map((c) => (
-                  <Link key={c.title} href={c.href} className="card">
-                    <div className="card-media"><img src={c.img} alt="" /></div>
-                    <div className="card-body">
-                      <span className="eyebrow">{c.area}</span>
-                      <span className="card-title">{c.title}</span>
-                      <span className="card-text">{c.text}</span>
-                      <span className="arrow-btn"><Arrow /></span>
-                    </div>
+                  <Link key={c.title} href={c.href} className="ces-card">
+                    <div className="ces-card-media"><img src={c.img} alt="" loading="lazy" /></div>
+                    <span className="eyebrow">{c.area}</span>
+                    <span className="ces-card-title">{c.title}</span>
+                    <span className="ces-card-text">{c.text}</span>
+                    <span className="arrow-btn" aria-hidden="true"><Arrow /></span>
                   </Link>
               ))}
             </div>
@@ -120,10 +123,10 @@ export default function Home() {
         {/* ===== Events ("The road to…" like CES) ===== */}
         <section id="events" className="section bg-deep">
           <div className="wide">
-            <div data-reveal>
-              <h2 className="section-title">The road to launch</h2>
-              <p className="section-sub">Open days, industry nights and the VIP launch party — join us on campus.</p>
+            <div className="ruled" data-reveal>
+              <h2 className="ruled-title">The road to launch</h2>
             </div>
+            <p className="section-lead" data-reveal style={{ marginTop: 28 }}>Open days, industry nights and the VIP launch party — join us on campus.</p>
             <div className="grid-3" data-stagger>
               {events.map((e) => (
                   <Link key={e.title} href="#events" className="event-card">
@@ -132,7 +135,7 @@ export default function Home() {
                       <span className="tag-pink">{e.when}</span>
                       <span className="card-title" style={{ fontSize: 30, marginTop: 8 }}>{e.title}</span>
                       <span className="card-text">{site.location}</span>
-                      <span style={{ marginTop: 10, fontWeight: 600, color: "#12c6e8" }}>{e.cta} →</span>
+                      <span className="ces-btn ces-btn--light" style={{ alignSelf: "flex-start", marginTop: 12 }}><span>{e.cta}</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
                     </div>
                   </Link>
               ))}
@@ -150,14 +153,14 @@ export default function Home() {
               </blockquote>
               <div className="row-between" style={{ marginTop: 26, alignItems: "center" }}>
                 <span style={{ fontSize: 17 }}><strong>Nicko Jay Menecio</strong> — Advanced Diploma of Telecommunications Network Engineering</span>
-                <Link href="#about" className="pill-outline">More stories</Link>
+                <CesBtn href="#about" tone="ghost">More stories</CesBtn>
               </div>
             </div>
           </div>
         </section>
 
         {/* ===== Stats ===== */}
-        <section className="section bg-deep">
+        <section className="section bg-deep stats-band">
           <div className="wide" data-stagger style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 40 }}>
             <div className="stat"><strong data-count="30">0</strong><span>years of training technologists and artists</span></div>
             <div className="stat"><strong data-count="40">0</strong><span>countries our graduates come from</span></div>
@@ -169,15 +172,15 @@ export default function Home() {
         {/* ===== News ===== */}
         <section id="news" className="section bg-void">
           <div className="wide">
-            <div className="row-between" data-reveal>
-              <h2 className="section-title">Latest news</h2>
-              <Link href="#news" style={{ color: "#12c6e8", fontWeight: 600, fontSize: 17 }}>View all news →</Link>
+            <div className="ruled" data-reveal>
+              <h2 className="ruled-title">Latest news</h2>
             </div>
-            <div style={{ marginTop: 32 }} data-stagger>
+            <div style={{ marginTop: 8 }} data-stagger>
               {news.map((n) => (
-                  <Link key={n.title} href="#news" className="news-row"><strong>{n.title}</strong><span>{n.date}</span></Link>
+                  <Link key={n.title} href="#news" className="news-row"><strong>{n.title}</strong><span className="news-meta">{n.date}<i className="arrow-btn" aria-hidden="true"><Arrow /></i></span></Link>
               ))}
             </div>
+            <div data-reveal style={{ marginTop: 28 }}><CesBtn href="#news" tone="light">View all releases</CesBtn></div>
           </div>
         </section>
 
@@ -190,7 +193,7 @@ export default function Home() {
               <p className="section-sub" style={{ textAlign: "center" }}>Enrol in the program of your choice and we&apos;ll guide you from application to graduation.</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center" }}>
                 <Link href="/courses/cyber-security-ai" className="btn-cyan">How to enrol</Link>
-                <Link href="#contact" className="pill-white">Contact us</Link>
+                <CesBtn href="#contact" tone="ghost">Contact us</CesBtn>
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import Motion from "@/components/Motion";
 
 export const metadata: Metadata = {
   title: "Diploma of Cyber Security & Artificial Intelligence — Star Rider Academy",
@@ -28,9 +29,10 @@ const Sparkle = () => (
 export default function CoursePage() {
   return (
     <>
+      <Motion />
       <Header />
       <main>
-        <section className="hero bg-sky">
+        <section className="hero bg-sky" style={{ minHeight: "auto" }}>
           <div className="dots" aria-hidden="true" />
           <div className="wide course-hero" style={{ position: "relative" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
@@ -45,7 +47,7 @@ export default function CoursePage() {
                 <a href="#" className="pill-outline">Download brochure</a>
               </div>
             </div>
-            <img src="/images/hero-3.jpg" alt="" />
+            <img src="https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" />
           </div>
         </section>
 
