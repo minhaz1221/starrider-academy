@@ -248,9 +248,12 @@ h1, h2, h3, p { margin: 0; }
   .pill-white { padding: 12px 20px; font-size: 15px; }
   .header-inner { gap: 12px; padding: 12px var(--gutter); }
   .hero-inner { padding-bottom: 56px; }
-  .pill-img { width: 120px; height: 40px; }
+  /* on phones the three fixed lines become one flowing sentence with small inline pills */
   .statement { padding: 64px var(--gutter); gap: 48px; }
-  .statement-text .s-line { white-space: normal; gap: 8px 14px; line-height: 1.5; }
+  .statement-text { display: block; text-align: center; max-width: 480px; }
+  .statement-text .s-line { display: inline; white-space: normal; font-size: 24px; line-height: 1.8; letter-spacing: 0; }
+  .statement-text .s-line + .s-line::before { content: " "; }
+  .pill-img { width: 108px; height: 36px; margin: 0 6px; border-width: 1.2px; }
   .pathways, .section { padding: 64px var(--gutter); }
   .footer-grid { grid-template-columns: 1fr; padding-top: 48px; }
   .course-hero img { height: 300px; }
