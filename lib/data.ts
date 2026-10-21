@@ -24,9 +24,9 @@ export const heroSlides = [
 ];
 
 export const pathways = [
-  { title: "International students", img: "https://images.pexels.com/photos/7972324/pexels-photo-7972324.jpeg?auto=compress&cs=tinysrgb&w=1200", href: "/#pathways" },
-  { title: "Australians", img: "https://images.pexels.com/photos/31815033/pexels-photo-31815033.jpeg?auto=compress&cs=tinysrgb&w=1200", href: "/#pathways" },
-  { title: "Traineeships", img: "https://images.pexels.com/photos/7710234/pexels-photo-7710234.jpeg?auto=compress&cs=tinysrgb&w=1200", href: "/#pathways" },
+  { title: "International students", img: "/figma/path-international.jpg", href: "/#pathways" },
+  { title: "Australians", img: "/figma/path-australians.jpg", href: "/#pathways" },
+  { title: "Traineeships", img: "/figma/path-traineeships.jpg", href: "/#pathways" },
 ];
 
 export const courses = [
@@ -56,9 +56,9 @@ export const megaMenu = {
 };
 
 export const pills = [
-  { video: "https://videos.pexels.com/video-files/8198511/8198511-sd_960_540_25fps.mp4", poster: "https://images.pexels.com/photos/8197534/pexels-photo-8197534.jpeg?auto=compress&cs=tinysrgb&w=600" },
-  { video: "https://videos.pexels.com/video-files/8487521/8487521-sd_960_540_30fps.mp4", poster: "https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=600" },
-  { video: "https://videos.pexels.com/video-files/6442794/6442794-sd_960_540_24fps.mp4", poster: "https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=600" },
-  { video: "https://videos.pexels.com/video-files/7945191/7945191-sd_960_540_25fps.mp4", poster: "https://images.pexels.com/photos/7972324/pexels-photo-7972324.jpeg?auto=compress&cs=tinysrgb&w=600" },
+  { img: "/figma/pill-1.jpg" },
+  { img: "/figma/pill-2.jpg" },
+  { img: "/figma/pill-3.jpg" },
+  { img: "/figma/pill-4.jpg" },
 ];
-export const mediaCredit = "Footage and photography: Pexels (free licence) — placeholders for the demo; replace with licensed/college media before launch.";
+export const mediaCredit = "Pathway and pill photos: from the client Figma. Hero footage, course/event photos: Pexels (free licence) placeholders.";

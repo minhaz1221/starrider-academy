@@ -41,7 +41,7 @@ export default function Hero() {
         scrollTrigger: { trigger: section.current, start: () => "top " + Math.round(document.querySelector(".header")?.getBoundingClientRect().height ?? 100) + "px", end: "+=110%", invalidateOnRefresh: true, scrub: 0.8, pin: true, anticipatePin: 1 },
       });
       tl.to(card.current, { width: "100%", height: () => "calc(100vh - " + Math.round(document.querySelector(".header")?.getBoundingClientRect().height ?? 100) + "px)", borderRadius: 0, ease: "power1.inOut" }, 0)
-        .to(titleRef.current, { x: "-12vw", fontSize: "clamp(56px, 9.5vw, 150px)", bottom: "8vh", ease: "none" }, 0)
+        .to(titleRef.current, { scale: 1.55, transformOrigin: "left bottom", bottom: "6vh", ease: "none" }, 0)
         .to(below.current, { autoAlpha: 0, y: -40, ease: "power1.in", duration: 0.35 }, 0);
     });
     return () => ctx.revert();
@@ -66,7 +66,11 @@ export default function Hero() {
               <video ref={(el) => { videos.current[k] = el; }} src={s.video} poster={s.img} muted loop playsInline preload={k === 0 ? "auto" : "metadata"} autoPlay={k === 0} />
             </div>
           ))}
-          <div className="slide-title" ref={titleRef} key={slide.title}>{slide.title}</div>
+          <div className="marquee" ref={titleRef} aria-hidden="true">
+            <div className="marquee-track" key={slide.title}>
+              {[0, 1, 2, 3].map((k) => (<span key={k}>{slide.title}<i>*</i></span>))}
+            </div>
+          </div>
         </div>
 
         <div className="hero-below" ref={below}>

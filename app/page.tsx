@@ -36,13 +36,13 @@ export default function Home() {
           <div className="wide statement">
             <p data-words>
               <Words className="c-cyan" text="A new era in vocational education & training" />
-              <video className="pill-img pill-media" src={pills[0].video} poster={pills[0].poster} muted loop playsInline autoPlay aria-hidden="true" />
+              <span className="pill-img pill-media" aria-hidden="true"><img src={pills[0].img} alt="" className="kb kb-1" /></span>
               <Words className="c-pink" text="combined with industry certification training," />
-              <video className="pill-img pill-media p-pink" src={pills[1].video} poster={pills[1].poster} muted loop playsInline autoPlay aria-hidden="true" />
+              <span className="pill-img pill-media p-pink" aria-hidden="true"><img src={pills[1].img} alt="" className="kb kb-2" /></span>
               <Words className="c-cyan" text="industry placement," />
-              <video className="pill-img pill-media" src={pills[2].video} poster={pills[2].poster} muted loop playsInline autoPlay aria-hidden="true" />
+              <span className="pill-img pill-media" aria-hidden="true"><img src={pills[2].img} alt="" className="kb kb-3" /></span>
               <Words className="c-blue" text="and" />
-              <video className="pill-img pill-media" src={pills[3].video} poster={pills[3].poster} muted loop playsInline autoPlay aria-hidden="true" />
+              <span className="pill-img pill-media" aria-hidden="true"><img src={pills[3].img} alt="" className="kb kb-4" /></span>
               <Words className="c-blue" text="government-funded courses." />
             </p>
 

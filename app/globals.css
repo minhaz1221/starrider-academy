@@ -8,15 +8,15 @@
   --navy-800: #0a0f3c;
   --navy-700: #0d1240;
   --blue-700: #0e3fbf;
-  --blue-600: #1e4fd8;
-  --blue-500: #1c7be0;
+  --blue-600: #1a4da2;
+  --blue-500: #0388cb;
   --blue-400: #2f8bff;
-  --cyan-500: #12c6e8;
-  --cyan-400: #1fd1f0;
+  --cyan-500: #10d5f0;
+  --cyan-400: #10d5f0;
   --cyan-200: #8ee8f5;
-  --pink-500: #ec1e79;
-  --pink-400: #ff2a8f;
-  --violet-600: #5b1e9e;
+  --pink-500: #f11e79;
+  --pink-400: #c41478;
+  --violet-600: #6e2688;
   --white: #ffffff;
   --text-soft: #dce3ff;
   --text-muted: #9fb0e0;
@@ -129,8 +129,8 @@ h1, h2, h3, p { margin: 0; }
 /* ---------- statement + contact ---------- */
 .statement { padding: 110px var(--gutter) 100px; display: flex; flex-direction: column; align-items: center; gap: 90px; }
 .statement p { max-width: 1240px; text-align: center; font-size: clamp(26px, 2.9vw, 38px); font-weight: 500; line-height: 1.9; letter-spacing: -0.005em; }
-.c-cyan { color: var(--cyan-400); } .c-pink { color: #ec2a86; } .c-blue { color: var(--blue-400); }
-.pill-img { display: inline-block; vertical-align: middle; width: 196px; height: 60px; border-radius: 999px; object-fit: cover; background: #0a0f36; margin: 0 12px; border: 1.5px solid rgba(255, 255, 255, 0.35); box-shadow: 0 0 0 1px rgba(31, 209, 240, 0.35); transition: transform .4s var(--ease); }
+.c-cyan { color: #10d5f0; } .c-pink { color: #f11e79; } .c-blue { color: #2f8bff; }
+.pill-img { display: inline-block; vertical-align: middle; width: 196px; height: 60px; border-radius: 999px; object-fit: cover; background: #0a0f36; overflow: hidden; position: relative; margin: 0 12px; border: 1.5px solid rgba(255, 255, 255, 0.35); box-shadow: 0 0 0 1px rgba(31, 209, 240, 0.35); transition: transform .4s var(--ease); }
 .pill-img.p-pink { box-shadow: 0 0 0 1px rgba(236, 30, 121, 0.6); }
 .pill-img:hover { transform: scale(1.06); }
 .contact-grid { width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 40px; }
@@ -322,3 +322,20 @@ main { animation: pageIn .5s ease-out both; }
 
 /* pill videos: keep crisp edge like Figma */
 .pill-media { object-fit: cover; }
+
+/* Figma pill photos with a slow Ken Burns drift (her stills, kept moving) */
+.pill-img img.kb { width: 100%; height: 100%; object-fit: cover; display: block; transform-origin: 50% 50%; animation: kb 14s ease-in-out infinite alternate; }
+.kb-2 { animation-delay: -4s !important; } .kb-3 { animation-delay: -8s !important; } .kb-4 { animation-delay: -11s !important; }
+@keyframes kb { from { transform: scale(1.02) translateX(-2%); } to { transform: scale(1.16) translateX(2%); } }
+.card-blue, .path-card { background: linear-gradient(180deg, #1a4da2 0%, #0388cb 60%, #10d5f0 100%); }
+.btn-cyan { background: linear-gradient(90deg, #10d5f0 0%, #0388cb 100%); box-shadow: 0 16px 40px rgba(16, 213, 240, 0.35); }
+.tag-pink { background: #f11e79; }
+.quote-band { background: linear-gradient(120deg, #f11e79 0%, #c41478 55%, #6e2688 100%); }
+.contact-card::before { background: linear-gradient(135deg, #0388cb 0%, #f11e79 60%, #0388cb 100%); }
+/* hero title marquee (her Figma: "Digital Media * Digital Media *" sliding across the card) */
+.marquee { position: absolute; left: 0; right: 0; bottom: 26px; z-index: 2; overflow: hidden; pointer-events: none; white-space: nowrap; }
+.marquee-track { display: inline-block; padding-left: 18px; animation: marquee 18s linear infinite; }
+.marquee-track span { display: inline-block; font-size: clamp(40px, 6.2vw, 84px); font-weight: 700; line-height: .95; letter-spacing: -0.03em; color: #fff; text-shadow: 0 12px 40px rgba(0,0,0,.35); }
+.marquee-track i { font-style: normal; margin: 0 .28em; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 640px) { .marquee { bottom: 14px; } .marquee-track span { font-size: 30px; } }
