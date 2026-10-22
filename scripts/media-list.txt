@@ -1,0 +1,15 @@
+hero-poster.jpg|https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1600
+hero.mp4|https://videos.pexels.com/video-files/39402053/16776791_1280_720_60fps.mp4
+course-cyber.jpg|https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg?auto=compress&cs=tinysrgb&w=1200
+course-telco.jpg|https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1200
+course-net.jpg|https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1200
+event-launch.jpg|https://images.pexels.com/photos/34598092/pexels-photo-34598092.jpeg?auto=compress&cs=tinysrgb&w=1200
+event-industry.jpg|https://images.pexels.com/photos/7693692/pexels-photo-7693692.jpeg?auto=compress&cs=tinysrgb&w=1200
+event-openday.jpg|https://images.pexels.com/photos/6147143/pexels-photo-6147143.jpeg?auto=compress&cs=tinysrgb&w=1200
+welcome.mp4|https://acit.edu.au/wp-content/uploads/2024/04/Shutterstock-1093337253.mp4
+t-nicko.png|https://acit.edu.au/wp-content/uploads/2026/03/Nicko-Jay-Menecio1.png
+t-nicolas.png|https://acit.edu.au/wp-content/uploads/2026/03/Nicolas-Vanin1.png
+t-keem.png|https://acit.edu.au/wp-content/uploads/2026/03/Keem-Jayve-Tan1.png
+t-shivraj.png|https://acit.edu.au/wp-content/uploads/2026/03/Shivraj-Mavani1.png
+t-eden.png|https://acit.edu.au/wp-content/uploads/2026/03/Eden-Ivan-Camacho1.png
+t-rajwinder.png|https://acit.edu.au/wp-content/uploads/2026/03/Rajwinder-Rupin-Kaur1.png
