@@ -1,98 +1,82 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { heroSlides } from "@/lib/data";
+import { hero } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
-const INTERVAL = 6000;
+
+const Arrow = () => (
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+);
 
 /**
- * CES-style hero: the video card sits in the Figma position (800px wide) and, as you scroll,
- * pins and expands to full-bleed while the headline slides across it. Slides auto-rotate.
+ * CES-style hero: headline + right-hand copy, then a media card that pins and
+ * expands from the 1240px container to full-bleed as you scroll.
  */
 export default function Hero() {
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
   const section = useRef<HTMLElement>(null);
-  const card = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const below = useRef<HTMLDivElement>(null);
-  const videos = useRef<(HTMLVideoElement | null)[]>([]);
-
-  useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => setI((v) => (v + 1) % heroSlides.length), INTERVAL);
-    return () => clearInterval(t);
-  }, [paused]);
-
-  useEffect(() => {
-    videos.current.forEach((v, k) => {
-      if (!v) return;
-      if (k === i) { v.currentTime = 0; v.play().catch(() => {}); } else v.pause();
-    });
-  }, [i]);
+  const stage = useRef<HTMLDivElement>(null);
+  const media = useRef<HTMLDivElement>(null);
+  const copy = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: section.current, start: () => "top " + Math.round(document.querySelector(".header")?.getBoundingClientRect().height ?? 100) + "px", end: "+=110%", invalidateOnRefresh: true, scrub: 0.8, pin: true, anticipatePin: 1 },
-      });
-      tl.to(card.current, { width: "100%", height: () => "calc(100vh - " + Math.round(document.querySelector(".header")?.getBoundingClientRect().height ?? 100) + "px)", borderRadius: 0, ease: "power1.inOut" }, 0)
-        .to(titleRef.current, { scale: 1.55, transformOrigin: "left bottom", bottom: "6vh", ease: "none" }, 0)
-        .to(below.current, { autoAlpha: 0, y: -40, ease: "power1.in", duration: 0.35 }, 0);
+      const headerH = () => Math.round(document.querySelector(".header")?.getBoundingClientRect().height ?? 88);
+      gsap.timeline({
+        scrollTrigger: { trigger: stage.current, start: () => "top " + headerH() + "px", end: "+=90%", scrub: 0.8, pin: true, anticipatePin: 1, invalidateOnRefresh: true },
+      })
+        .to(media.current, { "--inset": 0, ease: "power1.inOut" }, 0)
+        .to(copy.current, { autoAlpha: 0, y: -30, ease: "power1.in", duration: 0.3 }, 0);
     });
-    ScrollTrigger.refresh(); // the pin spacer changes every position below it
+    ScrollTrigger.refresh();
     return () => ctx.revert();
   }, []);
 
-  const slide = heroSlides[i];
-
+  const words = hero.title.split(" ");
   return (
-    <section className="hero bg-sky" ref={section}>
-      <div className="dots" aria-hidden="true" />
-      <div className="hero-inner">
-        <div
-          className="slider"
-          ref={card}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          aria-roledescription="carousel"
-          aria-label="Featured course areas"
-        >
-          {heroSlides.map((s, k) => (
-            <div key={s.title} className={`slide${k === i ? " active" : ""}`} aria-hidden={k !== i}>
-              <video ref={(el) => { videos.current[k] = el; }} src={s.video} poster={s.img} muted loop playsInline preload={k === 0 ? "auto" : "metadata"} autoPlay={k === 0} />
-            </div>
-          ))}
-          <div className="marquee" ref={titleRef} aria-hidden="true">
-            <div className="marquee-track" key={slide.title}>
-              {[0, 1, 2, 3].map((k) => (<span key={k}>{slide.title}<i>*</i></span>))}
+    <section className="hero" ref={section}>
+      <div className="hero-glow" aria-hidden="true" />
+      <div className="container">
+        <div className="hero-copy" ref={copy}>
+          <div>
+            <div className="hero-eyebrow">{hero.eyebrow}</div>
+            <h1 aria-label={hero.title}>
+              {words.map((w, i) => {
+                const accent = i >= hero.accentFrom;
+                return (
+                  <span key={i}>
+                    <span className="sw" aria-hidden="true"><span className={`wd${accent ? " accent" : ""}`} style={{ animationDelay: `${0.1 + i * 0.07}s` }}>{w}</span></span>
+                    {i < words.length - 1 ? " " : ""}
+                  </span>
+                );
+              })}
+            </h1>
+          </div>
+          <div className="hero-right">
+            <p>{hero.sub}</p>
+            <div className="hero-btns">
+              <Link href={hero.primary.href} className="btn btn--pink">{hero.primary.label} <Arrow /></Link>
+              <Link href={hero.secondary.href} className="btn btn--ghost">{hero.secondary.label} <Arrow /></Link>
             </div>
           </div>
         </div>
-
-        <div className="hero-below" ref={below}>
-          <h1 className="hero-title" aria-live="polite" aria-label={slide.title}>
-            {/* letter-by-letter masked rise; replays on every slide change via the key */}
-            {slide.title.split(" ").map((w, wi, arr) => {
-              const offset = arr.slice(0, wi).join(" ").length;
-              return (
-                <span className="sw hero-word" key={`${slide.title}-${wi}`} aria-hidden="true">
-                  {w.split("").map((ch, ci) => (
-                    <span key={ci} className="ch" style={{ animationDelay: `${0.08 + (offset + ci) * 0.035}s` }}>{ch}</span>
-                  ))}
-                </span>
-              );
-            }).reduce<React.ReactNode[]>((acc, el, k) => (k ? [...acc, " ", el] : [el]), [])}
-          </h1>
-          <Link href={slide.href} className="btn-cyan" key={slide.title}>{slide.cta}</Link>
-          <div className="dots-nav" role="tablist" aria-label="Choose slide">
-            {heroSlides.map((s, k) => (
-              <button key={s.title} type="button" role="tab" aria-selected={k === i} aria-label={s.title} className={k === i ? "active" : ""} onClick={() => setI(k)} />
-            ))}
+      </div>
+      <div className="media-stage" ref={stage}>
+        <div className="media" ref={media}>
+          <video src={hero.video} poster={hero.poster} muted loop playsInline autoPlay preload="metadata" />
+          <div className="media-overlay" />
+          <div className="media-chips">
+            {hero.chips.map((c) => (<span key={c} className="chip">{c}</span>))}
+          </div>
+          <button type="button" className="play" aria-label="Play showreel">
+            <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff" /></svg>
+          </button>
+          <div className="media-caption">
+            <span className="mono">{hero.captionEyebrow}</span>
+            <strong>{hero.caption}</strong>
           </div>
         </div>
       </div>

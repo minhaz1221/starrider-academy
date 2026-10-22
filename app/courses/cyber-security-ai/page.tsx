@@ -31,20 +31,20 @@ export default function CoursePage() {
     <>
       <Motion />
       <Header />
-      <main>
-        <section className="hero bg-sky" style={{ minHeight: "auto" }}>
-          <div className="dots" aria-hidden="true" />
+      <main className="course-page">
+        <section className="hero" style={{ padding: 0 }}>
+          <div className="hero-glow" aria-hidden="true" />
           <div className="wide course-hero" style={{ position: "relative" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-              <Link href="/#courses" style={{ color: "#dce3ff", fontSize: 15 }}>Courses / Cyber Security &amp; AI</Link>
-              <span className="tag-pink">Diploma · ICT50220</span>
+              <Link href="/#courses" style={{ color: "#c7ccd9", fontSize: 15 }}>Courses / Cyber Security &amp; AI</Link>
+              <span className="tag">Diploma · ICT50220</span>
               <h1 data-split>Diploma of Cyber Security &amp; Artificial Intelligence</h1>
-              <p style={{ fontSize: 19, lineHeight: 1.6, color: "#dce3ff", maxWidth: 580 }}>
+              <p style={{ fontSize: 19, lineHeight: 1.6, color: "#c7ccd9", maxWidth: 580 }}>
                 Become certified in cyber security with vocational and industry certifications — threat detection, risk management, identity and access control, data privacy, hacking and AI.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 8 }}>
                 <a href="#enquire" className="btn-cyan">Enrol now</a>
-                <a href="#" className="pill-outline">Download brochure</a>
+                <a href="#" className="btn btn--ghost">Download brochure</a>
               </div>
             </div>
             <img src="https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" />
@@ -78,10 +78,10 @@ export default function CoursePage() {
               </Reveal>
             </div>
 
-            <Reveal className="contact-card enquire" delay={1}>
+            <Reveal className="enquire" delay={1}>
               <form id="enquire" onSubmit={undefined} style={{ display: "contents" }}>
                 <span style={{ fontSize: 26, fontWeight: 600 }}>Enquire about this course</span>
-                <span style={{ fontSize: 15, color: "#dce3ff" }}>We&apos;ll get back to you within one business day.</span>
+                <span style={{ fontSize: 15, color: "#c7ccd9" }}>We&apos;ll get back to you within one business day.</span>
                 <label>Your name<input type="text" name="name" placeholder="Full name" required /></label>
                 <label>Email<input type="email" name="email" placeholder="you@example.com" required /></label>
                 <label>I am
