@@ -309,3 +309,81 @@ main { animation: pageIn .5s ease-out both; }
   .course-hero { padding: 40px var(--gutter) 60px; }
   .course-hero img { height: 300px; }
 }
+
+/* ---------- welcome video band ---------- */
+.welcome .lead-row { align-items: flex-start; }
+.welcome-text { max-width: 400px; font-size: 16px; line-height: 1.55; color: var(--silver); }
+.welcome-video { position: relative; margin-top: 40px; aspect-ratio: 16 / 8; border-radius: var(--radius); overflow: hidden; background: var(--card); box-shadow: 0 40px 100px rgba(0,0,0,.45); }
+.welcome-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.welcome-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,11,36,0) 40%, rgba(7,11,36,.8) 100%); }
+.welcome-caption { position: absolute; left: 48px; bottom: 44px; right: 48px; display: flex; flex-direction: column; gap: 8px; }
+.welcome-caption .mono { color: var(--silver); }
+.welcome-caption strong { font-size: clamp(22px, 2.4vw, 34px); font-weight: 500; letter-spacing: -0.01em; }
+.sound { position: absolute; right: 32px; top: 32px; display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,.45); background: rgba(7,11,36,.35); backdrop-filter: blur(8px); color: var(--white); font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; transition: background .2s; }
+.sound:hover { background: rgba(255,255,255,.14); }
+.sound-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.sound-bars i { width: 3px; height: 30%; background: var(--white); border-radius: 2px; }
+.sound.on .sound-bars i { animation: bars .9s ease-in-out infinite alternate; }
+.sound.on .sound-bars i:nth-child(2) { animation-delay: .15s; } .sound.on .sound-bars i:nth-child(3) { animation-delay: .3s; } .sound.on .sound-bars i:nth-child(4) { animation-delay: .45s; }
+@keyframes bars { from { height: 25%; } to { height: 100%; } }
+.welcome-facts { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.welcome-fact { display: flex; flex-direction: column; gap: 8px; padding: 20px 32px; border-left: 1px solid rgba(255,255,255,.14); }
+.welcome-fact:first-child { padding-left: 0; border-left: 0; }
+.welcome-fact .mono { color: var(--muted); }
+.welcome-fact strong { font-size: 18px; font-weight: 500; }
+
+/* ---------- testimonials ---------- */
+.quote-card { margin: 0; display: flex; flex-direction: column; gap: 18px; padding: 28px; border-radius: var(--radius); background: var(--light); border: 1px solid var(--line); color: var(--ink); transition: transform .4s var(--ease), box-shadow .4s, background .2s; }
+.quote-card:hover { transform: translateY(-4px); background: var(--white); box-shadow: 0 24px 50px rgba(11,16,48,.1); }
+.quote-mark { color: var(--pink); }
+.quote-card blockquote { font-size: 17px; line-height: 1.55; color: var(--body); flex: 1; }
+.quote-card figcaption { display: flex; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid var(--line); }
+.quote-card img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; background: var(--card); flex: 0 0 auto; }
+.quote-card figcaption span { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.quote-card strong { font-size: 16px; font-weight: 500; }
+.quote-card em { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- brochures ---------- */
+.dl-card { display: flex; flex-direction: column; gap: 14px; padding: 28px; border-radius: var(--radius); background: var(--white); color: var(--ink); border: 1px solid var(--line); transition: transform .4s var(--ease), box-shadow .4s, border-color .2s; }
+.dl-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(11,16,48,.1); border-color: rgba(11,16,48,.2); }
+.dl-top { display: flex; align-items: center; justify-content: space-between; }
+.dl-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(11,16,48,.5); display: inline-flex; align-items: center; justify-content: center; transition: background .2s, color .2s, transform .3s var(--ease); }
+.dl-card:hover .dl-icon { background: var(--pink); border-color: var(--pink); color: var(--white); transform: translateY(3px); }
+.dl-card h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.015em; }
+.dl-card p { font-size: 15px; line-height: 1.5; color: var(--body); flex: 1; }
+.dl-cta { color: var(--ink); font-weight: 500; padding-top: 10px; border-top: 1px solid var(--line); }
+#brochures { background: var(--light); }
+
+/* ---------- enquiry form ---------- */
+.enquiry-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.enquiry-copy .lead { margin-top: 36px; color: var(--silver); }
+.enquiry-contact { margin-top: 40px; display: flex; flex-direction: column; gap: 18px; }
+.enquiry-contact > div { display: flex; flex-direction: column; gap: 4px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: 16px; }
+.enquiry-contact .mono { color: var(--muted); }
+.enquiry-contact a:hover { color: var(--pink); }
+.form-card { background: var(--white); color: var(--ink); border-radius: var(--radius); padding: 36px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 40px 100px rgba(0,0,0,.35); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-card label { display: flex; flex-direction: column; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.form-card input, .form-card select, .form-card textarea { font: inherit; font-family: var(--font); font-size: 16px; color: var(--ink); background: var(--light); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; text-transform: none; letter-spacing: 0; transition: border-color .2s, box-shadow .2s; }
+.form-card input:focus, .form-card select:focus, .form-card textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 0 3px rgba(241,30,121,.15); background: var(--white); }
+.form-card textarea { resize: vertical; }
+.form-foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 6px; }
+.form-note { font-size: 13px; color: var(--muted); max-width: 320px; }
+.form-done { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding: 20px 0; }
+.form-done strong { font-size: 28px; font-weight: 500; letter-spacing: -0.015em; }
+.form-done p { color: var(--body); line-height: 1.5; }
+.form-done .mono { color: var(--pink); }
+
+@media (max-width: 1100px) { .enquiry-grid { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 720px) {
+  .welcome-video { aspect-ratio: 4 / 5; margin-top: 28px; }
+  .welcome-caption { left: 18px; right: 18px; bottom: 18px; }
+  .sound { right: 14px; top: 14px; height: 34px; padding: 0 12px; font-size: 11px; }
+  .welcome-facts { grid-template-columns: 1fr; margin-top: 24px; }
+  .welcome-fact { padding: 16px 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.14); }
+  .welcome-fact:first-child { border-top: 0; }
+  .welcome-text { max-width: none; }
+  .quote-card, .dl-card { padding: 22px; }
+  .form-card { padding: 22px; }
+  .form-row { grid-template-columns: 1fr; }
+}

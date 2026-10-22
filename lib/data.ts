@@ -75,3 +75,26 @@ export const footerCols = [
 ];
 
 export const mediaCredit = "Pathway photos: client Figma. Hero footage, course/event photos: Pexels (free licence) placeholders.";
+
+export const welcome = {
+  eyebrow: "Welcome to the Gold Coast",
+  title: "Study where the industry works — Varsity Lakes, Queensland.",
+  text: "Thirty years of training technologists and artists on the Gold Coast, with small classes, real labs and a campus ten minutes from the beach.",
+  video: "https://acit.edu.au/wp-content/uploads/2024/04/Shutterstock-1093337253.mp4",
+  facts: [["Campus", "Level 2, 246 Varsity Parade, Varsity Lakes"], ["Classes", "Day, evening and virtual"], ["Since", "1993 — 30 years on the Gold Coast"]],
+};
+
+export const testimonials = [
+  { name: "Nicko Jay Menecio", course: "Advanced Diploma of Telecommunications Network Engineering", img: "https://acit.edu.au/wp-content/uploads/2026/03/Nicko-Jay-Menecio1.png", quote: "The course provided strong practical knowledge, experienced trainers and excellent lab facilities. Because of the training and support, I secured a job in the wireless telecommunications industry, which helped me achieve permanent residency within a year of graduation." },
+  { name: "Nicolas Vanin", course: "Telecommunications & Networking", img: "https://acit.edu.au/wp-content/uploads/2026/03/Nicolas-Vanin1.png", quote: "Strong foundations with engaging lectures, practical training and experienced trainers. After graduating I joined an organisation where I manage the entire IT infrastructure, using the skills I learned here." },
+  { name: "Keem Jayve Tan", course: "Telecommunications Network Engineering", img: "https://acit.edu.au/wp-content/uploads/2026/03/Keem-Jayve-Tan1.png", quote: "A strong mix of theoretical knowledge and practical training, supported by dedicated trainers and modern lab facilities. It played a key role in my professional growth." },
+  { name: "Shivraj Mavani", course: "Networking & Data Centre", img: "https://acit.edu.au/wp-content/uploads/2026/03/Shivraj-Mavani1.png", quote: "The courses were challenging and engaging — I particularly enjoyed CCNA and Data Centre. The professors were knowledgeable and passionate, and always encouraged us to think critically and creatively." },
+  { name: "Eden Ivan Camacho", course: "Information Technology", img: "https://acit.edu.au/wp-content/uploads/2026/03/Eden-Ivan-Camacho1.png", quote: "It was useful to have such a great instructor who was extremely knowledgeable. I enjoyed every phase of the course and I am sure I will apply everything I've learned daily in my professional career." },
+  { name: "Rajwinder Kaur", course: "International student", img: "https://acit.edu.au/wp-content/uploads/2026/03/Rajwinder-Rupin-Kaur1.png", quote: "The support and help offered by the staff is unbelievable. I recommend other students to choose this college for their future education — international students can also get 5 extra points studying in a regional college." },
+];
+
+export const brochures = [
+  { title: "College brochure", text: "Courses, campus, industry certifications and how to enrol — the full prospectus.", meta: "PDF · Prospectus", href: "https://acit.edu.au/wp-content/uploads/2024/05/ACIT-College_Brochure_Web-FINAL-Sep_2023.pdf" },
+  { title: "ELICOS brochure", text: "English for computing and technology — specialised vocabulary to CEFR C1 level.", meta: "PDF · English", href: "https://acit.edu.au/wp-content/uploads/2025/05/ELICOS-Brochure.pdf" },
+  { title: "School of English brochure", text: "Support, resources and opportunities for students joining us from across the globe.", meta: "PDF · International", href: "https://acit.edu.au/wp-content/uploads/2025/06/ACIT-IFTV-Brochure-1.pdf" },
+];
