@@ -27,8 +27,8 @@ export const hero = {
   chips: ["Cyber Security & AI", "Digital Media", "Telecommunications"],
   captionEyebrow: "IFTV Studios  ·  on set with Digital Media students",
   caption: "Learn production on real sets, alongside industry.",
-  video: "https://videos.pexels.com/video-files/39402053/16776791_1280_720_60fps.mp4",
-  poster: "https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  video: "/ext/hero.mp4",
+  poster: "/ext/hero-poster.jpg",
 };
 
 export const stats = [
@@ -45,15 +45,15 @@ export const pathways = [
 ];
 
 export const courses = [
-  { area: "Cyber Security & AI", title: "Diploma of Cyber Security & Artificial Intelligence", text: "Threat detection, risk, identity & access, data privacy and applied AI.", img: "https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg?auto=compress&cs=tinysrgb&w=1200", href: "/courses/cyber-security-ai" },
-  { area: "Telecommunications", title: "Advanced Diploma of Telecommunications Network Engineering", text: "Hands-on lab training with the certifications behind Australia's networks.", img: "https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1200", href: "/#courses" },
-  { area: "Networking", title: "Networking & Data Centre", text: "CCNA-aligned skills for the infrastructure every business runs on.", img: "https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1200", href: "/#courses" },
+  { area: "Cyber Security & AI", title: "Diploma of Cyber Security & Artificial Intelligence", text: "Threat detection, risk, identity & access, data privacy and applied AI.", img: "/ext/course-cyber.jpg", href: "/courses/cyber-security-ai" },
+  { area: "Telecommunications", title: "Advanced Diploma of Telecommunications Network Engineering", text: "Hands-on lab training with the certifications behind Australia's networks.", img: "/ext/course-telco.jpg", href: "/#courses" },
+  { area: "Networking", title: "Networking & Data Centre", text: "CCNA-aligned skills for the infrastructure every business runs on.", img: "/ext/course-net.jpg", href: "/#courses" },
 ];
 
 export const events = [
-  { title: "VIP Launch Party", when: "Date TBC · Gold Coast", cta: "Register now", img: "https://images.pexels.com/photos/34598092/pexels-photo-34598092.jpeg?auto=compress&cs=tinysrgb&w=1200" },
-  { title: "Industry Night", when: "Monthly · Varsity Lakes", cta: "Reserve a seat", img: "https://images.pexels.com/photos/7693692/pexels-photo-7693692.jpeg?auto=compress&cs=tinysrgb&w=1200" },
-  { title: "Campus Open Day", when: "Every month · 10am", cta: "Book a tour", img: "https://images.pexels.com/photos/6147143/pexels-photo-6147143.jpeg?auto=compress&cs=tinysrgb&w=1200" },
+  { title: "VIP Launch Party", when: "Date TBC · Gold Coast", cta: "Register now", img: "/ext/event-launch.jpg" },
+  { title: "Industry Night", when: "Monthly · Varsity Lakes", cta: "Reserve a seat", img: "/ext/event-industry.jpg" },
+  { title: "Campus Open Day", when: "Every month · 10am", cta: "Book a tour", img: "/ext/event-openday.jpg" },
 ];
 
 export const news = [
@@ -80,17 +80,17 @@ export const welcome = {
   eyebrow: "Welcome to the Gold Coast",
   title: "Study where the industry works — Varsity Lakes, Queensland.",
   text: "Thirty years of training technologists and artists on the Gold Coast, with small classes, real labs and a campus ten minutes from the beach.",
-  video: "https://acit.edu.au/wp-content/uploads/2024/04/Shutterstock-1093337253.mp4",
+  video: "/ext/welcome.mp4",
   facts: [["Campus", "Level 2, 246 Varsity Parade, Varsity Lakes"], ["Classes", "Day, evening and virtual"], ["Since", "1993 — 30 years on the Gold Coast"]],
 };
 
 export const testimonials = [
-  { name: "Nicko Jay Menecio", course: "Advanced Diploma of Telecommunications Network Engineering", img: "https://acit.edu.au/wp-content/uploads/2026/03/Nicko-Jay-Menecio1.png", quote: "The course provided strong practical knowledge, experienced trainers and excellent lab facilities. Because of the training and support, I secured a job in the wireless telecommunications industry, which helped me achieve permanent residency within a year of graduation." },
-  { name: "Nicolas Vanin", course: "Telecommunications & Networking", img: "https://acit.edu.au/wp-content/uploads/2026/03/Nicolas-Vanin1.png", quote: "Strong foundations with engaging lectures, practical training and experienced trainers. After graduating I joined an organisation where I manage the entire IT infrastructure, using the skills I learned here." },
-  { name: "Keem Jayve Tan", course: "Telecommunications Network Engineering", img: "https://acit.edu.au/wp-content/uploads/2026/03/Keem-Jayve-Tan1.png", quote: "A strong mix of theoretical knowledge and practical training, supported by dedicated trainers and modern lab facilities. It played a key role in my professional growth." },
-  { name: "Shivraj Mavani", course: "Networking & Data Centre", img: "https://acit.edu.au/wp-content/uploads/2026/03/Shivraj-Mavani1.png", quote: "The courses were challenging and engaging — I particularly enjoyed CCNA and Data Centre. The professors were knowledgeable and passionate, and always encouraged us to think critically and creatively." },
-  { name: "Eden Ivan Camacho", course: "Information Technology", img: "https://acit.edu.au/wp-content/uploads/2026/03/Eden-Ivan-Camacho1.png", quote: "It was useful to have such a great instructor who was extremely knowledgeable. I enjoyed every phase of the course and I am sure I will apply everything I've learned daily in my professional career." },
-  { name: "Rajwinder Kaur", course: "International student", img: "https://acit.edu.au/wp-content/uploads/2026/03/Rajwinder-Rupin-Kaur1.png", quote: "The support and help offered by the staff is unbelievable. I recommend other students to choose this college for their future education — international students can also get 5 extra points studying in a regional college." },
+  { name: "Nicko Jay Menecio", course: "Advanced Diploma of Telecommunications Network Engineering", img: "/ext/t-nicko.png", quote: "The course provided strong practical knowledge, experienced trainers and excellent lab facilities. Because of the training and support, I secured a job in the wireless telecommunications industry, which helped me achieve permanent residency within a year of graduation." },
+  { name: "Nicolas Vanin", course: "Telecommunications & Networking", img: "/ext/t-nicolas.png", quote: "Strong foundations with engaging lectures, practical training and experienced trainers. After graduating I joined an organisation where I manage the entire IT infrastructure, using the skills I learned here." },
+  { name: "Keem Jayve Tan", course: "Telecommunications Network Engineering", img: "/ext/t-keem.png", quote: "A strong mix of theoretical knowledge and practical training, supported by dedicated trainers and modern lab facilities. It played a key role in my professional growth." },
+  { name: "Shivraj Mavani", course: "Networking & Data Centre", img: "/ext/t-shivraj.png", quote: "The courses were challenging and engaging — I particularly enjoyed CCNA and Data Centre. The professors were knowledgeable and passionate, and always encouraged us to think critically and creatively." },
+  { name: "Eden Ivan Camacho", course: "Information Technology", img: "/ext/t-eden.png", quote: "It was useful to have such a great instructor who was extremely knowledgeable. I enjoyed every phase of the course and I am sure I will apply everything I've learned daily in my professional career." },
+  { name: "Rajwinder Kaur", course: "International student", img: "/ext/t-rajwinder.png", quote: "The support and help offered by the staff is unbelievable. I recommend other students to choose this college for their future education — international students can also get 5 extra points studying in a regional college." },
 ];
 
 export const brochures = [

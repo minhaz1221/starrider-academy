@@ -16,7 +16,7 @@ export default function Welcome() {
           <p className="welcome-text" data-reveal>{welcome.text}</p>
         </div>
         <div className="welcome-video" data-reveal>
-          <video ref={v} src={welcome.video} muted loop playsInline autoPlay preload="metadata" data-parallax="0.08" />
+          <video ref={v} src={welcome.video} poster="/ext/welcome-poster.jpg" muted loop playsInline autoPlay preload="metadata" data-parallax="0.08" />
           <div className="welcome-overlay" />
           <button type="button" className={`sound${muted ? "" : " on"}`} onClick={toggle} aria-pressed={!muted}>
             <span className="sound-bars" aria-hidden="true"><i /><i /><i /><i /></span>
