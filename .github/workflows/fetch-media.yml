@@ -2,7 +2,7 @@ name: Fetch external media into /public/ext
 on:
   workflow_dispatch:
   push:
-    paths: [".github/workflows/fetch-media.yml", "scripts/media-list.txt"]
+    paths: [".github/workflows/fetch-media.yml", "scripts/media-list.txt", "scripts/media-search.txt"]
 permissions:
   contents: write
 jobs:
@@ -18,6 +18,17 @@ jobs:
             echo "$name <- $url"
             curl -sSL --retry 3 -A "Mozilla/5.0" -o "public/ext/$name" "$url" || echo "FAILED $name"
           done < scripts/media-list.txt
+          ls -la public/ext
+      - name: Search Wikimedia Commons for named queries
+        run: |
+          while IFS='|' read -r name query; do
+            [ -z "$name" ] && continue
+            url=$(curl -sS -A "starrider-media-bot/1.0 (contact: media@vellyo.example)" "https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=$(python3 -c "import urllib.parse,sys;print(urllib.parse.quote(sys.argv[1]))" "filetype:bitmap $query")&gsrnamespace=6&gsrlimit=5&prop=imageinfo&iiprop=url|mime|size&iiurlwidth=1800&format=json" \
+              | python3 -c "import json,sys; d=json.load(sys.stdin); ps=[p for p in d.get('query',{}).get('pages',{}).values() if p['imageinfo'][0]['mime'] in ('image/jpeg','image/png') and p['imageinfo'][0]['width']>=1600]; ps.sort(key=lambda p:-p['imageinfo'][0]['width']); print(ps[0]['imageinfo'][0].get('thumburl') or ps[0]['imageinfo'][0]['url'] if ps else '')")
+            echo "$name <- $url"
+            [ -n "$url" ] && curl -sSL -A "starrider-media-bot/1.0" -o "public/ext/$name" "$url" || echo "FAILED $name"
+          done < scripts/media-search.txt
+          file public/ext/* | grep -v image && true
           ls -la public/ext
       - name: Commit
         run: |

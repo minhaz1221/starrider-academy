@@ -13,11 +13,3 @@ t-keem.png|https://acit.edu.au/wp-content/uploads/2026/03/Keem-Jayve-Tan1.png
 t-shivraj.png|https://acit.edu.au/wp-content/uploads/2026/03/Shivraj-Mavani1.png
 t-eden.png|https://acit.edu.au/wp-content/uploads/2026/03/Eden-Ivan-Camacho1.png
 t-rajwinder.png|https://acit.edu.au/wp-content/uploads/2026/03/Rajwinder-Rupin-Kaur1.png
-nz-hero.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%20Botanic%20Gardens%2C%20Christchurch%2C%20New%20Zealand%20%28Unsplash%29.jpg?width=1600
-nz-welcome.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%20Cathedral%20Square%202019.jpg?width=1600
-nz-event-1.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/New%20Regent%20Street%2C%20Christchurch%2C%20New%20Zealand.jpg?width=1600
-nz-event-2.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%20Art%20Gallery%202014.jpg?width=1600
-nz-hero.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%20Botanic%20Gardens%2C%20Christchurch%2C%20New%20Zealand%20%28Unsplash%29.jpg?width=1600
-nz-welcome.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%20Cathedral%20Square%202019.jpg?width=1600
-nz-event-1.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/New%20Regent%20Street%2C%20Christchurch%2C%20New%20Zealand.jpg?width=1600
-nz-event-2.jpg|https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch%20Art%20Gallery%202014.jpg?width=1600
