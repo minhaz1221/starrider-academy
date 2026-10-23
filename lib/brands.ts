@@ -216,7 +216,7 @@ export const nzcdi: Brand = {
     eyebrow: "Welcome to Christchurch",
     title: "Study in New Zealand's most liveable city.",
     text: "A new campus in the heart of Ōtautahi Christchurch — small classes, real labs, and the Southern Alps an hour away.",
-    poster: "/ext/nz-welcome.jpg",
+    poster: "/ext/nz-event-2.jpg",
     facts: [["Campus", "Christchurch Central, Canterbury"], ["Classes", "Day, evening and virtual"], ["Opens", "2027 — the ACDI family in Aotearoa"]],
   },
   statement: "The ACDI standard of vocational education, now in Aotearoa — industry certification, real placements and",
@@ -224,7 +224,7 @@ export const nzcdi: Brand = {
   events: [
     { title: "Campus Open Day", when: "Monthly · 10am", img: "/ext/nz-event-1.jpg" },
     { title: "Industry Night", when: "Monthly · with employers", img: "/ext/event-industry.jpg" },
-    { title: "Launch evening", when: "2027 · Christchurch", img: "/ext/nz-event-2.jpg" },
+    { title: "Launch evening", when: "2027 · Christchurch", img: "/ext/nz-hero.jpg" },
   ],
   news: [
     { title: "NZCDI to open in Christchurch in 2027", date: "Oct 2026" },
