@@ -1,6 +1,7 @@
 import Motion from "@/components/Motion";
 import CHeader from "./CHeader";
 import { COrbMotion, CVideo, CForm } from "./CClient";
+import CScroll from "./CScroll";
 import type { Brand } from "@/lib/brands";
 import { testimonials, brochures } from "@/lib/data";
 
@@ -22,11 +23,13 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
     <div className={`c-site${bold ? " is-bold" : ""}`} style={siteStyle(b)}>
       <Motion />
       <COrbMotion bold={bold} />
+      <CScroll bold={bold} />
+      <div className="c-bg" aria-hidden="true"><i className="c-orb c-orb--1" /><i className="c-orb c-orb--2" /><i className="c-orb c-orb--3" /></div>
       <CHeader brand={b} />
+      <i className="c-progress" aria-hidden="true" />
       <main>
         {/* Hero */}
-        <section className="c-hero" id="top">
-          <div className="c-orbs" aria-hidden="true"><i className="c-orb c-orb--1" /><i className="c-orb c-orb--2" /><i className="c-orb c-orb--3" /></div>
+        <section className="c-hero" id="top" data-bg={b.tones.hero} data-orbs={b.tones.heroOrbs}>
           <div className="c-wrap c-hero-grid">
             <div>
               <span className="c-eyebrow" data-reveal>{b.hero.eyebrow}</span>
@@ -49,7 +52,7 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
               </div>
             </div>
             <div className="c-hero-media" data-reveal>
-              <div className="c-hero-img"><img src={b.hero.image} alt="" data-parallax="0.08" /></div>
+              <div className="c-hero-img"><img src={b.hero.image} alt="" /></div>
               <div className="c-chip"><span>{b.hero.chip[0]}</span><strong>{b.hero.chip[1]}</strong></div>
               <div className="c-chip c-chip--2"><span>Campus</span><strong>{b.city}</strong></div>
             </div>
@@ -58,7 +61,7 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Stats */}
-        <section className="c-stats" id="about">
+        <section className="c-stats" id="about" data-bg={b.tones.hero} data-orbs={b.tones.heroOrbs}>
           <div className="c-wrap">
             <div className="c-stats-row" data-stagger>
               {b.stats.map((s) => (
@@ -68,14 +71,20 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
           </div>
         </section>
 
+        {/* Certification strip — slides with scroll */}
+        <section className="c-strip" aria-label="Industry certifications" data-bg={b.tones.hero} data-orbs={b.tones.heroOrbs}>
+          <div className="c-strip-row" data-marquee="1">{[...b.partners, ...b.partners].map((p, i) => <span key={i}>{p}</span>)}</div>
+          <div className="c-strip-row c-strip-row--2" data-marquee="-1">{[...b.streams, ...b.streams].map((p, i) => <span key={i}>{p}</span>)}</div>
+        </section>
+
         {/* Pathways */}
-        <section className="c-section cloud" id="study">
+        <section className="c-section" id="study" data-bg={b.tones.a} data-orbs={b.tones.aOrbs}>
           <div className="c-wrap">
             <div className="c-head">
               <div><span className="c-eyebrow">Study with us</span><h2 data-split style={{ marginTop: 16 }}>Three ways in — whichever one is yours.</h2></div>
               <div className="c-head-side" data-reveal><p>Whether you are joining us from overseas, already in {b.country}, or upskilling through your employer.</p><Btn href={`${base}#enquire`} tone="line">Compare pathways</Btn></div>
             </div>
-            <div className="c-grid3" data-stagger>
+            <div className="c-grid3" data-stagger data-drift>
               {b.pathways.map((p) => (
                 <a key={p.title} href={`${base}#enquire`} className="c-card">
                   <div className="c-card-media"><img src={p.img} alt="" loading="lazy" /></div>
@@ -87,13 +96,13 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Courses */}
-        <section className="c-section" id="courses">
+        <section className="c-section" id="courses" data-bg={b.tones.b} data-orbs={b.tones.bOrbs}>
           <div className="c-wrap">
             <div className="c-head">
               <div><span className="c-eyebrow">Featured courses</span><h2 data-split style={{ marginTop: 16 }}>Qualifications employers actually ask for.</h2></div>
               <div className="c-head-side" data-reveal><p>Nationally recognised diplomas paired with the industry certifications behind every job ad.</p><Btn href={`${base}#courses`} tone="ink">View all courses</Btn></div>
             </div>
-            <div className="c-grid3" data-stagger>
+            <div className="c-grid3" data-stagger data-drift>
               {b.courses.map((c) => (
                 <a key={c.title} href={`${base}#enquire`} className="c-card c-card--course">
                   <div className="c-card-media"><img src={c.img} alt="" loading="lazy" /></div>
@@ -105,7 +114,7 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Welcome */}
-        <section className="c-section cloud" id="campus">
+        <section className="c-section" id="campus" data-bg={b.tones.a} data-orbs={b.tones.aOrbs}>
           <div className="c-wrap">
             <div className="c-head">
               <div><span className="c-eyebrow">{b.welcome.eyebrow}</span><h2 data-split style={{ marginTop: 16 }}>{b.welcome.title}</h2></div>
@@ -119,9 +128,9 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Statement */}
-        <section className="c-section tint c-statement">
+        <section className="c-section c-statement" data-bg={b.tones.c} data-orbs={b.tones.cOrbs}>
           <div className="c-wrap">
-            <p data-split>{b.statement} <span className="c-grad-text">{b.statementAccent}</span></p>
+            <p data-scrub-words>{b.statement.split(" ").map((w, i) => <span className="w" key={i}>{w} </span>)}<span className="c-grad-text">{b.statementAccent.split(" ").map((w, i) => <span className="w" key={i}>{w} </span>)}</span></p>
             <div className="c-statement-btns" data-stagger>
               <Btn href={`${base}#about`} tone="ink">About {b.short}</Btn>
               <Btn href={`${base}#study`} tone="line">Ways to study</Btn>
@@ -130,13 +139,13 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Testimonials */}
-        <section className="c-section" id="stories">
+        <section className="c-section" id="stories" data-bg={b.tones.hero} data-orbs={b.tones.heroOrbs}>
           <div className="c-wrap">
             <div className="c-head">
               <div><span className="c-eyebrow">Student stories</span><h2 data-split style={{ marginTop: 16 }}>Graduates from 40 countries, in their own words.</h2></div>
               <div className="c-head-side" data-reveal><Btn href={`${base}#stories`} tone="line">More stories</Btn></div>
             </div>
-            <div className="c-grid3" data-stagger>
+            <div className="c-grid3" data-stagger data-drift>
               {testimonials.slice(0, 3).map((t) => (
                 <figure key={t.name} className="c-quote">
                   <svg aria-hidden="true" width="28" height="22" viewBox="0 0 28 22"><path d="M0 22V12.6C0 5.6 3.5 1.4 10.5 0l1.6 3C7.7 4.3 5.9 6.6 5.6 10H11v12H0zm17 0V12.6C17 5.6 20.5 1.4 27.5 0l.5 3c-4.4 1.3-6.2 3.6-6.5 7H28v12H17z" fill="currentColor" /></svg>
@@ -149,13 +158,13 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Events */}
-        <section className="c-section cloud" id="events">
+        <section className="c-section" id="events" data-bg={b.tones.b} data-orbs={b.tones.bOrbs}>
           <div className="c-wrap">
             <div className="c-head">
               <div><span className="c-eyebrow">On campus</span><h2 data-split style={{ marginTop: 16 }}>Open days, industry nights and more.</h2></div>
               <div className="c-head-side" data-reveal><Btn href={`${base}#events`} tone="line">All events</Btn></div>
             </div>
-            <div className="c-grid3" data-stagger>
+            <div className="c-grid3" data-stagger data-drift>
               {b.events.map((e) => (
                 <a key={e.title} href={`${base}#enquire`} className="c-event">
                   <img src={e.img} alt="" loading="lazy" />
@@ -167,12 +176,12 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Brochures + News */}
-        <section className="c-section" id="news">
+        <section className="c-section" id="news" data-bg={b.tones.hero} data-orbs={b.tones.heroOrbs}>
           <div className="c-wrap">
             <div className="c-head">
               <div><span className="c-eyebrow">Brochures</span><h2 data-split style={{ marginTop: 16 }}>Everything in one PDF.</h2></div>
             </div>
-            <div className="c-grid3" data-stagger>
+            <div className="c-grid3" data-stagger data-drift>
               {brochures.map((br) => (
                 <a key={br.title} href={br.href} target="_blank" rel="noopener" className="c-dl">
                   <div className="c-dl-top"><span className="c-kicker">{br.meta}</span><span className="c-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v12M6 10l6 6 6-6M4 20h16" /></svg></span></div>
@@ -192,7 +201,7 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* Enquiry */}
-        <section className="c-section cloud" id="enquire">
+        <section className="c-section" id="enquire" data-bg={b.tones.a} data-orbs={b.tones.aOrbs}>
           <div className="c-wrap c-enq">
             <div>
               <span className="c-eyebrow">Enquire now</span>
@@ -209,10 +218,9 @@ export default function CollegeSite({ brand: b }: { brand: Brand }) {
         </section>
 
         {/* CTA */}
-        <section className="c-section c-cta">
+        <section className="c-section c-cta" data-bg={b.tones.c} data-orbs={b.tones.cOrbs}>
           <div className="c-wrap">
             <div className="c-cta-box">
-              <i className="c-orb c-orb--1" style={{ left: "-10%", top: "-40%" }} /><i className="c-orb c-orb--2" style={{ right: "-8%", bottom: "-50%", top: "auto" }} />
               <span className="c-eyebrow" data-reveal>The next intake starts soon</span>
               <h2 data-split>Ready to start?</h2>
               <p data-reveal>Enrol in the program of your choice and we&apos;ll guide you from application to graduation.</p>

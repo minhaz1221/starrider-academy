@@ -22,8 +22,25 @@
 
 .c-wrap { max-width: calc(var(--c-container) + 2 * var(--c-gutter)); margin: 0 auto; padding: 0 var(--c-gutter); }
 .c-section { padding: 112px 0; }
-.c-section.cloud { background: var(--c-cloud); }
-.c-section.tint { background: var(--c-tint); }
+.c-section.cloud, .c-section.tint { background: transparent; }
+.c-site { transition: background-color .2s linear; position: relative; }
+.c-site > main, .c-site > footer { position: relative; z-index: 1; }
+.c-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.c-bg .c-orb { animation: none; will-change: transform, background-color; }
+.c-bg .c-orb--1 { left: -10vw; top: -10vh; width: 46vw; height: 46vw; }
+.c-bg .c-orb--2 { right: -12vw; top: 10vh; width: 42vw; height: 42vw; }
+.c-bg .c-orb--3 { left: 30vw; bottom: -30vh; width: 38vw; height: 38vw; }
+.c-progress { position: fixed; left: 0; top: var(--c-header); height: 2px; width: 100%; transform: scaleX(0); transform-origin: 0 50%; background: var(--c-gradient); z-index: 210; }
+/* certification strip */
+.c-strip { padding: 40px 0 8px; overflow: hidden; border-bottom: 1px solid var(--c-line); }
+.c-strip-row { display: flex; gap: 56px; white-space: nowrap; width: max-content; padding: 10px 0; font-size: 22px; font-weight: 500; color: var(--c-ink); letter-spacing: -0.01em; }
+.c-strip-row span { display: inline-flex; align-items: center; gap: 56px; }
+.c-strip-row span::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c-cyan); opacity: .8; }
+.c-strip-row--2 { font-size: 15px; font-weight: 500; color: var(--c-muted); text-transform: uppercase; letter-spacing: .08em; }
+.c-strip-row--2 span::after { background: var(--c-pink); }
+.c-stats { border-bottom: 0; }
+.c-grad-text, .c-btn--grad, .c-card--course::before, .c-grad-bar, .c-progress { filter: hue-rotate(var(--c-hue, 0deg)); }
+.c-site .c-grad-text { filter: hue-rotate(var(--c-hue, 0deg)); }
 
 .c-grad-text { background: var(--c-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 130% 100%; animation: c-drift 14s ease-in-out infinite alternate; }
 .c-site.is-bold .c-grad-text { animation-duration: 7s; }
@@ -93,7 +110,7 @@
 @keyframes c-orb2 { to { transform: translate(-90px, 120px) scale(1.1); } }
 @keyframes c-orb3 { to { transform: translate(60px, -90px) scale(1.2); } }
 .c-hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 4vw, 72px); align-items: center; padding-right: 0; max-width: none; margin: 0; padding-left: var(--c-gutter); }
-.c-hero-grid > div:first-child { max-width: 720px; justify-self: end; width: 100%; }
+.c-hero-grid > div:first-child { max-width: 720px; justify-self: end; width: 100%; will-change: transform, opacity; }
 .c-hero h1 { font-size: clamp(42px, 5.2vw, 72px); line-height: 1.02; letter-spacing: -0.03em; margin: 24px 0 28px; max-width: 640px; }
 .c-hero h1 .sw { padding-bottom: .1em; margin-bottom: -.1em; }
 .c-hero p.c-sub { font-size: 19px; line-height: 1.55; max-width: 520px; color: var(--c-body); }
@@ -152,6 +169,7 @@
 
 /* statement */
 .c-statement { text-align: center; }
+.c-statement .w { display: inline-block; white-space: pre; }
 .c-statement p { font-size: clamp(28px, 3.4vw, 46px); line-height: 1.18; letter-spacing: -0.02em; color: var(--c-ink); max-width: 980px; margin: 0 auto; font-weight: 400; }
 .c-statement-btns { display: flex; gap: 12px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
 

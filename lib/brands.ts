@@ -12,7 +12,10 @@ export type Brand = {
   logo: string;        // on white
   logoWhite: string;   // on dark footer
   motion: "calm" | "bold";
-  culture: string;     // one line for the colour story
+  culture: string;
+  tones: { hero: string; heroOrbs: string; a: string; aOrbs: string; b: string; bOrbs: string; c: string; cOrbs: string };
+  partners: string[];
+  streams: string[];     // one line for the colour story
   palette: Swatch[];
   gradient: string;    // CSS gradient used for accents
   vars: Record<string, string>;
@@ -66,6 +69,14 @@ export const acdi: Brand = {
   logo: "/brand/acdi-logo-compact.png",
   logoWhite: "/brand/acdi-logo-white-compact.png",
   motion: "calm",
+  tones: {
+    hero: "#FFFFFF", heroOrbs: "rgba(16,213,240,.34), rgba(241,30,121,.18), rgba(3,136,203,.26)",
+    a: "#F3F6FB", aOrbs: "rgba(3,136,203,.30), rgba(16,213,240,.26), rgba(110,38,136,.14)",
+    b: "#EEF6FD", bOrbs: "rgba(16,213,240,.40), rgba(26,77,162,.18), rgba(241,30,121,.14)",
+    c: "#F6EEF7", cOrbs: "rgba(241,30,121,.22), rgba(110,38,136,.22), rgba(16,213,240,.24)",
+  },
+  partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Fortinet", "Adobe", "Google Cloud", "VMware"],
+  streams: ["Cyber Security & AI", "Telecommunications", "Networking & Data Centre", "Digital Media & Film", "Business", "English (ELICOS)"],
   culture: "Calm, open and sunlit — white space, ocean light, and the Gold Coast campus as the hero image. Blue leads; the gradient is a rare accent.",
   palette: [
     { name: "White", hex: "#FFFFFF", use: "Background and negative space — about 70% of every page" },
@@ -129,6 +140,14 @@ export const sra: Brand = {
   logo: "/brand/logo-navy.png",
   logoWhite: "/brand/logo-white.png",
   motion: "bold",
+  tones: {
+    hero: "#FFFFFF", heroOrbs: "rgba(16,213,240,.50), rgba(241,30,121,.40), rgba(3,136,203,.40)",
+    a: "#F4F6FF", aOrbs: "rgba(241,30,121,.42), rgba(16,213,240,.42), rgba(15,21,64,.18)",
+    b: "#EAF8FF", bOrbs: "rgba(16,213,240,.55), rgba(3,136,203,.35), rgba(196,20,120,.30)",
+    c: "#FDEFF6", cOrbs: "rgba(241,30,121,.45), rgba(110,38,136,.30), rgba(16,213,240,.35)",
+  },
+  partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Adobe", "Blackmagic Design", "Avid", "Unreal Engine"],
+  streams: ["Cyber Security & AI", "Digital Media & Film", "Telecommunications", "Networking & Data Centre", "Business", "IFTV Studios"],
   culture: "A whiter, brighter version of the ACDI family. More air, bigger type, and motion that catches the eye — colour-shifting gradients, floating orbs, counters — while the page itself stays white and clean.",
   palette: [
     { name: "White", hex: "#FFFFFF", use: "Background — about 75% of every page" },
@@ -189,6 +208,14 @@ export const nzcdi: Brand = {
   logo: "/brand/nzcdi-logo.svg",
   logoWhite: "/brand/nzcdi-logo-white.svg",
   motion: "calm",
+  tones: {
+    hero: "#FFFFFF", heroOrbs: "rgba(31,168,134,.28), rgba(16,213,240,.18), rgba(11,110,79,.20)",
+    a: "#F2F6F4", aOrbs: "rgba(11,110,79,.26), rgba(31,168,134,.26), rgba(3,136,203,.14)",
+    b: "#EAF6F2", bOrbs: "rgba(16,213,240,.30), rgba(31,168,134,.28), rgba(16,20,24,.08)",
+    c: "#EEF4F6", cOrbs: "rgba(3,136,203,.22), rgba(31,168,134,.24), rgba(16,213,240,.22)",
+  },
+  partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Fortinet", "Google Cloud", "NZQA", "VMware"],
+  streams: ["Cyber Security & AI", "Telecommunications", "Networking & Data Centre", "Digital Media", "Business", "English"],
   culture: "The ACDI family in New Zealand colours — deep fern green and black with silver, the koru curve as a quiet motif, Canterbury light and landscape in the imagery. Calm, grounded, clean.",
   palette: [
     { name: "White", hex: "#FFFFFF", use: "Background and negative space — about 70% of every page" },

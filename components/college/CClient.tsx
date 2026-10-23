@@ -9,20 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 export function COrbMotion({ bold }: { bold: boolean }) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const orbs = Array.from(document.querySelectorAll<HTMLElement>(".c-hero .c-orb"));
-    const strength = bold ? 40 : 16;
+    const orbs = Array.from(document.querySelectorAll<HTMLElement>(".c-bg .c-orb"));
+    const strength = bold ? 10 : 4; // percent of own size
+    // ambient breathing (scale only, so it composes with the scroll-driven x/y in CScroll)
+    const breathe = orbs.map((o, i) => gsap.to(o, { scale: bold ? 1.25 : 1.12, duration: 7 + i * 2.5, yoyo: true, repeat: -1, ease: "sine.inOut" }));
     const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5), y = (e.clientY / window.innerHeight - 0.5);
-      orbs.forEach((o, i) => gsap.to(o, { x: x * strength * (i + 1), y: y * strength * (i + 1), duration: 1.6, ease: "power3.out", overwrite: "auto" }));
+      orbs.forEach((o, i) => gsap.to(o, { xPercent: x * strength * (i + 1), yPercent: y * strength * (i + 1), duration: 1.8, ease: "power3.out", overwrite: "auto" }));
     };
     window.addEventListener("mousemove", onMove);
-    let st: ScrollTrigger | undefined;
-    if (bold) {
-      // the whole page's gradient accents rotate hue as you scroll — the "colour changes" she asked for
-      const site = document.querySelector<HTMLElement>(".c-site");
-      st = ScrollTrigger.create({ start: 0, end: "max", onUpdate: (s) => site?.style.setProperty("--c-hue", `${Math.round(s.progress * 40)}deg`) });
-    }
-    return () => { window.removeEventListener("mousemove", onMove); st?.kill(); };
+    return () => { window.removeEventListener("mousemove", onMove); breathe.forEach((t) => t.kill()); };
   }, [bold]);
   return null;
 }
