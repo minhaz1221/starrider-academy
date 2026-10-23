@@ -1,7 +1,6 @@
 import Motion from "@/components/Motion";
 import CesMotion from "./CesMotion";
 import DotField from "./DotField";
-import Bubbles from "./Bubbles";
 import { CForm } from "./CClient";
 import KHeader from "./KHeader";
 import type { Brand } from "@/lib/brands";
@@ -50,7 +49,6 @@ export default function CesSite({ brand: b }: { brand: Brand }) {
         <section className="k-hero" id="top">
           <i className="k-glow k-glow--1" /><i className="k-glow k-glow--2" /><i className="k-glow k-glow--3" />
           <DotField color={dotColor} color2={dotColor2} bold={bold} className="k-dots--hero" />
-          <Bubbles count={bold ? 12 : 9} bold={bold} />
           <div className="k-hero-copy">
             <h1><span className="k-line" data-split>{b.intakeLine[0]}</span><span className="k-line" data-split>{b.intakeLine[1]}</span></h1>
             <p data-reveal>{b.hero.sub}</p>
@@ -104,7 +102,6 @@ export default function CesSite({ brand: b }: { brand: Brand }) {
         {/* ---------- Study (dark) ---------- */}
         <section className="k-sec k-dark" id="study">
           <i className="k-glow k-glow--2" style={{ right: "-10vw", top: "-10vh" }} /><i className="k-glow k-glow--3" style={{ left: "-10vw", bottom: "-20vh", top: "auto" }} />
-          <Bubbles count={6} bold={bold} />
           <div className="k-wrap" style={{ position: "relative" }}>
             <div className="k-sec-title">Study at {b.short}</div>
             <div className="k-split">
@@ -162,7 +159,6 @@ export default function CesSite({ brand: b }: { brand: Brand }) {
         {/* ---------- Quote + enquiry (dark) ---------- */}
         <section className="k-sec k-dark" id="enquire">
           <i className="k-glow k-glow--1" style={{ left: "40vw", top: "-20vh" }} />
-          <Bubbles count={5} bold={bold} />
           <div className="k-wrap" style={{ position: "relative" }}>
             <div className="k-sec-title">{b.short} is creating careers</div>
             <div className="k-enq">
