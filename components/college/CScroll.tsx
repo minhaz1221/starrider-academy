@@ -21,6 +21,7 @@ export default function CScroll({ bold }: { bold: boolean }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const site = document.querySelector<HTMLElement>(".c-site");
     if (!site) return;
+    (window as unknown as { __ST?: typeof ScrollTrigger }).__ST = ScrollTrigger; // lets the design exporter reset scroll state
     const orbs = Array.from(document.querySelectorAll<HTMLElement>(".c-bg .c-orb"));
     const speed = bold ? 1.6 : 1;
 

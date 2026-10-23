@@ -1,5 +1,6 @@
-import CollegeSite from "@/components/college/CollegeSite";
+import Editorial from "@/components/college/Editorial";
 import { acdi } from "@/lib/brands";
 import "@/app/college.css";
+import "@/app/editorial.css";
 export const metadata = { title: "ACDI — Homepage concept", description: "Homepage design concept" };
-export default function Page() { return <CollegeSite brand={acdi} />; }
+export default function Page() { return <Editorial brand={acdi} />; }

@@ -15,7 +15,10 @@ export type Brand = {
   culture: string;
   tones: { hero: string; heroOrbs: string; a: string; aOrbs: string; b: string; bOrbs: string; c: string; cOrbs: string };
   partners: string[];
-  streams: string[];     // one line for the colour story
+  streams: string[];
+  heroLines: string[];   // last line is the gradient line
+  stack: string[];       // 4 images for the fanned stack
+  moreCourses: { area: string; title: string; text: string; img: string }[];     // one line for the colour story
   palette: Swatch[];
   gradient: string;    // CSS gradient used for accents
   vars: Record<string, string>;
@@ -76,6 +79,13 @@ export const acdi: Brand = {
     c: "#F6EEF7", cOrbs: "rgba(241,30,121,.22), rgba(110,38,136,.22), rgba(16,213,240,.24)",
   },
   partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Fortinet", "Adobe", "Google Cloud", "VMware"],
+  heroLines: ["Create", "your career in", "digital innovation."],
+  stack: ["/ext/welcome-poster.jpg", "/figma/path-international.jpg", "/ext/course-cyber.jpg", "/figma/path-australians.jpg"],
+  moreCourses: [
+    { area: "Digital Media & Film", title: "Diploma of Screen & Media", text: "Shoot, edit and deliver on real sets with IFTV Studios.", img: "/ext/hero-poster.jpg" },
+    { area: "Business", title: "Diploma of Business", text: "Operations, projects and leadership for the digital economy.", img: "/figma/path-traineeships.jpg" },
+    { area: "English", title: "English for Technology (ELICOS)", text: "Specialised vocabulary to CEFR C1, built for computing careers.", img: "/figma/path-international.jpg" },
+  ],
   streams: ["Cyber Security & AI", "Telecommunications", "Networking & Data Centre", "Digital Media & Film", "Business", "English (ELICOS)"],
   culture: "Calm, open and sunlit — white space, ocean light, and the Gold Coast campus as the hero image. Blue leads; the gradient is a rare accent.",
   palette: [
@@ -147,6 +157,8 @@ export const sra: Brand = {
     c: "#FDEFF6", cOrbs: "rgba(241,30,121,.45), rgba(110,38,136,.30), rgba(16,213,240,.35)",
   },
   partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Adobe", "Blackmagic Design", "Avid", "Unreal Engine"],
+  heroLines: ["Technology,", "film & the careers", "of the next decade."],
+  stack: ["/ext/hero-poster.jpg", "/ext/course-cyber.jpg", "/ext/event-launch.jpg", "/figma/path-traineeships.jpg"],
   streams: ["Cyber Security & AI", "Digital Media & Film", "Telecommunications", "Networking & Data Centre", "Business", "IFTV Studios"],
   culture: "A whiter, brighter version of the ACDI family. More air, bigger type, and motion that catches the eye — colour-shifting gradients, floating orbs, counters — while the page itself stays white and clean.",
   palette: [
@@ -215,6 +227,8 @@ export const nzcdi: Brand = {
     c: "#EEF4F6", cOrbs: "rgba(3,136,203,.22), rgba(31,168,134,.24), rgba(16,213,240,.22)",
   },
   partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Fortinet", "Google Cloud", "NZQA", "VMware"],
+  heroLines: ["Create", "your career in", "digital innovation."],
+  stack: ["/ext/nz-hero.jpg", "/ext/nz-event-1.jpg", "/ext/course-net.jpg", "/ext/nz-event-2.jpg"],
   streams: ["Cyber Security & AI", "Telecommunications", "Networking & Data Centre", "Digital Media", "Business", "English"],
   culture: "The ACDI family in New Zealand colours — deep fern green and black with silver, the koru curve as a quiet motif, Canterbury light and landscape in the imagery. Calm, grounded, clean.",
   palette: [
