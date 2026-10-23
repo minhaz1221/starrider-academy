@@ -17,6 +17,9 @@ export type Brand = {
   partners: string[];
   streams: string[];
   heroLines: string[];   // last line is the gradient line
+  kvWords: string[];     // the three words that fly apart over the key visual
+  arts: string[];        // key-art gradient washes, cycled across cards
+  intakeLine: [string, string]; // hero: ["February 2027 intake", "Gold Coast, Queensland"]
   stack: string[];       // 4 images for the fanned stack
   moreCourses: { area: string; title: string; text: string; img: string }[];     // one line for the colour story
   palette: Swatch[];
@@ -80,6 +83,9 @@ export const acdi: Brand = {
   },
   partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Fortinet", "Adobe", "Google Cloud", "VMware"],
   heroLines: ["Create", "your career in", "digital innovation."],
+  kvWords: ["Create", "Careers", "Here."],
+  arts: ["linear-gradient(120deg,#10D5F0,#0388CB 45%,#1A4DA2)", "linear-gradient(120deg,#1A4DA2,#6E2688 55%,#C41478)", "linear-gradient(120deg,#6E2688,#C41478 50%,#F11E79)", "linear-gradient(120deg,#0388CB,#10D5F0)"],
+  intakeLine: ["February 2027 intake", "Gold Coast, Queensland"],
   stack: ["/ext/welcome-poster.jpg", "/figma/path-international.jpg", "/ext/course-cyber.jpg", "/figma/path-australians.jpg"],
   moreCourses: [
     { area: "Digital Media & Film", title: "Diploma of Screen & Media", text: "Shoot, edit and deliver on real sets with IFTV Studios.", img: "/ext/hero-poster.jpg" },
@@ -99,7 +105,7 @@ export const acdi: Brand = {
     { name: "Vibrant Pink", hex: "#F11E79", use: "End of the gradient — never flat" },
   ],
   gradient: "linear-gradient(100deg, #10D5F0 0%, #0388CB 28%, #1A4DA2 50%, #6E2688 70%, #C41478 86%, #F11E79 100%)",
-  vars: { "--c-ink": "#1A4DA2", "--c-body": "#3C4A66", "--c-muted": "#7B879E", "--c-line": "#E1E7F2", "--c-cloud": "#F3F6FB", "--c-tint": "#EEF3FB", "--c-blue": "#0388CB", "--c-cyan": "#10D5F0", "--c-pink": "#F11E79", "--c-footer": "#163F86", "--c-orb1": "rgba(16,213,240,.34)", "--c-orb2": "rgba(241,30,121,.2)", "--c-orb3": "rgba(3,136,203,.26)" },
+  vars: { "--c-ink": "#1A4DA2", "--c-body": "#3C4A66", "--c-muted": "#7B879E", "--c-line": "#E1E7F2", "--c-cloud": "#F3F6FB", "--c-tint": "#EEF3FB", "--c-blue": "#0388CB", "--c-cyan": "#10D5F0", "--c-pink": "#F11E79", "--c-footer": "#163F86", "--c-deep": "#122D66", "--c-deep2": "#0E2352", "--c-pale": "#EEF2FB", "--c-orb1": "rgba(16,213,240,.34)", "--c-orb2": "rgba(241,30,121,.2)", "--c-orb3": "rgba(3,136,203,.26)" },
   hero: {
     eyebrow: "Gold Coast, Australia · CRICOS registered",
     title: "Create your career in",
@@ -158,6 +164,9 @@ export const sra: Brand = {
   },
   partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Adobe", "Blackmagic Design", "Avid", "Unreal Engine"],
   heroLines: ["Technology,", "film & the careers", "of the next decade."],
+  kvWords: ["Next", "Starts", "Here."],
+  arts: ["linear-gradient(120deg,#10D5F0,#0388CB 45%,#0F1540)", "linear-gradient(120deg,#0F1540,#C41478 60%,#F11E79)", "linear-gradient(120deg,#C41478,#F11E79)", "linear-gradient(120deg,#0388CB,#10D5F0)"],
+  intakeLine: ["Fall 2027 intake", "Los Angeles, California"],
   stack: ["/ext/hero-poster.jpg", "/ext/course-cyber.jpg", "/ext/event-launch.jpg", "/figma/path-traineeships.jpg"],
   streams: ["Cyber Security & AI", "Digital Media & Film", "Telecommunications", "Networking & Data Centre", "Business", "IFTV Studios"],
   culture: "A whiter, brighter version of the ACDI family. More air, bigger type, and motion that catches the eye — colour-shifting gradients, floating orbs, counters — while the page itself stays white and clean.",
@@ -172,7 +181,7 @@ export const sra: Brand = {
     { name: "Star Pink", hex: "#F11E79", use: "Gradient end, primary button" },
   ],
   gradient: "linear-gradient(100deg, #10D5F0 0%, #0388CB 30%, #0F1540 55%, #C41478 80%, #F11E79 100%)",
-  vars: { "--c-ink": "#0F1540", "--c-body": "#4A5068", "--c-muted": "#8E95A8", "--c-line": "#E3E6F0", "--c-cloud": "#F6F7FB", "--c-tint": "#F1F2F9", "--c-blue": "#0388CB", "--c-cyan": "#10D5F0", "--c-pink": "#F11E79", "--c-footer": "#0F1540", "--c-orb1": "rgba(16,213,240,.45)", "--c-orb2": "rgba(241,30,121,.35)", "--c-orb3": "rgba(3,136,203,.35)" },
+  vars: { "--c-ink": "#0F1540", "--c-body": "#4A5068", "--c-muted": "#8E95A8", "--c-line": "#E3E6F0", "--c-cloud": "#F6F7FB", "--c-tint": "#F1F2F9", "--c-blue": "#0388CB", "--c-cyan": "#10D5F0", "--c-pink": "#F11E79", "--c-footer": "#0F1540", "--c-deep": "#0F1540", "--c-deep2": "#0A0F30", "--c-pale": "#F4F6FF", "--c-orb1": "rgba(16,213,240,.45)", "--c-orb2": "rgba(241,30,121,.35)", "--c-orb3": "rgba(3,136,203,.35)" },
   hero: {
     eyebrow: "Los Angeles · A Star Rider Group college",
     title: "Technology, film and the",
@@ -228,6 +237,9 @@ export const nzcdi: Brand = {
   },
   partners: ["Cisco", "CompTIA", "Microsoft", "AWS Academy", "Fortinet", "Google Cloud", "NZQA", "VMware"],
   heroLines: ["Create", "your career in", "digital innovation."],
+  kvWords: ["Create", "Careers", "Here."],
+  arts: ["linear-gradient(120deg,#10D5F0,#0388CB 45%,#0B6E4F)", "linear-gradient(120deg,#0B6E4F,#1FA886 60%,#10D5F0)", "linear-gradient(120deg,#101418,#0B6E4F 60%,#1FA886)", "linear-gradient(120deg,#0388CB,#1FA886)"],
+  intakeLine: ["July 2027 intake", "Christchurch, Canterbury"],
   stack: ["/ext/nz-hero.jpg", "/ext/nz-event-1.jpg", "/ext/course-net.jpg", "/ext/nz-event-2.jpg"],
   streams: ["Cyber Security & AI", "Telecommunications", "Networking & Data Centre", "Digital Media", "Business", "English"],
   culture: "The ACDI family in New Zealand colours — deep fern green and black with silver, the koru curve as a quiet motif, Canterbury light and landscape in the imagery. Calm, grounded, clean.",
@@ -242,7 +254,7 @@ export const nzcdi: Brand = {
     { name: "Ocean Blue", hex: "#0388CB", use: "Gradient start — shared with ACDI" },
   ],
   gradient: "linear-gradient(100deg, #10D5F0 0%, #0388CB 25%, #1FA886 60%, #0B6E4F 100%)",
-  vars: { "--c-ink": "#101418", "--c-body": "#3B454D", "--c-muted": "#7C878F", "--c-line": "#DFE6E3", "--c-cloud": "#F2F6F4", "--c-tint": "#EAF3EF", "--c-blue": "#0B6E4F", "--c-cyan": "#1FA886", "--c-pink": "#0B6E4F", "--c-footer": "#101418", "--c-orb1": "rgba(31,168,134,.24)", "--c-orb2": "rgba(16,213,240,.16)", "--c-orb3": "rgba(11,110,79,.18)" },
+  vars: { "--c-ink": "#101418", "--c-body": "#3B454D", "--c-muted": "#7C878F", "--c-line": "#DFE6E3", "--c-cloud": "#F2F6F4", "--c-tint": "#EAF3EF", "--c-blue": "#0B6E4F", "--c-cyan": "#1FA886", "--c-pink": "#0B6E4F", "--c-footer": "#101418", "--c-deep": "#101418", "--c-deep2": "#0B0E11", "--c-pale": "#EEF3F1", "--c-orb1": "rgba(31,168,134,.24)", "--c-orb2": "rgba(16,213,240,.16)", "--c-orb3": "rgba(11,110,79,.18)" },
   hero: {
     eyebrow: "Christchurch, New Zealand · NZQA approved",
     title: "Create your career in",
