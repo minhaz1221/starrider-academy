@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { hero } from "@/lib/data";
+import DotField from "@/components/college/DotField";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,6 +40,7 @@ export default function Hero() {
   return (
     <section className="hero" ref={section}>
       <div className="hero-glow" aria-hidden="true" />
+      <DotField color="16,213,240" color2="3,136,203" className="hero-dots" />
       <div className="container">
         <div className="hero-copy" ref={copy}>
           <div>
@@ -66,18 +68,7 @@ export default function Hero() {
       </div>
       <div className="media-stage" ref={stage}>
         <div className="media" ref={media}>
-          <video src={hero.video} poster={hero.poster} muted loop playsInline autoPlay preload="metadata" />
-          <div className="media-overlay" />
-          <div className="media-chips">
-            {hero.chips.map((c) => (<span key={c} className="chip">{c}</span>))}
-          </div>
-          <button type="button" className="play" aria-label="Play showreel">
-            <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff" /></svg>
-          </button>
-          <div className="media-caption">
-            <span className="mono">{hero.captionEyebrow}</span>
-            <strong>{hero.caption}</strong>
-          </div>
+          <video src="/ext/hero-loop-sra.mp4" poster="/ext/hero-loop-sra.jpg" muted loop playsInline autoPlay preload="auto" />
         </div>
       </div>
     </section>

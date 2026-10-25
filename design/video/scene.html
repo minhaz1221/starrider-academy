@@ -1,0 +1,210 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: HG; src: url(node_modules/@fontsource/hanken-grotesk/files/hanken-grotesk-latin-600-normal.woff2); font-weight: 600; }
+@font-face { font-family: HG; src: url(node_modules/@fontsource/hanken-grotesk/files/hanken-grotesk-latin-500-normal.woff2); font-weight: 500; }
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+#s { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: HG, sans-serif; }
+#bg { position: absolute; left: -192px; top: -108px; width: 2304px; height: 1296px; }
+canvas { position: absolute; inset: 0; }
+#tri { position: absolute; left: 50%; top: 4%; width: 1300px; height: 1160px; transform: translateX(-50%); clip-path: polygon(50% 0, 100% 100%, 0 100%); background: linear-gradient(180deg, rgba(255,120,60,.55), rgba(241,30,121,.0)); mix-blend-mode: screen; }
+#halo { position: absolute; left: 50%; top: 52%; width: 900px; height: 900px; margin: -450px 0 0 -450px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.35), rgba(255,255,255,0)); }
+#subj { position: absolute; left: 50%; bottom: -10px; width: 820px; transform-origin: 50% 100%; }
+#subj img { width: 100%; display: block; filter: drop-shadow(0 30px 60px rgba(60,0,60,.35)); }
+.lap { position: absolute; width: 420px; height: 290px; perspective: 1400px; }
+.lap .rig { position: absolute; inset: 0; transform-style: preserve-3d; }
+.lap .lid { position: absolute; left: 0; top: 0; width: 420px; height: 270px; border-radius: 14px; background: #1c1f2e; box-shadow: 0 0 0 2px #c9cbe0 inset, 0 40px 80px -20px rgba(40,0,60,.6); padding: 12px; box-sizing: border-box; transform-origin: 50% 100%; }
+.lap .scr { position: relative; width: 100%; height: 100%; border-radius: 6px; overflow: hidden; background: #070b24; }
+.lap .base { position: absolute; left: -26px; top: 268px; width: 472px; height: 18px; border-radius: 2px 2px 14px 14px; background: linear-gradient(180deg, #e3e5f2, #a7abc4); box-shadow: 0 30px 50px -20px rgba(40,0,60,.6); }
+.scr .bar { height: 18px; background: rgba(255,255,255,.07); display: flex; gap: 6px; align-items: center; padding-left: 8px; }
+.scr .bar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.35); }
+.scr .code { position: absolute; left: 12px; top: 28px; right: 12px; font: 600 14px/1.55 ui-monospace, monospace; color: #10D5F0; white-space: pre; }
+.scr .glow { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 0%, rgba(16,213,240,.25), rgba(16,213,240,0) 60%); mix-blend-mode: screen; }
+.scr .scan { position: absolute; left: 0; right: 0; height: 30px; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.18), rgba(255,255,255,0)); }
+.scr .chart { position: absolute; right: 14px; bottom: 14px; display: flex; gap: 5px; align-items: flex-end; height: 70px; }
+.scr .chart b { width: 12px; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #F11E79, #6E2688); }
+.tile { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 12px; padding: 14px 20px 14px 16px; border-radius: 16px; background: rgba(255,255,255,.18); border: 1.5px solid rgba(255,255,255,.55); backdrop-filter: blur(14px); color: #fff; font-weight: 600; font-size: 26px; letter-spacing: -.01em; box-shadow: 0 20px 50px -20px rgba(40,0,60,.55); white-space: nowrap; }
+.tile .ic { width: 34px; height: 34px; border-radius: 9px; background: #fff; display: flex; align-items: center; justify-content: center; }
+.tile .ic i { width: 16px; height: 16px; border-radius: 4px; display: block; }
+.tile small { display: block; font-weight: 500; font-size: 13px; opacity: .85; letter-spacing: .06em; text-transform: uppercase; }
+#txt { position: absolute; left: 0; right: 0; height: 200px; font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+#txt .l { position: absolute; left: 0; right: 0; white-space: nowrap; }
+#mark { position: absolute; right: 40px; top: 34px; height: 46px; }
+</style></head>
+<body><div id="s">
+  <canvas id="bg"></canvas>
+  <div id="tri"></div>
+  <canvas id="fx"></canvas>
+  <div id="halo"></div>
+  <div class="lap" id="lapL"><div class="rig"><div class="lid"><div class="scr"><div class="bar"><i></i><i></i><i></i></div><div class="code"></div><div class="chart"></div><div class="glow"></div><div class="scan"></div></div></div><div class="base"></div></div></div>
+  <div class="lap" id="lapR"><div class="rig"><div class="lid"><div class="scr"><div class="bar"><i></i><i></i><i></i></div><div class="code"></div><div class="chart"></div><div class="glow"></div><div class="scan"></div></div></div><div class="base"></div></div></div>
+  <div id="subj"><img src="subject.png"></div>
+  <div class="tile" id="t1"><span class="ic"><i style="background:#0388CB"></i></span><span>Microsoft<small>Certified</small></span></div>
+  <div class="tile" id="t2"><span class="ic"><i style="background:#10D5F0"></i></span><span>Cisco CCNA<small>Networking</small></span></div>
+  <div class="tile" id="t3"><span class="ic"><i style="background:#F11E79"></i></span><span>CompTIA Security+<small>Cyber</small></span></div>
+  <div class="tile" id="t4"><span class="ic"><i style="background:#FFB020"></i></span><span>AWS Cloud<small>Practitioner</small></span></div>
+  <div class="tile" id="t5"><span class="ic"><i style="background:#6E2688"></i></span><span>Azure AI<small>Fundamentals</small></span></div>
+  <div id="txt"></div>
+  <img id="mark" alt="">
+</div>
+<script>
+const P = new URLSearchParams(location.search);
+const PHRASE = P.get("t") || "Create Careers Here";
+const MARK = P.get("m") || "";
+const T = 6; // loop seconds
+const W = 1920, H = 1080;
+if (MARK) document.getElementById("mark").src = MARK; else document.getElementById("mark").remove();
+
+// deterministic hash noise
+const hash = (n) => { const s = Math.sin(n * 127.1) * 43758.5453; return s - Math.floor(s); };
+const TAU = Math.PI * 2;
+const cyc = (t, k = 1, ph = 0) => Math.sin(TAU * (t / T) * k + ph); // perfectly looping sine
+
+// ---------- background gradient (canvas, loops) ----------
+const bg = document.getElementById("bg"); bg.width = W * 1.2; bg.height = H * 1.2; const g = bg.getContext("2d");
+function drawBg(t) {
+  const w = bg.width, h = bg.height;
+  g.globalCompositeOperation = "source-over";
+  // base sweep: deep purple → magenta → shocking pink → orange
+  const lin = g.createLinearGradient(0, 0, w, h * .6);
+  lin.addColorStop(0, "#6E2688"); lin.addColorStop(.32, "#C41478"); lin.addColorStop(.62, "#F11E79"); lin.addColorStop(1, "#FF5A36");
+  g.fillStyle = lin; g.fillRect(0, 0, w, h);
+  const blob = (x, y, r, c) => { const rg = g.createRadialGradient(x, y, 0, x, y, r); rg.addColorStop(0, c); rg.addColorStop(1, c.replace(/[\d.]+\)$/, "0)")); g.fillStyle = rg; g.fillRect(0, 0, w, h); };
+  // deep purple / blue top-left, drifting
+  blob(w * (.08 + .04 * cyc(t, 1)), h * (.12 + .05 * cyc(t, 1, 1)), w * .45, "rgba(58,16,140,0.95)");
+  blob(w * (.02 + .03 * cyc(t, 1, 2)), h * (.75 + .05 * cyc(t, 1, 3)), w * .32, "rgba(26,77,162,0.75)");
+  // shocking pink core
+  blob(w * (.5 + .05 * cyc(t, 1, .5)), h * (.45 + .04 * cyc(t, 1, 2.5)), w * .38, "rgba(241,30,121,0.85)");
+  // occasional orange / yellow warmth bottom-right
+  blob(w * (.92 + .03 * cyc(t, 1, 4)), h * (.88 + .04 * cyc(t, 1)), w * .34, "rgba(255,120,40,0.9)");
+  blob(w * (.98), h * (1.02), w * .18, `rgba(255,196,40,${0.45 + 0.2 * (cyc(t, 1, 1) + 1) / 2})`);
+  // white break bottom centre (subject glow)
+  blob(w * .5, h * 1.05, w * .3, "rgba(255,235,240,0.55)");
+}
+
+// ---------- dot grid + triangle columns ----------
+const fx = document.getElementById("fx"); fx.width = W; fx.height = H; const f = fx.getContext("2d");
+function drawFx(t) {
+  f.clearRect(0, 0, W, H);
+  const gap = 46;
+  for (let x = 30; x < W; x += gap) for (let y = 30; y < H; y += gap) {
+    const xn = x / W;
+    const zone = xn < .3 ? 1 - xn / .3 : xn > .7 ? (xn - .7) / .3 : 0; // dots on the sides
+    if (zone <= 0.02) continue;
+    const tw = (cyc(t, 2, x * .011 + y * .017) + 1) / 2;
+    const a = zone * (.25 + .55 * tw);
+    f.beginPath(); f.arc(x, y, 3.2 + tw * 1.4, 0, TAU); f.fillStyle = `rgba(255,255,255,${a})`; f.fill();
+  }
+  // cyan triangle columns: left pointing down (moving down), right pointing up (moving up)
+  const tri = (cx, cy, s, up, a) => { f.beginPath(); if (up) { f.moveTo(cx, cy - s); f.lineTo(cx + s, cy + s * .8); f.lineTo(cx - s, cy + s * .8); } else { f.moveTo(cx, cy + s); f.lineTo(cx + s, cy - s * .8); f.lineTo(cx - s, cy - s * .8); } f.closePath(); f.fillStyle = `rgba(16,213,240,${a})`; f.fill(); };
+  const cols = [[80, false], [150, false], [270, false], [W - 270, true], [W - 190, true], [W - 110, true]];
+  cols.forEach(([cx, up], ci) => {
+    const off = ((t / T) * 2 * 58 * (up ? -1 : 1)) % 58;
+    for (let k = -1; k < 21; k++) {
+      const y = k * 58 + off;
+      const band = Math.max(0, 1 - Math.abs(y - (H * (.3 + .4 * ((cyc(t, 1, ci) + 1) / 2)))) / 420);
+      const flick = hash(Math.floor(t * 10) * 13 + k * 7 + ci) > .82 ? .35 : 1;
+      const a = band * .9 * flick;
+      if (a > .03) tri(cx, y, 15, up, a);
+    }
+  });
+}
+
+// ---------- laptops ----------
+const laps = [document.getElementById("lapL"), document.getElementById("lapR")];
+const snippets = [
+  ["import torch", "model = Net().to(device)", "for x, y in loader:", "  loss = crit(model(x), y)", "  loss.backward()", "acc: 0.947 ✓"],
+  ["$ nmap -sV 10.0.0.0/24", "PORT    STATE  SERVICE", "22/tcp  open   ssh", "443/tcp open   https", "firewall: ACTIVE", "threats blocked: 128"],
+  ["router(config)# int g0/1", "ip address 10.1.1.1 /24", "no shutdown", "%LINK-UP g0/1", "ping 8.8.8.8 !!!!!", "latency 12 ms"],
+];
+laps.forEach((l, i) => {
+  const ch = l.querySelector(".chart"); for (let k = 0; k < 6; k++) ch.appendChild(document.createElement("b"));
+});
+function drawLaps(t) {
+  const conf = [
+    { x: 150, y: 560, ry: 24, rx: 8, rz: -4, s: 1.0, ph: 0 },
+    { x: W - 590, y: 600, ry: -24, rx: 8, rz: 4, s: 0.95, ph: 1.7 },
+  ];
+  laps.forEach((l, i) => {
+    const c = conf[i];
+    const fy = 18 * cyc(t, 1, c.ph), rot = 3 * cyc(t, 1, c.ph + 1);
+    l.style.left = c.x + "px"; l.style.top = (c.y + fy) + "px";
+    l.querySelector(".rig").style.transform = `scale(${c.s}) rotateX(${c.rx}deg) rotateY(${c.ry + rot}deg) rotateZ(${c.rz}deg)`;
+    const scr = l.querySelector(".scr");
+    const fi = Math.floor(t * 12);
+    const flick = hash(fi * 3 + i) > .86 ? .55 + .3 * hash(fi + 9) : 1; // flicker
+    scr.style.filter = `brightness(${flick}) saturate(${1.1})`;
+    const sn = snippets[(Math.floor(t / 2) + i) % snippets.length];
+    const n = Math.min(sn.length, 1 + Math.floor(((t % 2) / 2) * (sn.length + 2)));
+    l.querySelector(".code").textContent = sn.slice(0, n).join("\n") + (Math.floor(t * 4) % 2 ? " █" : "");
+    l.querySelector(".scan").style.top = (((t * 140 + i * 90) % 300) - 30) + "px";
+    l.querySelectorAll(".chart b").forEach((b, k) => b.style.height = (18 + 50 * (cyc(t, 2, k * .9 + i) + 1) / 2) + "px");
+  });
+}
+
+// ---------- floating certification tiles ----------
+const tiles = ["t1", "t2", "t3", "t4", "t5"].map((id) => document.getElementById(id));
+const tconf = [
+  { x: 430, y: 270, a: 22, ph: 0 }, { x: 1320, y: 250, a: 26, ph: 1.2 }, { x: 300, y: 450, a: 18, ph: 2.4 },
+  { x: 1420, y: 400, a: 20, ph: 3.1 }, { x: 1180, y: 860, a: 16, ph: 4.2 },
+];
+function drawTiles(t) {
+  tiles.forEach((el, i) => {
+    const c = tconf[i];
+    const y = c.y + c.a * cyc(t, 1, c.ph), x = c.x + 10 * cyc(t, 1, c.ph + 2);
+    const r = 3 * cyc(t, 1, c.ph + 1);
+    el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+  });
+}
+
+// ---------- subject ----------
+const subj = document.getElementById("subj");
+function drawSubj(t) {
+  const s = 1 + .012 * cyc(t, 1), y = 6 * cyc(t, 1, 1.4), r = .6 * cyc(t, 1, .4);
+  subj.style.transform = `translateX(-50%) translateY(${y}px) scale(${s}) rotate(${r}deg)`;
+  document.getElementById("halo").style.opacity = .7 + .3 * (cyc(t, 1) + 1) / 2;
+}
+
+// ---------- glitch text ----------
+const txt = document.getElementById("txt");
+const phases = [
+  // [start, end, top px, size px, align]
+  [0.35, 2.2, 54, 150, "center"],
+  [2.5, 4.05, 230, 92, "center"],
+  [4.35, 5.8, 860, 168, "left"],
+];
+function drawTxt(t) {
+  txt.innerHTML = "";
+  const ph = phases.find(([a, b]) => t >= a && t < b);
+  if (!ph) return;
+  const [a, b, top, size, align] = ph;
+  const local = t - a, left = b - t;
+  const glitchIn = local < .45, glitchOut = left < .3;
+  const fi = Math.floor(t * 24);
+  const mk = (color, dx, dy, op, clip) => {
+    const d = document.createElement("div"); d.className = "l"; d.textContent = PHRASE;
+    Object.assign(d.style, { top: top + dy + "px", fontSize: size + "px", color, opacity: op, textAlign: align, paddingLeft: align === "left" ? "40px" : "0", transform: `translateX(${dx}px)`, clipPath: clip || "none", textShadow: color === "#fff" ? "0 8px 40px rgba(80,0,60,.35)" : "none" });
+    txt.appendChild(d);
+  };
+  if (glitchIn || glitchOut) {
+    const k = glitchIn ? local / .45 : left / .3; // 0..1 settle
+    const amp = (1 - k) * 34;
+    mk("#10D5F0", -amp * (hash(fi) - .5) * 2, 0, .8 * (1 - k * .6), null);
+    mk("#F11E79", amp * (hash(fi + 3) - .5) * 2, 0, .8 * (1 - k * .6), null);
+    // sliced white copies
+    for (let s = 0; s < 4; s++) {
+      const y0 = hash(fi * 7 + s) * 100, h = 8 + hash(fi * 11 + s) * 30;
+      mk("#fff", (hash(fi * 5 + s) - .5) * amp * 3, 0, 1, `inset(${y0}% 0 ${Math.max(0, 100 - y0 - h)}% 0)`);
+    }
+    // ghost echo below (the doubled-line look in the reference)
+    mk("rgba(255,255,255,.55)", 0, size * .55 * (1 - k), .7 * (1 - k), `inset(0 0 45% 0)`);
+    if (k > .55) mk("#fff", 0, 0, k, null);
+  } else {
+    mk("#fff", 0, 0, 1, null);
+  }
+}
+
+window.renderAt = (t) => { drawBg(t); drawFx(t); drawLaps(t); drawTiles(t); drawSubj(t); drawTxt(t); };
+window.LOOP = T;
+renderAt(0);
+</script></body></html>
