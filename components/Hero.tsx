@@ -89,7 +89,7 @@ export default function Hero() {
   const gradPos = (j: number, n: number) => ({ backgroundSize: `${n * 100}% 100%`, backgroundPosition: `${n > 1 ? (j / (n - 1)) * 100 : 0}% 0` });
   return (
     <section className="hero" ref={section}>
-      <div className="hero-aura" aria-hidden="true"><i /><i /><i /></div>
+      <div className="hero-glow" aria-hidden="true" />
       <DotField color="16,213,240" color2="3,136,203" className="hero-dots" />
       <div className="container">
         <div className="hero-copy" ref={copy}>

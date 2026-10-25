@@ -478,19 +478,3 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 .card, .quote-card, .dl-card { position: relative; }
 .card::before, .quote-card::before, .dl-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--grad); opacity: 0; transition: opacity .3s; z-index: 2; }
 .card:hover::before, .quote-card:hover::before, .dl-card:hover::before { opacity: 1; }
-
-/* ---- Hero background: "eclipse flare" style aura in ACDI colours ---- */
-.hero { background: #06081c; }
-.hero::after, .hero-glow { display: none !important; }
-.hero-aura { position: absolute; left: 0; right: 0; top: 0; height: 125vh; pointer-events: none; z-index: 0; overflow: hidden; }
-.hero-aura i { position: absolute; inset: -12% -8%; display: block; }
-.hero-aura i:nth-child(1) { /* main ellipse: dark core, blue band, pink rim */
-  background: radial-gradient(89% 99% at 50% -38%, rgba(6,8,28,0) 0%, #080b24 38%, #17246b 58%, #1a4da2 68%, #6e7ee6 80%, #c41478 91%, #f11e79 100%);
-  filter: blur(90px); opacity: .9; }
-.hero-aura i:nth-child(2) { /* softer, wider copy that blooms the colours */
-  background: radial-gradient(95% 105% at 50% -34%, rgba(0,0,0,.15) 0%, #080b24 44%, #0388cb 74%, #8e7be3 88%, #f11e79 100%);
-  filter: blur(160px); opacity: .4; mix-blend-mode: screen; }
-.hero-aura i:nth-child(3) { /* keeps the very top deep so the header and headline sit on near-black */
-  background: linear-gradient(180deg, #06081c 0%, rgba(6,8,28,.85) 22%, rgba(6,8,28,0) 55%); }
-.hero .hero-dots { opacity: .55; }
-.hero h1 .accent { background-image: linear-gradient(90deg, #10d5f0 0%, #3aa8f5 40%, #e2459e 75%, #f11e79 100%); }
