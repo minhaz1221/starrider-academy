@@ -410,3 +410,35 @@ main > .stats { position: relative; z-index: 2; margin-top: -55vh; background: v
   .hero .media { --card-h: min(72vw, 480px); --side: var(--gutter); --radius: 18px; }
   main > .stats { margin-top: -40vh; border-radius: 28px 28px 0 0; }
 }
+
+/* ---- Below the hero: full-width layout, stronger type, no monospace ---- */
+:root { --mono: var(--font); --wide-gutter: clamp(20px, 3.6vw, 72px); }
+main > .hero ~ * .container, main > .hero ~ * .wide, .footer .container {
+  max-width: none; padding-left: var(--wide-gutter); padding-right: var(--wide-gutter);
+}
+/* labels and buttons that used the monospace face: same sans as the rest, set a little heavier */
+.mono, .eyebrow, .announce, .pill-outline, .mega h4, .chip, .stat > span, .tag, .news-meta,
+.footer h5, .footer-bottom, .sound, .quote-card em, .form-card label, .hero-eyebrow {
+  font-weight: 600; letter-spacing: .06em;
+}
+.btn, .btn-cyan { font-size: 15px; font-weight: 600; letter-spacing: .01em; text-transform: none; }
+main > .hero ~ * { font-size: 17px; }
+main > .hero ~ * p { line-height: 1.6; }
+.eyebrow { font-size: 13px; }
+.stat > span { font-size: 13px; }
+.lead { font-weight: 400; font-size: clamp(20px, 1.9vw, 27px); max-width: 860px; }
+.section-title { font-size: clamp(40px, 5vw, 76px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.02; }
+.ruled h2 { font-size: clamp(38px, 4.2vw, 66px); font-weight: 600; letter-spacing: -0.03em; }
+.stat strong { font-size: clamp(52px, 5.4vw, 84px); font-weight: 600; letter-spacing: -0.04em; }
+.statement p { max-width: 1320px; font-size: clamp(30px, 4vw, 60px); font-weight: 500; line-height: 1.14; letter-spacing: -0.025em; }
+.news-row strong { font-size: clamp(20px, 2vw, 28px); font-weight: 600; max-width: 1100px; }
+.cta h2 { font-size: clamp(56px, 7.6vw, 128px); font-weight: 600; letter-spacing: -0.04em; }
+.welcome-caption strong, .media-caption strong { font-weight: 600; }
+.course-hero h1 { font-weight: 600; }
+.drawer a { font-weight: 500; }
+main > .hero ~ * h3 { font-weight: 600; }
+main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.015em; line-height: 1.2; }
+.card-body p, .card--course p, .dl-card p, .welcome-text, .quote-card p { font-size: 17px; }
+.quote-card strong { font-size: 17px; font-weight: 600; }
+.mega h4, .footer h5, .quote-card em, .form-card label, .tag, .news-meta, .footer-bottom { font-size: 12px; }
+.footer a { font-size: 16px; } .footer-brand p { font-size: 15px; }
