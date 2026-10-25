@@ -24,7 +24,7 @@ export default function Welcome() {
           </button>
           <div className="welcome-caption">
             <span className="mono">Gold Coast · Queensland · Australia</span>
-            <strong>Welcome to Star Rider Academy</strong>
+            <strong>Welcome to ACDI</strong>
           </div>
         </div>
         <div className="welcome-facts" data-stagger>

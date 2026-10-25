@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Star Rider Academy — Technology, Cyber Security, Telecom & Film Courses, Gold Coast",
+  title: "ACDI — Australian College of Digital Innovation | Technology, Cyber Security, Telecom & Film Courses, Gold Coast",
   description:
-    "A new era in vocational education & training, combined with industry certification training, industry placement and government-funded courses. Star Rider Academy, Gold Coast.",
-  openGraph: { title: "Star Rider Academy", description: "Your future in tech starts here.", type: "website" },
+    "A new era in vocational education & training, combined with industry certification training, industry placement and government-funded courses. ACDI, Gold Coast.",
+  openGraph: { title: "ACDI — Australian College of Digital Innovation", description: "Your future in tech starts here.", type: "website" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-        <link rel="icon" href="/brand/mark-colour.png" />
+        <link rel="icon" href="/brand/acdi-icon.png" />
       </head>
       <body suppressHydrationWarning>{children}</body>
     </html>

@@ -206,7 +206,7 @@ h1, h2, h3, h4, p, blockquote { margin: 0; }
 .footer { background: var(--deep); color: var(--silver); border-top: 1px solid rgba(255,255,255,.1); }
 .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; padding: 72px 0 40px; }
 .footer-brand { display: flex; flex-direction: column; gap: 20px; }
-.footer-brand img { height: 60px; width: auto; }
+.footer-brand img { height: 110px; width: auto; }
 .footer-brand p { font-size: 14px; line-height: 1.6; }
 .footer h5 { margin: 0 0 12px; font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .footer a { display: block; padding: 4px 0; font-size: 15px; color: var(--white); transition: color .2s; }
@@ -442,3 +442,5 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 .quote-card strong { font-size: 17px; font-weight: 600; }
 .mega h4, .footer h5, .quote-card em, .form-card label, .tag, .news-meta, .footer-bottom { font-size: 12px; }
 .footer a { font-size: 16px; } .footer-brand p { font-size: 15px; }
+.footer .footer-brand img { width: auto !important; height: 110px !important; max-width: 100%; object-fit: contain; object-position: left center; align-self: flex-start; }
+.header .logo img { height: 58px; width: auto; object-fit: contain; }

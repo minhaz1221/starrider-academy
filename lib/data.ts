@@ -1,5 +1,5 @@
 export const site = {
-  name: "Star Rider Academy",
+  name: "ACDI",
   phone: "+61 7 5578 8122",
   phoneHref: "tel:+61755788122",
   email: "connect@starrideracademy.com",
@@ -60,7 +60,7 @@ export const news = [
   { title: "Pioneering generative AI in digital media and film", date: "Oct 2026" },
   { title: "New intake open for the Diploma of Cyber Security & AI", date: "Oct 2026" },
   { title: "Empowering Women scholarships now accepting applications", date: "Sep 2026" },
-  { title: "Star Rider Academy to open campuses in Japan, New Zealand and the USA", date: "Aug 2026" },
+  { title: "Star Rider Group to open campuses in Japan, New Zealand and the USA", date: "Aug 2026" },
 ];
 
 export const megaMenu = {

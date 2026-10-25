@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <img src="/brand/logo-white.png" alt="Star Rider Academy" />
+            <img src="/brand/acdi-logo-dark.png" alt="ACDI — Australian College of Digital Innovation. Create careers." />
             <p>
               {site.address}<br />
               <a href={site.phoneHref} style={{ display: "inline" }}>{site.phone}</a>  ·  <a href={`mailto:${site.email}`} style={{ display: "inline" }}>{site.email}</a>
@@ -21,7 +21,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Star Rider Academy · RTO 00000 · CRICOS 00000A</span>
+          <span>© 2026 Australian College of Digital Innovation (ACDI) · RTO 00000 · CRICOS 00000A</span>
           <span>Privacy · Terms · Student handbook</span>
         </div>
       </div>
