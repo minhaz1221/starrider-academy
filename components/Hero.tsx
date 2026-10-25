@@ -43,7 +43,16 @@ export default function Hero() {
         return { full, card: mob ? Math.min(w * 0.72, 480) : 620, side: Math.max(side, 12), r: mob ? 18 : 24 };
       };
       const clipFrom = () => { const g = geo(); return `inset(0px ${g.side}px ${Math.max(g.full - g.card, 0)}px ${g.side}px round ${g.r}px)`; };
+      // Fit the whole video frame inside the starting card (instead of cropping the middle of a
+      // full-bleed frame), then let it grow with the card. Scale/translate only -> no layout work.
+      const fit = () => {
+        const g = geo(), W = m.getBoundingClientRect().width;
+        // shrink the whole full-bleed layer just enough that it still covers the starting card
+        const sc = Math.min(1, Math.max((W - 2 * g.side) / W, g.card / g.full));
+        return { scale: sc, y: g.card / 2 - g.full / 2 };
+      };
       gsap.set(m, { clipPath: clipFrom() });
+      gsap.set(v, { transformOrigin: "50% 50%", ...fit() });
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
@@ -56,10 +65,9 @@ export default function Hero() {
       });
       // 0 -> .5 : card opens to full-bleed (eased in and out so it starts and lands softly)
       tl.fromTo(m, { clipPath: clipFrom }, { clipPath: "inset(0px 0px 0px 0px round 0px)", ease: "power3.inOut", duration: 0.5 }, 0)
-        .fromTo(v, { scale: 1.14, yPercent: 3 }, { scale: 1, yPercent: 0, ease: "power2.out", duration: 0.5 }, 0)
+        .fromTo(v, { scale: () => fit().scale, y: () => fit().y }, { scale: 1, y: 0, ease: "power3.inOut", duration: 0.5 }, 0)
         .to(copy.current, { autoAlpha: 0, y: -40, ease: "power2.in", duration: 0.22 }, 0)
-        // .5 -> 1 : hold full-bleed, slow drift + soft shade while the next section slides over it
-        .to(v, { scale: 1.05, ease: "none", duration: 0.5 }, 0.5)
+        // .5 -> 1 : hold full-bleed, soft shade while the next section slides over it
         .fromTo(shade.current, { opacity: 0 }, { opacity: 0.55, ease: "power1.in", duration: 0.35 }, 0.65);
     });
     const ro = new ResizeObserver(() => ScrollTrigger.refresh());
