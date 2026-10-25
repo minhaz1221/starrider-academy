@@ -32,6 +32,7 @@ export default function Hero() {
     const want = window.innerWidth <= 720 ? "/ext/hero-loop-sra-m.mp4" : "/ext/hero-loop-sra.mp4";
     if (!v.currentSrc.endsWith(want)) { v.src = want; v.poster = want.replace(".mp4", ".jpg"); v.play().catch(() => {}); }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { m.style.clipPath = "none"; return; }
+    let onRefresh: () => void = () => {};
     const ctx = gsap.context(() => {
       // Card geometry in px, recomputed on resize. The media layer is always full-bleed and
       // sticky; the "card" is just a clip-path, so the expand is GPU-cheap and never shifts layout.
@@ -45,14 +46,22 @@ export default function Hero() {
       const clipFrom = () => { const g = geo(); return `inset(0px ${g.side}px ${Math.max(g.full - g.card, 0)}px ${g.side}px round ${g.r}px)`; };
       // Fit the whole video frame inside the starting card (instead of cropping the middle of a
       // full-bleed frame), then let it grow with the card. Scale/translate only -> no layout work.
-      const fit = () => {
+      // The video element is sized to the clip's true aspect (no internal cropping) and sits
+      // centred in the full-bleed layer at "cover" size. At the start it is scaled down as one
+      // piece so the whole frame just covers the card; it then grows back to full-bleed.
+      const size = () => {
         const g = geo(), W = m.getBoundingClientRect().width;
-        // shrink the whole full-bleed layer just enough that it still covers the starting card
-        const sc = Math.min(1, Math.max((W - 2 * g.side) / W, g.card / g.full));
+        const ar = v.videoWidth && v.videoHeight ? v.videoWidth / v.videoHeight : (window.innerWidth <= 720 ? 0.8 : 16 / 9);
+        const cw = Math.max(W, g.full * ar), ch = cw / ar;           // cover size at full-bleed
+        gsap.set(v, { width: Math.ceil(cw), height: Math.ceil(ch) });
+        const sc = Math.min(1, Math.max((W - 2 * g.side) / cw, g.card / ch));
         return { scale: sc, y: g.card / 2 - g.full / 2 };
       };
-      gsap.set(m, { clipPath: clipFrom() });
-      gsap.set(v, { transformOrigin: "50% 50%", ...fit() });
+      const fit = size;
+      gsap.set(v, { left: "50%", top: "50%", xPercent: -50, yPercent: -50, transformOrigin: "50% 50%", ...size() });
+      v.addEventListener("loadedmetadata", () => ScrollTrigger.refresh(), { once: true });
+      onRefresh = () => { size(); };
+      ScrollTrigger.addEventListener("refreshInit", onRefresh);
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
@@ -72,7 +81,7 @@ export default function Hero() {
     });
     const ro = new ResizeObserver(() => ScrollTrigger.refresh());
     ro.observe(document.documentElement);
-    return () => { ro.disconnect(); ctx.revert(); };
+    return () => { ro.disconnect(); ScrollTrigger.removeEventListener("refreshInit", onRefresh); ctx.revert(); };
   }, []);
 
   const words = hero.title.split(" ");

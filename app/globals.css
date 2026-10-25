@@ -444,3 +444,4 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 .footer a { font-size: 16px; } .footer-brand p { font-size: 15px; }
 .footer .footer-brand img { width: auto !important; height: 110px !important; max-width: 100%; object-fit: contain; object-position: left center; align-self: flex-start; }
 .header .logo img { height: 58px; width: auto; object-fit: contain; }
+.hero .media video { inset: auto; max-width: none; object-fit: cover; }
