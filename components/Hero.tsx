@@ -13,27 +13,58 @@ const Arrow = () => (
 );
 
 /**
- * CES-style hero: headline + right-hand copy, then a media card that pins and
- * expands from the 1240px container to full-bleed as you scroll.
+ * CES-style hero: headline + right-hand copy, then a media card that sticks under the
+ * header and opens from the 1240px container to full-bleed as you scroll. The next
+ * section then slides up over the held video, so the hand-off is one continuous motion.
  */
 export default function Hero() {
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const media = useRef<HTMLDivElement>(null);
   const copy = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
+  const vid = useRef<HTMLVideoElement>(null);
+  const shade = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const m = media.current, v = vid.current;
+    if (!m || !v) return;
+    const want = window.innerWidth <= 720 ? "/ext/hero-loop-sra-m.mp4" : "/ext/hero-loop-sra.mp4";
+    if (!v.currentSrc.endsWith(want)) { v.src = want; v.poster = want.replace(".mp4", ".jpg"); v.play().catch(() => {}); }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { m.style.clipPath = "none"; return; }
     const ctx = gsap.context(() => {
-      const headerH = () => Math.round(document.querySelector(".header")?.getBoundingClientRect().height ?? 88);
-      gsap.timeline({
-        scrollTrigger: { trigger: stage.current, start: () => "top " + headerH() + "px", end: "+=90%", scrub: 0.8, pin: true, anticipatePin: 1, invalidateOnRefresh: true },
-      })
-        .to(media.current, { "--inset": 0, ease: "power1.inOut" }, 0)
-        .to(copy.current, { autoAlpha: 0, y: -30, ease: "power1.in", duration: 0.3 }, 0);
+      // Card geometry in px, recomputed on resize. The media layer is always full-bleed and
+      // sticky; the "card" is just a clip-path, so the expand is GPU-cheap and never shifts layout.
+      const geo = () => {
+        const w = window.innerWidth, mob = w <= 720;
+        const full = m.getBoundingClientRect().height;
+        const c = section.current?.querySelector<HTMLElement>(".container");
+        const side = c ? c.getBoundingClientRect().left + parseFloat(getComputedStyle(c).paddingLeft) : 24;
+        return { full, card: mob ? Math.min(w * 0.72, 480) : 620, side: Math.max(side, 12), r: mob ? 18 : 24 };
+      };
+      const clipFrom = () => { const g = geo(); return `inset(0px ${g.side}px ${Math.max(g.full - g.card, 0)}px ${g.side}px round ${g.r}px)`; };
+      gsap.set(m, { clipPath: clipFrom() });
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: track.current,
+          start: 0, // begin with the very first scroll so the card opens as it rises
+          end: "bottom bottom",
+          scrub: 1.1,
+          invalidateOnRefresh: true,
+        },
+      });
+      // 0 -> .5 : card opens to full-bleed (eased in and out so it starts and lands softly)
+      tl.fromTo(m, { clipPath: clipFrom }, { clipPath: "inset(0px 0px 0px 0px round 0px)", ease: "power3.inOut", duration: 0.5 }, 0)
+        .fromTo(v, { scale: 1.14, yPercent: 3 }, { scale: 1, yPercent: 0, ease: "power2.out", duration: 0.5 }, 0)
+        .to(copy.current, { autoAlpha: 0, y: -40, ease: "power2.in", duration: 0.22 }, 0)
+        // .5 -> 1 : hold full-bleed, slow drift + soft shade while the next section slides over it
+        .to(v, { scale: 1.05, ease: "none", duration: 0.5 }, 0.5)
+        .fromTo(shade.current, { opacity: 0 }, { opacity: 0.55, ease: "power1.in", duration: 0.35 }, 0.65);
     });
-    ScrollTrigger.refresh();
-    return () => ctx.revert();
+    const ro = new ResizeObserver(() => ScrollTrigger.refresh());
+    ro.observe(document.documentElement);
+    return () => { ro.disconnect(); ctx.revert(); };
   }, []);
 
   const words = hero.title.split(" ");
@@ -66,9 +97,15 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="media-stage" ref={stage}>
-        <div className="media" ref={media}>
-          <video src="/ext/hero-loop-sra.mp4" poster="/ext/hero-loop-sra.jpg" muted loop playsInline autoPlay preload="auto" />
+      <div className="media-track" ref={track}>
+        <div className="media-stage" ref={stage}>
+          <div className="media" ref={media}>
+            <video ref={vid} muted loop playsInline autoPlay preload="auto" poster="/ext/hero-loop-sra.jpg">
+              <source src="/ext/hero-loop-sra-m.mp4" type="video/mp4" media="(max-width: 720px)" />
+              <source src="/ext/hero-loop-sra.mp4" type="video/mp4" />
+            </video>
+            <div className="media-shade" ref={shade} aria-hidden="true" />
+          </div>
         </div>
       </div>
     </section>

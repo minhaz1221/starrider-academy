@@ -24,7 +24,7 @@ export default function Motion() {
       return;
     }
 
-    const lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 1, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
     const raf = (t: number) => lenis.raf(t * 1000);
     gsap.ticker.add(raf);
