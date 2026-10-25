@@ -85,6 +85,8 @@ export default function Hero() {
   }, []);
 
   const words = hero.title.split(" ");
+  // one continuous logo gradient across the accent words (each word shows its slice of it)
+  const gradPos = (j: number, n: number) => ({ backgroundSize: `${n * 100}% 100%`, backgroundPosition: `${n > 1 ? (j / (n - 1)) * 100 : 0}% 0` });
   return (
     <section className="hero" ref={section}>
       <div className="hero-glow" aria-hidden="true" />
@@ -98,7 +100,7 @@ export default function Hero() {
                 const accent = i >= hero.accentFrom;
                 return (
                   <span key={i}>
-                    <span className="sw" aria-hidden="true"><span className={`wd${accent ? " accent" : ""}`} style={{ animationDelay: `${0.1 + i * 0.07}s` }}>{w}</span></span>
+                    <span className="sw" aria-hidden="true"><span className={`wd${accent ? " accent" : ""}`} style={{ animationDelay: `${0.1 + i * 0.07}s`, ...(accent ? gradPos(i - hero.accentFrom, words.length - hero.accentFrom) : {}) }}>{w}</span></span>
                     {i < words.length - 1 ? " " : ""}
                   </span>
                 );

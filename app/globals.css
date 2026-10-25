@@ -445,3 +445,36 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 .footer .footer-brand img { width: auto !important; height: 110px !important; max-width: 100%; object-fit: contain; object-position: left center; align-self: flex-start; }
 .header .logo img { height: 58px; width: auto; object-fit: contain; }
 .hero .media video { inset: auto; max-width: none; object-fit: cover; }
+
+/* ---- ACDI logo gradient: sky blue -> blue -> pink ---- */
+:root {
+  --sky: #10d5f0; --blue: #0388cb; --royal: #1a4da2; --purple: #6e2688;
+  --grad: linear-gradient(90deg, #10d5f0 0%, #0388cb 38%, #6e2688 68%, #f11e79 100%);       /* on dark */
+  --grad-ink: linear-gradient(90deg, #0388cb 0%, #1a4da2 40%, #6e2688 68%, #f11e79 100%);   /* on white */
+  --grad-btn: linear-gradient(100deg, #10d5f0 0%, #0388cb 30%, #c41478 72%, #f11e79 100%);
+}
+.hero h1 .accent, .statement .accent, .cta h2 .accent {
+  color: transparent; background-image: var(--grad); -webkit-background-clip: text; background-clip: text;
+}
+.statement .accent { background-size: 100% 100%; }
+.hero-eyebrow::before { background: var(--grad); box-shadow: 0 0 12px rgba(16,213,240,.6); }
+/* primary buttons: logo gradient, slides on hover */
+.btn--pink, .btn-cyan { background: var(--grad-btn); background-size: 150% 100%; background-position: 0 0;
+  box-shadow: 0 12px 30px rgba(3,136,203,.28), 0 10px 26px rgba(241,30,121,.22); transition: background-position .5s var(--ease), transform .3s var(--ease), box-shadow .3s; }
+.btn--pink:hover, .btn-cyan:hover { background: var(--grad-btn); background-size: 150% 100%; background-position: 100% 0; }
+/* section rules and stats */
+.ruled::after { height: 2px; background: var(--grad-ink); opacity: .55; border-radius: 2px; }
+.on-dark .ruled::after { background: var(--grad); opacity: .7; }
+.stat strong { color: transparent; background-image: var(--grad-ink); -webkit-background-clip: text; background-clip: text; }
+.eyebrow { color: var(--blue); }
+.on-dark .eyebrow, .bg-navy .eyebrow, .bg-deep .eyebrow { color: var(--sky); }
+/* glows: add sky blue to the pink/purple atmosphere */
+.hero::after { background: radial-gradient(closest-side, rgba(16,213,240,.32), rgba(3,136,203,.18) 55%, rgba(3,136,203,0)); }
+.cta-glow { background: radial-gradient(closest-side at 35% 55%, rgba(16,213,240,.32), rgba(16,213,240,0) 70%), radial-gradient(closest-side at 68% 45%, rgba(241,30,121,.38), rgba(241,30,121,0) 75%) !important; }
+.statement.bg-navy { background: radial-gradient(60% 80% at 0% 100%, rgba(16,213,240,.18), transparent 70%), radial-gradient(60% 80% at 100% 0%, rgba(241,30,121,.18), transparent 70%), var(--navy); }
+/* thin logo-gradient line under the header */
+.header::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--grad); opacity: .85; }
+/* cards: gradient top edge on hover */
+.card, .quote-card, .dl-card { position: relative; }
+.card::before, .quote-card::before, .dl-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--grad); opacity: 0; transition: opacity .3s; z-index: 2; }
+.card:hover::before, .quote-card:hover::before, .dl-card:hover::before { opacity: 1; }

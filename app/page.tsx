@@ -185,7 +185,7 @@ export default function Home() {
           <div className="cta-glow" aria-hidden="true" />
           <div className="container">
             <span className="mono" data-reveal>The next intake starts soon</span>
-            <h2 data-split>Ready to start?</h2>
+            <h2 data-split>Ready to <span className="accent">start?</span></h2>
             <p data-reveal>Enrol in the program of your choice and we&apos;ll guide you from application to graduation.</p>
             <div className="cta-btns" data-stagger>
               <Btn href="/courses/cyber-security-ai" tone="pink">How to enrol</Btn>
