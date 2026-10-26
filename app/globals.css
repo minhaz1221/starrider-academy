@@ -478,3 +478,17 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 .card, .quote-card, .dl-card { position: relative; }
 .card::before, .quote-card::before, .dl-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--grad); opacity: 0; transition: opacity .3s; z-index: 2; }
 .card:hover::before, .quote-card:hover::before, .dl-card:hover::before { opacity: 1; }
+
+/* ---- One button style everywhere: solid ACDI sky blue (logo) ---- */
+:root { --btn-sky: #10d5f0; --btn-sky-h: #3fe0f5; --btn-ink: #06102e; }
+.btn, .btn--pink, .btn--white, .btn--navy, .btn--ghost, .btn--ink-ghost, .btn-cyan, .pill-white {
+  background: var(--btn-sky) !important; background-image: none !important;
+  color: var(--btn-ink) !important; border: 1px solid var(--btn-sky) !important;
+  box-shadow: 0 10px 26px rgba(16, 213, 240, .25) !important;
+  transition: background-color .25s, transform .3s var(--ease), box-shadow .3s !important;
+}
+.btn:hover, .btn--pink:hover, .btn--white:hover, .btn--navy:hover, .btn--ghost:hover, .btn--ink-ghost:hover, .btn-cyan:hover, .pill-white:hover {
+  background: var(--btn-sky-h) !important; color: var(--btn-ink) !important; transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(16, 213, 240, .38) !important;
+}
+.btn svg, .pill-white svg { color: var(--btn-ink); }
