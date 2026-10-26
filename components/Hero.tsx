@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { hero } from "@/lib/data";
+import { useSite } from "@/components/SiteContext";
 import DotField from "@/components/college/DotField";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,6 +18,7 @@ const Arrow = () => (
  * section then slides up over the held video, so the hand-off is one continuous motion.
  */
 export default function Hero() {
+  const { hero, heroVideo, theme } = useSite();
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const media = useRef<HTMLDivElement>(null);
@@ -29,8 +30,9 @@ export default function Hero() {
   useEffect(() => {
     const m = media.current, v = vid.current;
     if (!m || !v) return;
-    const want = window.innerWidth <= 720 ? "/ext/hero-loop-sra-m.mp4" : "/ext/hero-loop-sra.mp4";
-    if (!v.currentSrc.endsWith(want)) { v.src = want; v.poster = want.replace(".mp4", ".jpg"); v.play().catch(() => {}); }
+    const mob = window.innerWidth <= 720;
+    const want = mob ? heroVideo.mobile : heroVideo.desktop;
+    if (!v.currentSrc.endsWith(want)) { v.src = want; v.poster = mob ? heroVideo.posterMobile : heroVideo.poster; v.play().catch(() => {}); }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { m.style.clipPath = "none"; return; }
     let onRefresh: () => void = () => {};
     const ctx = gsap.context(() => {
@@ -90,7 +92,10 @@ export default function Hero() {
   return (
     <section className="hero" ref={section}>
       <div className="hero-glow" aria-hidden="true" />
-      <DotField color="16,213,240" color2="3,136,203" className="hero-dots" />
+      {theme === "sra" && (
+        <div className="hero-bubbles" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div>
+      )}
+      <DotField color={theme === "nzcdi" ? "31,168,134" : theme === "sra" ? "3,136,203" : "16,213,240"} color2={theme === "sra" ? "241,30,121" : theme === "nzcdi" ? "16,213,240" : "3,136,203"} className="hero-dots" />
       <div className="container">
         <div className="hero-copy" ref={copy}>
           <div>
@@ -119,9 +124,9 @@ export default function Hero() {
       <div className="media-track" ref={track}>
         <div className="media-stage" ref={stage}>
           <div className="media" ref={media}>
-            <video ref={vid} muted loop playsInline autoPlay preload="auto" poster="/ext/hero-loop-sra.jpg">
-              <source src="/ext/hero-loop-sra-m.mp4" type="video/mp4" media="(max-width: 720px)" />
-              <source src="/ext/hero-loop-sra.mp4" type="video/mp4" />
+            <video ref={vid} muted loop playsInline autoPlay preload="auto" poster={heroVideo.poster}>
+              <source src={heroVideo.mobile} type="video/mp4" media="(max-width: 720px)" />
+              <source src={heroVideo.desktop} type="video/mp4" />
             </video>
             <div className="media-shade" ref={shade} aria-hidden="true" />
           </div>

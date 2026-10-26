@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./themes.css";
 
 export const metadata: Metadata = {
   title: "ACDI — Australian College of Digital Innovation | Technology, Cyber Security, Telecom & Film Courses, Gold Coast",

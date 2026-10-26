@@ -1,6 +1,11 @@
-import CesSite from "@/components/college/CesSite";
-import { sra } from "@/lib/brands";
-import "@/app/college.css";
-import "@/app/ces.css";
-export const metadata = { title: "Star Rider Academy — Homepage concept", description: "Homepage design concept" };
-export default function Page() { return <CesSite brand={sra} />; }
+import HomePage from "@/components/HomePage";
+
+export const metadata = {
+  title: "Star Rider Academy — Technology, Film & Digital Media Courses, Los Angeles",
+  description: "Diplomas in cyber security & AI, digital media and film production in Los Angeles — paired with the industry certifications employers ask for. A Star Rider Group college.",
+  icons: { icon: "/brand/mark-colour.png" },
+};
+
+export default function Page() {
+  return <HomePage slug="sra" />;
+}

@@ -1,13 +1,15 @@
+"use client";
 import Link from "next/link";
-import { site, footerCols } from "@/lib/data";
+import { useSite } from "@/components/SiteContext";
 
 export default function Footer() {
+  const { site, footerCols, logoFooter, logoAlt, legal, base } = useSite();
   return (
     <footer className="footer" id="contact">
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <img src="/brand/acdi-logo-dark.png" alt="ACDI — Australian College of Digital Innovation. Create careers." />
+            <img src={logoFooter} alt={logoAlt} />
             <p>
               {site.address}<br />
               <a href={site.phoneHref} style={{ display: "inline" }}>{site.phone}</a>  ·  <a href={`mailto:${site.email}`} style={{ display: "inline" }}>{site.email}</a>
@@ -16,12 +18,12 @@ export default function Footer() {
           {footerCols.map((c) => (
             <div key={c.h}>
               <h5>{c.h}</h5>
-              {c.items.map((it) => (<Link key={it} href="/#">{it}</Link>))}
+              {c.items.map((it) => (<Link key={it} href={`${base}#`}>{it}</Link>))}
             </div>
           ))}
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Australian College of Digital Innovation (ACDI) · RTO 00000 · CRICOS 00000A</span>
+          <span>{legal}</span>
           <span>Privacy · Terms · Student handbook</span>
         </div>
       </div>

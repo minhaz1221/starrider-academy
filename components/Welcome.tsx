@@ -1,9 +1,10 @@
 "use client";
 import { useRef, useState } from "react";
-import { welcome } from "@/lib/data";
+import { useSite } from "@/components/SiteContext";
 
 /** Welcome-to-the-Gold-Coast video band: autoplaying muted film, click to unmute. */
 export default function Welcome() {
+  const { welcome } = useSite();
   const v = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const toggle = () => { const el = v.current; if (!el) return; el.muted = !el.muted; setMuted(el.muted); if (el.paused) el.play().catch(() => {}); };
@@ -16,15 +17,15 @@ export default function Welcome() {
           <p className="welcome-text" data-reveal>{welcome.text}</p>
         </div>
         <div className="welcome-video" data-reveal>
-          <video ref={v} src={welcome.video} poster="/ext/welcome-poster.jpg" muted loop playsInline autoPlay preload="metadata" data-parallax="0.08" />
+          {welcome.video ? <video ref={v} src={welcome.video} poster={welcome.poster} muted loop playsInline autoPlay preload="metadata" data-parallax="0.08" /> : <img src={welcome.poster} alt="" data-parallax="0.08" />}
           <div className="welcome-overlay" />
-          <button type="button" className={`sound${muted ? "" : " on"}`} onClick={toggle} aria-pressed={!muted}>
+          {welcome.video && <button type="button" className={`sound${muted ? "" : " on"}`} onClick={toggle} aria-pressed={!muted}>
             <span className="sound-bars" aria-hidden="true"><i /><i /><i /><i /></span>
             {muted ? "Sound on" : "Sound off"}
-          </button>
+          </button>}
           <div className="welcome-caption">
-            <span className="mono">Gold Coast · Queensland · Australia</span>
-            <strong>Welcome to ACDI</strong>
+            <span className="mono">{welcome.captionEyebrow}</span>
+            <strong>{welcome.caption}</strong>
           </div>
         </div>
         <div className="welcome-facts" data-stagger>

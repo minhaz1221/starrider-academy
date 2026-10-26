@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { nav, megaMenu, site } from "@/lib/data";
+import { useSite } from "@/components/SiteContext";
 
 const Chevron = () => (
   <svg aria-hidden="true" width="12" height="8" viewBox="0 0 12 8" fill="none">
@@ -10,6 +10,7 @@ const Chevron = () => (
 );
 
 export default function Header() {
+  const { nav, megaMenu, site, base, logoHeader, logoAlt, short } = useSite();
   const [stuck, setStuck] = useState(false);
   const [mega, setMega] = useState(false);
   const [drawer, setDrawer] = useState(false);
@@ -45,8 +46,8 @@ export default function Header() {
       <div className="announce">{site.announcement}<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></div>
       <header className={`header${stuck ? " is-stuck" : ""}`} ref={wrap}>
         <div className="header-inner">
-          <Link href="/" className="logo" aria-label="ACDI home">
-            <img src="/brand/acdi-logo-dark-compact.png" alt="ACDI — Australian College of Digital Innovation" />
+          <Link href={base} className="logo" aria-label={`${short} home`}>
+            <img src={logoHeader} alt={logoAlt} />
           </Link>
 
           <nav className="nav" aria-label="Primary">
@@ -75,7 +76,7 @@ export default function Header() {
             <button type="button" className="pill-outline" aria-label="Language: English">
               EN <Chevron />
             </button>
-            <Link href="/#contact" className="pill-white">
+            <Link href={`${base}#contact`} className="pill-white">
               Contact us
             </Link>
             <button type="button" className="burger" aria-label="Open menu" onClick={() => setDrawer(true)}>
@@ -92,7 +93,7 @@ export default function Header() {
             <div>
               <h4>Course streams</h4>
               {megaMenu.streams.map((s) => (
-                <Link key={s} href={s.startsWith("Cyber") ? "/courses/cyber-security-ai" : "/#courses"} onClick={() => setMega(false)}>
+                <Link key={s} href={base === "/" && s.startsWith("Cyber") ? "/courses/cyber-security-ai" : `${base}#courses`} onClick={() => setMega(false)}>
                   {s}
                 </Link>
               ))}
@@ -100,15 +101,15 @@ export default function Header() {
             <div>
               <h4>Study with us</h4>
               {megaMenu.study.map((s) => (
-                <Link key={s} href="/#pathways" onClick={() => setMega(false)}>
+                <Link key={s} href={`${base}#pathways`} onClick={() => setMega(false)}>
                   {s}
                 </Link>
               ))}
             </div>
             <div>
               <h4>Featured</h4>
-              <Link href="/courses/cyber-security-ai" className="mega-feature" onClick={() => setMega(false)}>
-                Diploma of Cyber Security &amp; AI — next intake open
+              <Link href={base === "/" ? "/courses/cyber-security-ai" : `${base}#courses`} className="mega-feature" onClick={() => setMega(false)}>
+                {megaMenu.featured}
                 <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
@@ -121,7 +122,7 @@ export default function Header() {
       {/* mobile drawer */}
       <div className={`drawer${drawer ? " open" : ""}`} aria-hidden={!drawer}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <img src="/brand/acdi-logo-dark-compact.png" alt="ACDI" style={{ height: 44 }} />
+          <img src={logoHeader} alt={short} style={{ height: 44 }} />
           <button type="button" className="burger" aria-label="Close menu" onClick={() => setDrawer(false)}>
             <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round">
               <path d="M2 2l14 14M16 2L2 16" />
@@ -133,7 +134,7 @@ export default function Header() {
             {item.label}
           </Link>
         ))}
-        <Link href="/#contact" className="pill-white" style={{ alignSelf: "flex-start", marginTop: 16 }} onClick={() => setDrawer(false)}>
+        <Link href={`${base}#contact`} className="pill-white" style={{ alignSelf: "flex-start", marginTop: 16 }} onClick={() => setDrawer(false)}>
           Contact us
         </Link>
       </div>

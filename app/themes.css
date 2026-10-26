@@ -1,0 +1,88 @@
+/* =========================================================================
+   Sister-college themes on the shared "version one" template.
+   .site-acdi  — Australia (approved, unchanged)
+   .site-sra   — Star Rider Academy, USA: the whiter, eye-catching version
+   .site-nzcdi — NZCDI, New Zealand: calm, same family, fern/pounamu tones
+   ========================================================================= */
+
+/* ------------------------------- STAR RIDER (USA) ------------------------------- */
+.site-sra {
+  --sra-navy: #0f1540; --sra-slate: #4a5068; --sra-mist: #f4f6ff;
+  --grad: linear-gradient(90deg, #0388cb 0%, #6e2688 55%, #f11e79 100%);
+  --grad-ink: linear-gradient(90deg, #0388cb 0%, #6e2688 55%, #f11e79 100%);
+}
+/* header: white */
+.site-sra .announce { background: var(--sra-mist); color: var(--sra-navy); }
+.site-sra .header { background: #fff; color: var(--sra-navy); box-shadow: 0 1px 0 #e6e8f2; }
+.site-sra .header.is-stuck { background: rgba(255,255,255,.88); box-shadow: 0 10px 40px rgba(15,21,64,.08); }
+.site-sra .nav-link { color: var(--sra-navy); }
+.site-sra .pill-outline { color: var(--sra-navy); border-color: rgba(15,21,64,.25); }
+.site-sra .pill-outline:hover { background: rgba(15,21,64,.05); }
+.site-sra .burger { border-color: rgba(15,21,64,.3); }
+.site-sra .burger svg { stroke: var(--sra-navy); }
+.site-sra .header .logo img { height: 54px; }
+/* hero: white with floating, colour-shifting bubbles */
+.site-sra .hero { background: #fff; color: var(--sra-navy); }
+.site-sra .hero-eyebrow { color: var(--sra-slate); }
+.site-sra .hero-right p { color: var(--sra-slate); }
+.site-sra .hero h1 { font-weight: 400; }
+.site-sra .hero h1 .accent { background-image: linear-gradient(90deg, #0388cb 0%, #3a64d8 30%, #a3249a 65%, #f11e79 100%) !important; }
+.site-sra .hero .hero-dots { opacity: .45; }
+.site-sra .hero .media { box-shadow: 0 40px 90px rgba(15,21,64,.18); }
+.site-sra .media-shade { background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.75)); }
+.hero-bubbles { position: absolute; left: 0; right: 0; top: 0; height: 110vh; pointer-events: none; z-index: 0; overflow: hidden; }
+.hero-bubbles i { position: absolute; display: block; border-radius: 50%; filter: blur(2px); opacity: .9;
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.95) 0 6%, rgba(255,255,255,0) 22%), radial-gradient(circle at 50% 50%, var(--b1), var(--b2));
+  box-shadow: inset 0 0 40px rgba(255,255,255,.55), 0 30px 60px -20px var(--b2);
+  animation: bubbleFloat var(--d, 18s) ease-in-out infinite alternate, bubbleHue var(--h, 14s) linear infinite; }
+.hero-bubbles i:nth-child(1) { --b1: #7ff0ff; --b2: #10d5f0; width: 220px; height: 220px; left: -60px; top: 120px; --d: 16s; }
+.hero-bubbles i:nth-child(2) { --b1: #ff9ec7; --b2: #f11e79; width: 150px; height: 150px; right: 8%; top: 60px; --d: 19s; --h: 18s; }
+.hero-bubbles i:nth-child(3) { --b1: #9fd4ff; --b2: #0388cb; width: 90px; height: 90px; left: 38%; top: 40px; --d: 13s; }
+.hero-bubbles i:nth-child(4) { --b1: #e3a6ff; --b2: #6e2688; width: 70px; height: 70px; right: 30%; top: 330px; --d: 15s; --h: 11s; }
+.hero-bubbles i:nth-child(5) { --b1: #7ff0ff; --b2: #10d5f0; width: 120px; height: 120px; right: -30px; top: 420px; --d: 21s; }
+.hero-bubbles i:nth-child(6) { --b1: #ff9ec7; --b2: #c41478; width: 46px; height: 46px; left: 22%; top: 360px; --d: 12s; }
+.hero-bubbles i:nth-child(7) { --b1: #c7f7ff; --b2: #0388cb; width: 34px; height: 34px; left: 55%; top: 230px; --d: 10s; --h: 9s; }
+@keyframes bubbleFloat { 0% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(40px,-36px,0) scale(1.06); } 100% { transform: translate3d(-30px,28px,0) scale(.96); } }
+@keyframes bubbleHue { from { filter: blur(2px) hue-rotate(0deg); } to { filter: blur(2px) hue-rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .hero-bubbles i { animation: none; } }
+@media (max-width: 720px) { .hero-bubbles i:nth-child(1) { width: 140px; height: 140px; } .hero-bubbles i:nth-child(2) { width: 90px; height: 90px; } .hero-bubbles i:nth-child(5) { display: none; } }
+/* welcome + statement: light instead of navy */
+.site-sra .welcome.bg-navy { background: var(--sra-mist); color: var(--sra-navy); }
+.site-sra .welcome .welcome-text, .site-sra .welcome .lead { color: var(--sra-slate); }
+.site-sra .welcome .ruled h2 { color: var(--sra-navy); }
+.site-sra .welcome .welcome-fact strong { color: var(--sra-navy); }
+.site-sra .welcome .welcome-fact .mono { color: #8e95a8; }
+.site-sra .welcome .welcome-facts { border-color: #e3e6f0; }
+.site-sra .statement.bg-navy { position: relative; overflow: hidden; color: var(--sra-navy);
+  background: radial-gradient(40% 70% at 8% 20%, rgba(16,213,240,.22), transparent 70%), radial-gradient(40% 70% at 92% 80%, rgba(241,30,121,.18), transparent 70%), #fff;
+  animation: sraGlow 12s ease-in-out infinite alternate; }
+@keyframes sraGlow { from { background-position: 0 0, 0 0, 0 0; } to { background-position: 60px -30px, -60px 30px, 0 0; } }
+.site-sra .statement .accent { background-image: var(--grad) !important; }
+/* call to action: animated brand gradient band */
+.site-sra .cta { background: linear-gradient(110deg, #0f1540, #0388cb 35%, #6e2688 65%, #f11e79); background-size: 220% 220%; animation: sraShift 14s ease-in-out infinite alternate; }
+.site-sra .cta-glow { display: none; }
+.site-sra .cta .accent { color: #fff !important; background: none !important; -webkit-text-fill-color: #fff; text-decoration: underline; text-decoration-color: #10d5f0; text-underline-offset: .12em; text-decoration-thickness: .06em; }
+@keyframes sraShift { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+/* ------------------------------- NZCDI (New Zealand) ------------------------------- */
+.site-nzcdi {
+  --navy: #12201c; --deep: #0b1411;
+  --grad: linear-gradient(90deg, #10d5f0 0%, #1fa886 55%, #7be0c3 100%);
+  --grad-ink: linear-gradient(90deg, #0388cb 0%, #1fa886 55%, #0b6e4f 100%);
+}
+.site-nzcdi .hero { background: linear-gradient(180deg, #12201c 0%, #0b1411 100%); }
+.site-nzcdi .hero-glow { background: radial-gradient(closest-side, rgba(31,168,134,.32), rgba(31,168,134,0)) !important; }
+.site-nzcdi .hero::after { background: radial-gradient(closest-side, rgba(16,213,240,.22), rgba(16,213,240,0)) !important; }
+.site-nzcdi .hero h1 .accent { background-image: linear-gradient(90deg, #10d5f0 0%, #3ccfc0 40%, #1fa886 75%, #7be0c3 100%) !important; }
+.site-nzcdi .header { background: #12201c; }
+.site-nzcdi .header.is-stuck { background: rgba(18,32,28,.88); }
+.site-nzcdi .header .logo img { height: 50px; }
+.site-nzcdi .footer .footer-brand img { height: 70px !important; }
+.site-nzcdi .nav-link::after { background: #1fa886; }
+.site-nzcdi .announce svg { color: #1fa886; }
+.site-nzcdi .cta-glow { background: radial-gradient(closest-side at 35% 55%, rgba(16,213,240,.26), rgba(16,213,240,0) 70%), radial-gradient(closest-side at 68% 45%, rgba(31,168,134,.34), rgba(31,168,134,0) 75%) !important; }
+.site-nzcdi .statement.bg-navy { background: radial-gradient(60% 80% at 0% 100%, rgba(16,213,240,.14), transparent 70%), radial-gradient(60% 80% at 100% 0%, rgba(31,168,134,.18), transparent 70%), #12201c; }
+.welcome-video > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.site-nzcdi .tag { background: #0b6e4f; }
+.site-sra .hero-glow { opacity: .28; }
+.site-sra .hero::after { opacity: .25; }
