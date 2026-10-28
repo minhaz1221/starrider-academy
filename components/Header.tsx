@@ -80,7 +80,7 @@ export default function Header() {
               Contact us
             </Link>
             <button type="button" className="burger" aria-label="Open menu" onClick={() => setDrawer(true)}>
-              <svg aria-hidden="true" width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round">
+              <svg aria-hidden="true" width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M1 1h18M1 7h18M1 13h18" />
               </svg>
             </button>
@@ -124,7 +124,7 @@ export default function Header() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <img src={logoHeader} alt={short} style={{ height: 44 }} />
           <button type="button" className="burger" aria-label="Close menu" onClick={() => setDrawer(false)}>
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M2 2l14 14M16 2L2 16" />
             </svg>
           </button>

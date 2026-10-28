@@ -88,7 +88,7 @@ h1, h2, h3, h4, p, blockquote { margin: 0; }
 .pill-outline:hover { background: rgba(255,255,255,.1); }
 .pill-white { display: inline-flex; align-items: center; white-space: nowrap; border-radius: 22px; height: 44px; padding: 0 20px; font-size: 15px; font-weight: 500; color: var(--navy); background: var(--white); transition: transform .3s var(--ease), box-shadow .3s; }
 .pill-white:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0, 0, 0, .25); }
-.burger { display: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); background: transparent; align-items: center; justify-content: center; }
+.burger { display: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); background: transparent; color: #fff; align-items: center; justify-content: center; }
 
 /* mega menu */
 .mega { position: absolute; left: 0; right: 0; top: 100%; background: var(--white); color: var(--ink); box-shadow: 0 30px 60px rgba(0, 0, 0, .35); border-radius: 0 0 18px 18px; opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity .25s var(--ease), transform .25s var(--ease); }
