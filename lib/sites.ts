@@ -21,6 +21,7 @@ export type Site = {
   megaMenu: { streams: string[]; study: string[]; featured: string };
   hero: { eyebrow: string; title: string; accentFrom: number; sub: string; primary: { label: string; href: string }; secondary: { label: string; href: string } };
   heroVideo: { desktop: string; mobile: string; poster: string; posterMobile: string };
+  heroMedia: { chips: string[]; captionEyebrow: string; caption: string };
   stats: { n: number; suffix: string; label: string }[];
   welcome: { eyebrow: string; title: string; text: string; video: string; poster: string; captionEyebrow: string; caption: string; facts: [string, string][] };
   pathwaysLead: string;
@@ -55,7 +56,8 @@ const acdi: Site = {
   nav: acdiData.nav,
   megaMenu: { ...acdiData.megaMenu, featured: "Diploma of Cyber Security & AI — next intake open" },
   hero: acdiData.hero,
-  heroVideo: { desktop: "/ext/hero-loop-sra.mp4", mobile: "/ext/hero-loop-sra-m.mp4", poster: "/ext/hero-loop-sra.jpg", posterMobile: "/ext/hero-loop-sra-m.jpg" },
+  heroVideo: { desktop: "/ext/hero.mp4", mobile: "/ext/hero.mp4", poster: "/ext/hero-poster.jpg", posterMobile: "/ext/hero-poster.jpg" },
+  heroMedia: { chips: ["Cyber Security & AI", "Digital Media", "Telecommunications"], captionEyebrow: "IFTV Studios  ·  on set with Digital Media students", caption: "Learn production on real sets, alongside industry." },
   stats: acdiData.stats,
   welcome: { ...acdiData.welcome, facts: acdiData.welcome.facts as [string, string][], poster: "/ext/welcome-poster.jpg", captionEyebrow: "Gold Coast · Queensland · Australia", caption: "Welcome to ACDI" },
   pathwaysLead: "Three ways in — whether you are joining us from overseas, already in Australia, or upskilling through your employer.",
@@ -124,7 +126,8 @@ const sra: Site = {
     primary: { label: "Explore courses", href: "/sra#courses" },
     secondary: { label: "Book a campus tour", href: "/sra#events" },
   },
-  heroVideo: { desktop: "/ext/hero-loop-usa.mp4", mobile: "/ext/hero-loop-usa-m.mp4", poster: "/ext/hero-loop-usa.jpg", posterMobile: "/ext/hero-loop-usa-m.jpg" },
+  heroVideo: { desktop: "/ext/hero-usa.mp4", mobile: "/ext/hero-usa.mp4", poster: "/ext/hero-usa.jpg", posterMobile: "/ext/hero-usa.jpg" },
+  heroMedia: { chips: ["Digital Media & Film", "Cyber Security & AI", "Networking"], captionEyebrow: "Los Angeles  ·  founding intake, Fall 2027", caption: "Small classes, real projects, a team around you." },
   stats: [
     { n: 30, suffix: "+", label: "years of Star Rider Group training" },
     { n: 40, suffix: "+", label: "countries our students come from" },
@@ -222,7 +225,8 @@ const nzcdi: Site = {
     primary: { label: "Explore courses", href: "/nzcdi#courses" },
     secondary: { label: "Register interest", href: "/nzcdi#enquire" },
   },
-  heroVideo: { desktop: "/ext/hero-loop-nz.mp4", mobile: "/ext/hero-loop-nz-m.mp4", poster: "/ext/hero-loop-nz.jpg", posterMobile: "/ext/hero-loop-nz-m.jpg" },
+  heroVideo: { desktop: "/ext/hero-nz.mp4", mobile: "/ext/hero-nz.mp4", poster: "/ext/hero-nz.jpg", posterMobile: "/ext/hero-nz.jpg" },
+  heroMedia: { chips: ["Cyber Security & AI", "Telecommunications", "Networking"], captionEyebrow: "Ōtautahi Christchurch  ·  first intake July 2027", caption: "A new campus in New Zealand's most liveable city." },
   stats: [
     { n: 30, suffix: "+", label: "years of Star Rider Group training" },
     { n: 40, suffix: "+", label: "countries our students come from" },

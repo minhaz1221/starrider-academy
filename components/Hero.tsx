@@ -18,7 +18,7 @@ const Arrow = () => (
  * section then slides up over the held video, so the hand-off is one continuous motion.
  */
 export default function Hero() {
-  const { hero, heroVideo, theme } = useSite();
+  const { hero, heroVideo, heroMedia, theme } = useSite();
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const media = useRef<HTMLDivElement>(null);
@@ -26,6 +26,7 @@ export default function Hero() {
   const track = useRef<HTMLDivElement>(null);
   const vid = useRef<HTMLVideoElement>(null);
   const shade = useRef<HTMLDivElement>(null);
+  const ui = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const m = media.current, v = vid.current;
@@ -43,7 +44,7 @@ export default function Hero() {
         const full = m.getBoundingClientRect().height;
         const c = section.current?.querySelector<HTMLElement>(".container");
         const side = c ? c.getBoundingClientRect().left + parseFloat(getComputedStyle(c).paddingLeft) : 24;
-        return { full, card: mob ? Math.min(w * 0.72, 480) : 620, side: Math.max(side, 12), r: mob ? 18 : 24 };
+        return { full, card: mob ? Math.min(w * 1.05, 520) : 620, side: Math.max(side, 12), r: mob ? 18 : 24 };
       };
       const clipFrom = () => { const g = geo(); return `inset(0px ${g.side}px ${Math.max(g.full - g.card, 0)}px ${g.side}px round ${g.r}px)`; };
       // Fit the whole video frame inside the starting card (instead of cropping the middle of a
@@ -77,6 +78,9 @@ export default function Hero() {
       // 0 -> .5 : card opens to full-bleed (eased in and out so it starts and lands softly)
       tl.fromTo(m, { clipPath: clipFrom }, { clipPath: "inset(0px 0px 0px 0px round 0px)", ease: "power3.inOut", duration: 0.5 }, 0)
         .fromTo(v, { scale: () => fit().scale, y: () => fit().y }, { scale: 1, y: 0, ease: "power3.inOut", duration: 0.5 }, 0)
+        // chips / play / caption ride on a box that follows the card edges as it opens
+        .fromTo(ui.current, { left: () => geo().side, right: () => geo().side, height: () => geo().card }, { left: 0, right: 0, height: () => geo().full, ease: "power3.inOut", duration: 0.5 }, 0)
+        .to(ui.current, { autoAlpha: 0, ease: "power1.in", duration: 0.2 }, 0.62)
         .to(copy.current, { autoAlpha: 0, y: -40, ease: "power2.in", duration: 0.22 }, 0)
         // .5 -> 1 : hold full-bleed, soft shade while the next section slides over it
         .fromTo(shade.current, { opacity: 0 }, { opacity: 0.55, ease: "power1.in", duration: 0.35 }, 0.65);
@@ -128,6 +132,18 @@ export default function Hero() {
               <source src={heroVideo.mobile} type="video/mp4" media="(max-width: 720px)" />
               <source src={heroVideo.desktop} type="video/mp4" />
             </video>
+            <div className="media-ui" ref={ui}>
+              <div className="media-chips">
+                {heroMedia.chips.map((c) => (<span key={c} className="chip">{c}</span>))}
+              </div>
+              <button type="button" className="play" aria-label="Pause or play the video" onClick={() => { const v = vid.current; if (v) { if (v.paused) v.play().catch(() => {}); else v.pause(); } }}>
+                <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff" /></svg>
+              </button>
+              <div className="media-caption">
+                <span className="mono">{heroMedia.captionEyebrow}</span>
+                <strong>{heroMedia.caption}</strong>
+              </div>
+            </div>
             <div className="media-shade" ref={shade} aria-hidden="true" />
           </div>
         </div>

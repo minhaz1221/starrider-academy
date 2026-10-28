@@ -407,7 +407,7 @@ main > .hero ~ * { position: relative; z-index: 2; }
 main > .stats { position: relative; z-index: 2; margin-top: -55vh; background: var(--white); border-radius: 40px 40px 0 0; box-shadow: 0 -30px 80px rgba(20,10,60,.25); }
 @media (max-width: 720px) {
   .media-track { margin-top: 36px; height: calc(100vh - var(--header-h) + 110vh); }
-  .hero .media { --card-h: min(72vw, 480px); --side: var(--gutter); --radius: 18px; }
+  .hero .media { --card-h: min(105vw, 520px); --side: var(--gutter); --radius: 18px; }
   main > .stats { margin-top: -40vh; border-radius: 28px 28px 0 0; }
 }
 
@@ -492,3 +492,26 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
   box-shadow: 0 14px 32px rgba(16, 213, 240, .38) !important;
 }
 .btn svg, .pill-white svg { color: var(--btn-ink); }
+
+/* ---- Hero media: original boxed design — real footage with chips, play and caption that follow the card ---- */
+.hero .media-ui { position: absolute; top: 0; left: 0; right: 0; height: 620px; z-index: 2; pointer-events: none; border-radius: 24px; overflow: hidden; color: #fff;
+  background: linear-gradient(180deg, rgba(6,10,36,.45) 0%, rgba(6,10,36,0) 30%, rgba(6,10,36,0) 55%, rgba(6,10,36,.75) 100%); }
+.hero .media-ui > * { pointer-events: auto; }
+.hero .media-ui .media-chips { left: clamp(20px, 3vw, 48px); top: clamp(20px, 3vw, 44px); }
+.hero .media-ui .chip { font-family: var(--font); font-weight: 600; font-size: 12px; background: rgba(6,16,46,.35); }
+.hero .media-ui .media-caption { left: clamp(20px, 3vw, 48px); right: clamp(20px, 3vw, 48px); bottom: clamp(20px, 3vw, 44px); }
+.hero .media-ui .media-caption .mono { font-family: var(--font); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #10d5f0; }
+.hero .media-ui .media-caption strong { font-size: clamp(22px, 2.4vw, 36px); font-weight: 600; letter-spacing: -0.015em; max-width: 22ch; line-height: 1.15; }
+.hero .media-ui .play { background: rgba(16,213,240,.22); border-color: rgba(16,213,240,.7); }
+.hero .media-ui .play:hover { background: rgba(16,213,240,.4); }
+@media (max-width: 720px) {
+  .hero .media-ui { border-radius: 18px; }
+  .hero .media-ui .media-chips { gap: 6px; }
+  .hero .media-ui .chip { height: 28px; padding: 0 10px; font-size: 10px; }
+  .hero .media-ui .play { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+  .hero .media-ui .media-caption strong { font-size: 20px; }
+}
+@media (max-width: 720px) {
+  .hero .media-ui .chip:nth-child(n+2) { display: none; }
+  .hero .media-ui .media-caption .mono { font-size: 10px; }
+}
