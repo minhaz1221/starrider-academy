@@ -104,7 +104,7 @@ export default function Motion() {
       gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
         const target = parseFloat(el.dataset.count || "0");
         const obj = { v: 0 };
-        onEnter(el, () => gsap.to(obj, { v: target, duration: 1.6, ease: "power2.out", onUpdate: () => (el.textContent = Math.round(obj.v).toLocaleString("en-AU")) }));
+        onEnter(el, () => gsap.to(obj, { v: target, duration: 1.6, ease: "power2.out", onUpdate: () => (el.textContent = (target >= 1900 && target <= 2100 ? String(Math.round(obj.v)) : Math.round(obj.v).toLocaleString("en-AU"))) }));
       });
       // header shrink
       ScrollTrigger.create({
