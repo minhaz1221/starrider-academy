@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSite } from "@/components/SiteContext";
-import DotField from "@/components/college/DotField";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,7 +98,6 @@ export default function Hero() {
       {theme === "sra" && (
         <div className="hero-bubbles" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div>
       )}
-      <DotField color={theme === "nzcdi" ? "31,168,134" : theme === "sra" ? "3,136,203" : "16,213,240"} color2={theme === "sra" ? "241,30,121" : theme === "nzcdi" ? "16,213,240" : "3,136,203"} className="hero-dots" />
       <div className="container">
         <div className="hero-copy" ref={copy}>
           <div>

@@ -519,3 +519,48 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 /* Pathway cards: show the whole photo (with its arc), no cropping */
 #pathways .card-media { height: auto !important; aspect-ratio: 728 / 808; }
 #pathways .card-media img { height: 100%; margin-top: 0; object-fit: cover; object-position: center top; }
+
+/* ---- ACDI colour story as the background: cyan -> ocean -> royal -> purple -> magenta -> pink ----
+   The original dark design, with the logo gradient living in the backgrounds (no dot field). */
+.site-acdi .hero {
+  background:
+    radial-gradient(60% 55% at 92% 8%, rgba(16,213,240,.55), rgba(16,213,240,0) 70%),
+    radial-gradient(55% 60% at 70% 30%, rgba(3,136,203,.45), rgba(3,136,203,0) 70%),
+    radial-gradient(70% 70% at 10% 95%, rgba(241,30,121,.55), rgba(196,20,120,0) 70%),
+    radial-gradient(60% 60% at 35% 60%, rgba(110,38,136,.6), rgba(110,38,136,0) 70%),
+    linear-gradient(160deg, #0b2a6b 0%, #1a4da2 28%, #3a2c86 55%, #6e2688 78%, #a0197e 100%);
+}
+.site-acdi .hero-glow { background: radial-gradient(closest-side, rgba(16,213,240,.35), rgba(16,213,240,0)) !important; }
+.site-acdi .hero::after { background: radial-gradient(closest-side, rgba(241,30,121,.35), rgba(241,30,121,0)); left: auto; right: -200px; top: 40%; }
+.site-acdi .welcome.bg-navy {
+  background:
+    radial-gradient(50% 60% at 100% 0%, rgba(16,213,240,.35), rgba(16,213,240,0) 70%),
+    radial-gradient(55% 60% at 0% 100%, rgba(196,20,120,.45), rgba(196,20,120,0) 70%),
+    linear-gradient(135deg, #0f1540 0%, #1a4da2 45%, #3a2c86 100%);
+}
+.site-acdi .statement.bg-navy {
+  background:
+    radial-gradient(60% 80% at 0% 100%, rgba(16,213,240,.35), rgba(3,136,203,0) 70%),
+    radial-gradient(60% 80% at 100% 0%, rgba(241,30,121,.5), rgba(241,30,121,0) 70%),
+    linear-gradient(120deg, #1a4da2 0%, #4b2f8f 45%, #6e2688 70%, #a0197e 100%);
+}
+.site-acdi .enquiry.bg-deep {
+  background:
+    radial-gradient(50% 60% at 100% 100%, rgba(110,38,136,.5), rgba(110,38,136,0) 70%),
+    radial-gradient(45% 55% at 0% 0%, rgba(3,136,203,.4), rgba(3,136,203,0) 70%),
+    linear-gradient(180deg, #070b24 0%, #0f1540 100%);
+}
+.site-acdi .cta {
+  background:
+    radial-gradient(55% 70% at 15% 30%, rgba(16,213,240,.45), rgba(3,136,203,0) 70%),
+    radial-gradient(55% 70% at 85% 70%, rgba(241,30,121,.55), rgba(196,20,120,0) 70%),
+    linear-gradient(110deg, #0388cb 0%, #1a4da2 30%, #6e2688 65%, #c41478 100%);
+}
+.site-acdi .cta-glow { opacity: .6; }
+.site-acdi .footer { background: linear-gradient(180deg, #070b24 0%, #0b1030 100%); }
+.site-acdi .footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--grad); }
+.site-acdi .footer { position: relative; border-top: 0; }
+/* white text on the gradient bands stays white */
+.site-acdi .statement .accent, .site-acdi .cta h2 .accent { background-image: linear-gradient(90deg, #10d5f0, #7fe9f7) !important; }
+/* headline accent words must stay readable on the gradient: bright cyan -> light pink */
+.site-acdi .hero h1 .accent { background-image: linear-gradient(90deg, #10d5f0 0%, #7fe9f7 40%, #ff8fc6 75%, #f11e79 100%) !important; }

@@ -49,7 +49,7 @@ const acdi: Site = {
   theme: "acdi",
   short: "ACDI",
   fullName: "Australian College of Digital Innovation",
-  logoHeader: "/brand/acdi-logo-light-compact.png",
+  logoHeader: "/brand/acdi-logo-dark-compact.png",
   logoFooter: "/brand/acdi-logo-dark.png",
   logoAlt: "ACDI — Australian College of Digital Innovation",
   site: acdiData.site,
