@@ -17,6 +17,8 @@ export type Site = {
   logoFooter: string;
   logoAlt: string;
   site: { name: string; phone: string; phoneHref: string; email: string; location: string; address: string; announcement: string };
+  transition?: { strong: string; text: string; cta: string; href: string };
+  heroBg?: { video: string; poster: string };
   nav: Link_[];
   megaMenu: { streams: string[]; study: string[]; featured: string };
   hero: { eyebrow: string; title: string; accentFrom: number; sub: string; primary: { label: string; href: string }; secondary: { label: string; href: string } };
@@ -49,8 +51,10 @@ const acdi: Site = {
   theme: "acdi",
   short: "ACDI",
   fullName: "Australian College of Digital Innovation",
-  logoHeader: "/brand/acdi-logo-dark-compact.png",
+  logoHeader: "/brand/acdi-logo-light-compact.png",
   logoFooter: "/brand/acdi-logo-dark.png",
+  transition: { strong: "We're transitioning.", text: "ACIT and IFTV are becoming ACDI — the Australian College of Digital Innovation. Same campus, same team, new name.", cta: "Learn more", href: "/#about" },
+  heroBg: { video: "/ext/hero-bg.mp4", poster: "/ext/hero-bg.jpg" },
   logoAlt: "ACDI — Australian College of Digital Innovation",
   site: acdiData.site,
   nav: acdiData.nav,
@@ -102,6 +106,8 @@ const sra: Site = {
   fullName: "Star Rider Academy",
   logoHeader: "/brand/logo-navy.png",
   logoFooter: "/brand/logo-white.png",
+  transition: undefined,
+  heroBg: undefined,
   logoAlt: "Star Rider Academy",
   site: {
     name: "Star Rider Academy",
@@ -199,8 +205,10 @@ const nzcdi: Site = {
   theme: "nzcdi",
   short: "NZCDI",
   fullName: "New Zealand College of Digital Innovation",
-  logoHeader: "/brand/nzcdi-logo-white.svg",
+  logoHeader: "/brand/nzcdi-logo.svg",
   logoFooter: "/brand/nzcdi-logo-white.svg",
+  transition: undefined,
+  heroBg: undefined,
   logoAlt: "NZCDI — New Zealand College of Digital Innovation",
   site: {
     name: "NZCDI",

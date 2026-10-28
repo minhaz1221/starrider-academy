@@ -18,7 +18,7 @@ const Arrow = () => (
  * section then slides up over the held video, so the hand-off is one continuous motion.
  */
 export default function Hero() {
-  const { hero, heroVideo, heroMedia, theme } = useSite();
+  const { hero, heroVideo, heroMedia, theme, heroBg } = useSite();
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const media = useRef<HTMLDivElement>(null);
@@ -96,7 +96,14 @@ export default function Hero() {
   return (
     <section className="hero" ref={section}>
       <div className="hero-glow" aria-hidden="true" />
-      <Aurora className="hero-aurora" />
+      {heroBg ? (
+        <div className="hero-bg" aria-hidden="true">
+          <video src={heroBg.video} poster={heroBg.poster} muted loop playsInline autoPlay preload="auto" />
+          <Aurora className="hero-aurora hero-aurora--over" strength={0.35} />
+        </div>
+      ) : (
+        <Aurora className="hero-aurora" />
+      )}
       {theme === "sra" && (
         <div className="hero-bubbles" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div>
       )}

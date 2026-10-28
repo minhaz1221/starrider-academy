@@ -86,3 +86,11 @@
 .site-nzcdi .tag { background: #0b6e4f; }
 .site-sra .hero-glow { opacity: .28; }
 .site-sra .hero::after { opacity: .25; }
+
+/* NZCDI: white header like the others */
+.site-nzcdi .announce { background: #eef7f3; color: #0b6e4f; }
+.site-nzcdi .header, .site-nzcdi .header.is-stuck { background: #fff; color: #101418; box-shadow: 0 1px 0 #e3e8e6; }
+.site-nzcdi .header.is-stuck { background: rgba(255,255,255,.92); backdrop-filter: blur(14px); }
+.site-nzcdi .nav-link { color: #101418; }
+.site-nzcdi .pill-outline { color: #101418; border-color: rgba(16,20,24,.25); }
+.site-nzcdi .burger { border-color: rgba(16,20,24,.3); } .site-nzcdi .burger svg { stroke: #101418; }

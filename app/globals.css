@@ -568,15 +568,15 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 /* ---- Type: Montserrat (logo family). Normal bold: 700 for headlines, 600 for titles/labels, 400-500 body. ---- */
 :root { --font: "Montserrat", "Segoe UI", Arial, sans-serif; --mono: var(--font); }
 body { font-weight: 400; }
-.hero h1 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; font-size: clamp(42px, 5.4vw, 78px); }
+.hero h1 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.06; font-size: clamp(40px, 5.2vw, 74px); }
 .hero-right p, .lead, .welcome-text, .card-body p, .dl-card p, .quote-card blockquote, .cta p, .enquiry-copy .lead, .footer-brand p { font-weight: 400; }
-.ruled h2, .section-title, .cta h2, .course-hero h1, .welcome h2 { font-weight: 700; letter-spacing: -0.03em; }
-.stat strong { font-weight: 700; letter-spacing: -0.035em; }
-.statement p { font-weight: 600; letter-spacing: -0.02em; }
+.ruled h2, .section-title, .cta h2, .course-hero h1, .welcome h2 { font-weight: 600; letter-spacing: -0.03em; }
+.stat strong { font-weight: 600; letter-spacing: -0.035em; }
+.statement p { font-weight: 500; letter-spacing: -0.02em; }
 main > .hero ~ * h3, .card-body h3, .dl-card h3, .event-body h3, .news-row strong, .welcome-caption strong, .media-caption strong, .form-done strong, .quote-card strong, .welcome-fact strong { font-weight: 600; }
 .nav-link, .mega a, .drawer a, .footer a, .mega-feature { font-weight: 500; }
-.btn, .btn-cyan, .pill-white, .pill-outline { font-weight: 600; letter-spacing: 0; }
-.eyebrow, .hero-eyebrow, .announce, .mega h4, .chip, .stat > span, .tag, .news-meta, .footer h5, .footer-bottom, .sound, .quote-card em, .form-card label, .mono, .hero .media-ui .chip, .hero .media-ui .media-caption .mono, .enquiry-contact .mono, .welcome-fact .mono { font-weight: 600; letter-spacing: .05em; }
+.btn, .btn-cyan, .pill-white, .pill-outline { font-weight: 500; letter-spacing: 0; }
+.eyebrow, .hero-eyebrow, .announce, .mega h4, .chip, .stat > span, .tag, .news-meta, .footer h5, .footer-bottom, .sound, .quote-card em, .form-card label, .mono, .hero .media-ui .chip, .hero .media-ui .media-caption .mono, .enquiry-contact .mono, .welcome-fact .mono { font-weight: 500; letter-spacing: .06em; }
 
 /* ---- Aurora: moving brand gradient (drifts on its own, leans toward the cursor) + sparse stars ---- */
 .statement, .welcome, .cta, .hero { position: relative; }
@@ -625,3 +625,43 @@ main > .hero ~ * h3, .card-body h3, .dl-card h3, .event-body h3, .news-row stron
 .site-sra .hero .aurora .stars { display: none; }
 @media (max-width: 720px) { .aurora .au { filter: blur(40px); } .aurora .au-1, .aurora .au-3 { width: 90vw; height: 90vw; } }
 @media (prefers-reduced-motion: reduce) { .aurora .au, .aurora .stars { animation: none; } }
+
+/* ---- White header (all sites) + transition bar on top, like a brand-transition notice ---- */
+.transition-bar { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 10px 24px; font-size: 13.5px; font-weight: 500; letter-spacing: 0; text-transform: none;
+  color: #fff; background: linear-gradient(90deg, #1a4da2 0%, #0388cb 45%, #6e2688 80%, #c41478 100%); }
+.transition-bar strong { font-weight: 600; }
+.transition-bar a { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); color: #fff; font-weight: 600; font-size: 12.5px; white-space: nowrap; transition: background .2s; }
+.transition-bar a:hover { background: rgba(255,255,255,.28); }
+.transition-dot { width: 8px; height: 8px; border-radius: 50%; background: #10d5f0; box-shadow: 0 0 0 4px rgba(16,213,240,.25); animation: tPulse 1.8s ease-in-out infinite; }
+@keyframes tPulse { 0%,100% { box-shadow: 0 0 0 3px rgba(16,213,240,.25); } 50% { box-shadow: 0 0 0 7px rgba(16,213,240,.08); } }
+.site-acdi .announce { background: #f3f6fd; color: #1a4da2; }
+.site-acdi .announce svg { color: #0388cb; }
+.site-acdi .header, .site-acdi .header.is-stuck { background: #fff; color: #0f1540; box-shadow: 0 1px 0 #e6e8f2; }
+.site-acdi .header.is-stuck { background: rgba(255,255,255,.92); backdrop-filter: blur(14px); box-shadow: 0 10px 40px rgba(15,21,64,.08); }
+.site-acdi .header::after { opacity: 1; }
+.site-acdi .nav-link { color: #0f1540; }
+.site-acdi .nav-link:hover { color: #0388cb; }
+.site-acdi .pill-outline { color: #0f1540; border-color: rgba(15,21,64,.25); }
+.site-acdi .pill-outline:hover { background: rgba(15,21,64,.05); }
+.site-acdi .burger { border-color: rgba(15,21,64,.3); color: #0f1540; }
+.site-acdi .burger svg { stroke: #0f1540; }
+.site-acdi .mega { box-shadow: 0 30px 60px rgba(15,21,64,.18); }
+.site-acdi .drawer { background: rgba(255,255,255,.98); color: #0f1540; }
+.site-acdi .drawer a { color: #0f1540; border-bottom-color: #e6e8f2; }
+.site-acdi .drawer .burger svg { stroke: #0f1540; }
+.site-nzcdi .announce { background: #eef7f3; color: #0b6e4f; }
+.site-nzcdi .header, .site-nzcdi .header.is-stuck { background: #fff; color: #101418; box-shadow: 0 1px 0 #e3e8e6; }
+.site-nzcdi .header.is-stuck { background: rgba(255,255,255,.92); backdrop-filter: blur(14px); }
+.site-nzcdi .nav-link { color: #101418; }
+.site-nzcdi .pill-outline { color: #101418; border-color: rgba(16,20,24,.25); }
+.site-nzcdi .burger { border-color: rgba(16,20,24,.3); } .site-nzcdi .burger svg { stroke: #101418; }
+.site-nzcdi .drawer { background: rgba(255,255,255,.98); color: #101418; } .site-nzcdi .drawer a { color: #101418; border-bottom-color: #e3e8e6; } .site-nzcdi .drawer .burger svg { stroke: #101418; }
+.site-nzcdi .header .logo img { height: 50px; }
+
+/* ---- Hero background film (brand-coloured flowing gradient) ---- */
+.hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.hero-bg video { position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; opacity: .9; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,11,36,.35) 0%, rgba(7,11,36,.15) 40%, rgba(7,11,36,.55) 100%); }
+.hero-aurora--over { z-index: 1; }
+.hero-aurora--over .au { filter: blur(90px); }
+.site-acdi .hero { background: #0a1446; }

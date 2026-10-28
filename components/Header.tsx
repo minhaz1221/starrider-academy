@@ -10,7 +10,7 @@ const Chevron = () => (
 );
 
 export default function Header() {
-  const { nav, megaMenu, site, base, logoHeader, logoAlt, short } = useSite();
+  const { nav, megaMenu, site, base, logoHeader, logoAlt, short, transition } = useSite();
   const [stuck, setStuck] = useState(false);
   const [mega, setMega] = useState(false);
   const [drawer, setDrawer] = useState(false);
@@ -43,6 +43,13 @@ export default function Header() {
 
   return (
     <>
+      {transition && (
+        <div className="transition-bar" role="status">
+          <span className="transition-dot" aria-hidden="true" />
+          <span><strong>{transition.strong}</strong> {transition.text}</span>
+          <a href={transition.href}>{transition.cta} <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+        </div>
+      )}
       <div className="announce">{site.announcement}<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></div>
       <header className={`header${stuck ? " is-stuck" : ""}`} ref={wrap}>
         <div className="header-inner">
