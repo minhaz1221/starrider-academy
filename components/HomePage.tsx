@@ -55,7 +55,7 @@ export default function HomePage({ slug }: { slug: keyof typeof sites }) {
             <div className="grid-3" data-stagger>
               {pathways.map((p) => (
                 <Link key={p.title} href={p.href} className="card">
-                  <div className="card-media"><img src={p.img} alt="" loading="lazy" data-parallax="0.12" /></div>
+                  <div className="card-media"><img src={p.img} alt="" loading="lazy" /></div>
                   <div className="card-body">
                     <h3>{p.title}</h3>
                     <p>{p.text}</p>

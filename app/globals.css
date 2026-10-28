@@ -515,3 +515,7 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
   .hero .media-ui .chip:nth-child(n+2) { display: none; }
   .hero .media-ui .media-caption .mono { font-size: 10px; }
 }
+
+/* Pathway cards: show the whole photo (with its arc), no cropping */
+#pathways .card-media { height: auto !important; aspect-ratio: 728 / 808; }
+#pathways .card-media img { height: 100%; margin-top: 0; object-fit: cover; object-position: center top; }
