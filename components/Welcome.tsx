@@ -1,4 +1,5 @@
 "use client";
+import Aurora from "@/components/Aurora";
 import { useRef, useState } from "react";
 import { useSite } from "@/components/SiteContext";
 
@@ -10,6 +11,7 @@ export default function Welcome() {
   const toggle = () => { const el = v.current; if (!el) return; el.muted = !el.muted; setMuted(el.muted); if (el.paused) el.play().catch(() => {}); };
   return (
     <section className="section welcome on-dark bg-navy" id="welcome">
+      <Aurora strength={0.6} />
       <div className="container">
         <div className="ruled"><h2 data-split>{welcome.eyebrow}</h2></div>
         <div className="lead-row">

@@ -8,6 +8,7 @@ import Welcome from "@/components/Welcome";
 import EnquiryForm from "@/components/EnquiryForm";
 import { SiteProvider } from "@/components/SiteContext";
 import { sites } from "@/lib/sites";
+import Aurora from "@/components/Aurora";
 
 const Arrow = () => (
   <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -116,6 +117,7 @@ export default function HomePage({ slug }: { slug: keyof typeof sites }) {
 
         {/* Statement */}
         <section className="statement bg-navy">
+          <Aurora strength={0.7} />
           <div className="container">
             <p data-split>{s.statement.before}<span className="accent">{s.statement.accent}</span>{s.statement.after}</p>
             <div className="statement-btns" data-stagger>
@@ -189,6 +191,7 @@ export default function HomePage({ slug }: { slug: keyof typeof sites }) {
         {/* CTA */}
         <section className="cta" id="enrol">
           <div className="cta-glow" aria-hidden="true" />
+          <Aurora strength={0.8} />
           <div className="container">
             <span className="mono" data-reveal>{s.cta.eyebrow}</span>
             <h2 data-split>Ready to <span className="accent">start?</span></h2>

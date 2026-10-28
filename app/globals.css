@@ -565,16 +565,63 @@ main > .hero ~ * h3 { font-size: clamp(20px, 1.6vw, 26px); letter-spacing: -0.01
 /* headline accent words must stay readable on the gradient: bright cyan -> light pink */
 .site-acdi .hero h1 .accent { background-image: linear-gradient(90deg, #10d5f0 0%, #7fe9f7 40%, #ff8fc6 75%, #f11e79 100%) !important; }
 
-/* ---- Type: bold, matching the logo wordmark (Montserrat). No light weights anywhere. ---- */
+/* ---- Type: Montserrat (logo family). Normal bold: 700 for headlines, 600 for titles/labels, 400-500 body. ---- */
 :root { --font: "Montserrat", "Segoe UI", Arial, sans-serif; --mono: var(--font); }
-body { font-weight: 500; }
-.hero h1 { font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; font-size: clamp(42px, 5.6vw, 82px); }
-.hero-right p, .lead, .welcome-text, .card-body p, .dl-card p, .quote-card blockquote, .statement p, .cta p, .enquiry-copy .lead, .footer-brand p { font-weight: 500; }
-.ruled h2, .section-title, .cta h2, .course-hero h1, .welcome h2 { font-weight: 800; letter-spacing: -0.035em; }
-.stat strong { font-weight: 800; letter-spacing: -0.04em; }
-.statement p { font-weight: 700; letter-spacing: -0.025em; }
-main > .hero ~ * h3, .card-body h3, .dl-card h3, .event-body h3, .news-row strong, .welcome-caption strong, .media-caption strong, .form-done strong, .quote-card strong, .welcome-fact strong { font-weight: 700; }
-.nav-link, .mega a, .drawer a, .footer a, .mega-feature { font-weight: 600; }
-.btn, .btn-cyan, .pill-white, .pill-outline { font-weight: 700; letter-spacing: 0; }
-.eyebrow, .hero-eyebrow, .announce, .mega h4, .chip, .stat > span, .tag, .news-meta, .footer h5, .footer-bottom, .sound, .quote-card em, .form-card label, .mono, .hero .media-ui .chip, .hero .media-ui .media-caption .mono, .enquiry-contact .mono, .welcome-fact .mono { font-weight: 700; letter-spacing: .04em; }
-.hero .media-ui .chip { font-weight: 700; }
+body { font-weight: 400; }
+.hero h1 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.04; font-size: clamp(42px, 5.4vw, 78px); }
+.hero-right p, .lead, .welcome-text, .card-body p, .dl-card p, .quote-card blockquote, .cta p, .enquiry-copy .lead, .footer-brand p { font-weight: 400; }
+.ruled h2, .section-title, .cta h2, .course-hero h1, .welcome h2 { font-weight: 700; letter-spacing: -0.03em; }
+.stat strong { font-weight: 700; letter-spacing: -0.035em; }
+.statement p { font-weight: 600; letter-spacing: -0.02em; }
+main > .hero ~ * h3, .card-body h3, .dl-card h3, .event-body h3, .news-row strong, .welcome-caption strong, .media-caption strong, .form-done strong, .quote-card strong, .welcome-fact strong { font-weight: 600; }
+.nav-link, .mega a, .drawer a, .footer a, .mega-feature { font-weight: 500; }
+.btn, .btn-cyan, .pill-white, .pill-outline { font-weight: 600; letter-spacing: 0; }
+.eyebrow, .hero-eyebrow, .announce, .mega h4, .chip, .stat > span, .tag, .news-meta, .footer h5, .footer-bottom, .sound, .quote-card em, .form-card label, .mono, .hero .media-ui .chip, .hero .media-ui .media-caption .mono, .enquiry-contact .mono, .welcome-fact .mono { font-weight: 600; letter-spacing: .05em; }
+
+/* ---- Aurora: moving brand gradient (drifts on its own, leans toward the cursor) + sparse stars ---- */
+.statement, .welcome, .cta, .hero { position: relative; }
+.statement > .container, .welcome > .container, .cta > .container, .hero > .container, .hero .media-track { position: relative; z-index: 1; }
+.aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; --mx: 0; --my: 0; --s: 1; }
+.aurora .au { position: absolute; display: block; border-radius: 50%; filter: blur(70px); opacity: calc(.75 * var(--s)); mix-blend-mode: screen; will-change: transform;
+  animation: auDrift var(--d, 22s) ease-in-out infinite alternate; }
+.aurora .au-1 { width: 55vw; height: 55vw; left: -12vw; top: -20vw; background: radial-gradient(closest-side, #0388cb, rgba(3,136,203,0)); --d: 26s; transform: translate3d(calc(var(--mx) * 60px), calc(var(--my) * 40px), 0); }
+.aurora .au-2 { width: 50vw; height: 50vw; right: -10vw; top: -15vw; background: radial-gradient(closest-side, #10d5f0, rgba(16,213,240,0)); --d: 30s; animation-delay: -8s; opacity: calc(.55 * var(--s)); transform: translate3d(calc(var(--mx) * -80px), calc(var(--my) * 50px), 0); }
+.aurora .au-3 { width: 60vw; height: 60vw; left: 18vw; bottom: -18vw; background: radial-gradient(closest-side, #f11e79, rgba(241,30,121,0)); --d: 24s; animation-delay: -14s; transform: translate3d(calc(var(--mx) * 90px), calc(var(--my) * -60px), 0); }
+.aurora .au-4 { width: 45vw; height: 45vw; left: 35vw; top: 10vw; background: radial-gradient(closest-side, #6e2688, rgba(110,38,136,0)); --d: 34s; animation-delay: -5s; transform: translate3d(calc(var(--mx) * -50px), calc(var(--my) * -40px), 0); }
+.aurora .au-5 { width: 40vw; height: 40vw; right: 5vw; bottom: -10vw; background: radial-gradient(closest-side, #1a4da2, rgba(26,77,162,0)); --d: 28s; animation-delay: -20s; transform: translate3d(calc(var(--mx) * 70px), calc(var(--my) * 30px), 0); }
+@keyframes auDrift {
+  0%   { translate: 0 0; scale: 1; }
+  33%  { translate: 6vw -3vw; scale: 1.12; }
+  66%  { translate: -4vw 5vw; scale: .94; }
+  100% { translate: 3vw 2vw; scale: 1.06; }
+}
+.aurora .stars { position: absolute; inset: 0; opacity: .55;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, #9fe9ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 28% 62%, #7fc8ff 50%, transparent 52%),
+    radial-gradient(2px 2px at 44% 30%, #bff3ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 61% 74%, #8fd6ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 73% 22%, #a8e8ff 50%, transparent 52%),
+    radial-gradient(2px 2px at 86% 48%, #cdf6ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 93% 12%, #9fe9ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 8% 84%, #7fc8ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 52% 90%, #a8e8ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 67% 8%, #bff3ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 36% 6%, #9fe9ff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 80% 86%, #8fd6ff 50%, transparent 52%);
+  background-size: 640px 520px; animation: starTwinkle 6s ease-in-out infinite alternate;
+  transform: translate3d(calc(var(--mx) * -14px), calc(var(--my) * -10px), 0); }
+@keyframes starTwinkle { from { opacity: .35; } to { opacity: .7; } }
+/* the sections keep a calm base; the aurora supplies the colour */
+.site-acdi .hero { background: linear-gradient(180deg, #0a1446 0%, #0b1a5a 55%, #140c3c 100%); }
+.site-acdi .hero::after, .site-acdi .hero-glow { display: none; }
+.site-acdi .welcome.bg-navy { background: linear-gradient(135deg, #0f1540, #0b1a5a); }
+.site-acdi .statement.bg-navy { background: linear-gradient(120deg, #0f1540, #1a1050); }
+.site-acdi .cta { background: #0a1446; }
+.site-acdi .cta-glow { display: none; }
+.site-nzcdi .aurora .au-3 { background: radial-gradient(closest-side, #1fa886, rgba(31,168,134,0)); }
+.site-nzcdi .aurora .au-4 { background: radial-gradient(closest-side, #0b6e4f, rgba(11,110,79,0)); }
+.site-sra .hero .aurora .au { opacity: calc(.35 * var(--s)); mix-blend-mode: normal; }
+.site-sra .hero .aurora .stars { display: none; }
+@media (max-width: 720px) { .aurora .au { filter: blur(40px); } .aurora .au-1, .aurora .au-3 { width: 90vw; height: 90vw; } }
+@media (prefers-reduced-motion: reduce) { .aurora .au, .aurora .stars { animation: none; } }

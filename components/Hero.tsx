@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSite } from "@/components/SiteContext";
+import Aurora from "@/components/Aurora";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,6 +96,7 @@ export default function Hero() {
   return (
     <section className="hero" ref={section}>
       <div className="hero-glow" aria-hidden="true" />
+      <Aurora className="hero-aurora" />
       {theme === "sra" && (
         <div className="hero-bubbles" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div>
       )}
