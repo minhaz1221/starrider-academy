@@ -665,3 +665,7 @@ main > .hero ~ * h3, .card-body h3, .dl-card h3, .event-body h3, .news-row stron
 .hero-aurora--over { z-index: 1; }
 .hero-aurora--over .au { filter: blur(90px); }
 .site-acdi .hero { background: #0a1446; }
+.hero-bg video { max-width: none; left: -6%; top: -6%; width: 112%; height: 112%; }
+/* over the film: blues only, no pink */
+.hero-aurora--over .au-3 { background: radial-gradient(closest-side, #0388cb, rgba(3,136,203,0)); }
+.hero-aurora--over .au-4 { background: radial-gradient(closest-side, #3a2c86, rgba(58,44,134,0)); }
